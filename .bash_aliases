@@ -34,3 +34,6 @@ alias pests='docker-compose exec webserver php ./vendor/bin/pest --stop-on-failu
 alias watch='npm run watch'
 alias dev='npm run dev'
 alias production='npm run production'
+
+# WSL
+alias wsl='wsl.exe'
