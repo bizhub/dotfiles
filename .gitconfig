@@ -1,0 +1,13 @@
+[credential]
+	helper = manager
+[user]
+	email = lex@bizhub.co.nz
+	name = Lex van der Woude
+[core]
+	safecrlf = false
+	autocrlf = input
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
