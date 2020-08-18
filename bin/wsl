@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ "$1" = '-s' ]
+then
+    cmd.exe /c wsl --shutdown 2> /dev/null
+    exit
+fi
+
+cmd.exe /c wsl -l -v 2> /dev/null
