@@ -14,6 +14,7 @@ alias gb='git branch'
 alias go='git checkout'
 alias gt='git tag'
 alias gm='git merge'
+alias gd='git diff'
 
 # Docker compose
 alias up='docker-compose up -d'
@@ -23,7 +24,11 @@ alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
 alias dce='docker-compose exec'
 
+# Artisan (via docker)
 alias a='docker-compose exec webserver php artisan'
+alias afresh='a migrate:refresh --seed'
+alias aseed='a db:seed'
+alias am="a migrate"
 
 # Testing
 alias test='docker-compose exec webserver php ./vendor/bin/phpunit'
