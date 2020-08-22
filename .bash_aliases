@@ -1,8 +1,18 @@
-# Global
+# General
 alias cls='clear'
 alias e.='explorer.exe .'
 alias ..='cd ../'
+alias ...='cd ../..'
 alias ~='cd ~'
+alias ll='ls -alF --group-directories-first'
+
+alias myip="curl http://ipecho.net/plain; echo"
+alias fhere="find . -name "
+
+mkd () {
+    mkdir -p $1
+    cd $1
+}
 
 # Git
 alias gl='git log --oneline --all --graph --decorate'
@@ -24,11 +34,11 @@ alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
 alias dce='docker-compose exec'
 
-# Artisan (via docker)
-alias a='docker-compose exec webserver php artisan'
-alias afresh='a migrate:refresh --seed'
-alias aseed='a db:seed'
-alias am="a migrate"
+# Artisan
+alias a='php artisan'
+alias afresh='docker-compose exec webserver php artisan migrate:refresh --seed'
+alias aseed='docker-compose exec webserver php artisan db:seed'
+alias am="docker-compose exec webserver php artisan migrate"
 
 # Testing
 alias test='docker-compose exec webserver php ./vendor/bin/phpunit'
