@@ -36,9 +36,9 @@ alias dce='docker-compose exec'
 
 # Artisan
 alias a='php artisan'
-alias afresh='docker-compose exec webserver php artisan migrate:refresh --seed'
-alias aseed='docker-compose exec webserver php artisan db:seed'
-alias am="docker-compose exec webserver php artisan migrate"
+alias fresh='docker-compose exec webserver php artisan migrate:refresh --seed'
+alias seed='docker-compose exec webserver php artisan db:seed'
+alias migrate="docker-compose exec webserver php artisan migrate"
 
 # Testing
 alias test='docker-compose exec webserver php ./vendor/bin/phpunit'
@@ -52,3 +52,4 @@ alias production='npm run production'
 
 # WSL
 alias wsl='wsl.exe'
+
