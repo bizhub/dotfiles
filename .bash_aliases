@@ -3,7 +3,6 @@ alias cls='clear'
 alias e.='explorer.exe .'
 alias ..='cd ../'
 alias ...='cd ../..'
-alias ~='cd ~'
 alias ll='ls -alF --group-directories-first'
 
 alias myip="curl http://ipecho.net/plain; echo"
@@ -50,6 +49,7 @@ alias watch='npm run watch'
 alias dev='npm run dev'
 alias production='npm run production'
 
-# WSL
+# Windows
 alias wsl='wsl.exe'
+alias choco='choco.exe'
 
