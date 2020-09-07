@@ -14,7 +14,8 @@ mkd () {
 }
 
 # Git
-alias gl='git log --oneline --all --graph --decorate'
+alias gl='git log --oneline --graph --decorate -10'
+alias gla='git log --oneline --graph --decorate --all'
 alias gc='git commit'
 alias gp='git push origin'
 alias gs='git status -s'
