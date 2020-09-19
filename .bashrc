@@ -124,4 +124,3 @@ export NVM_DIR="$HOME/.nvm"
 cd ~/repos
 
 eval "$(starship init bash)"
-
