@@ -26,6 +26,9 @@ alias gt='git tag'
 alias gm='git merge'
 alias gd='git diff'
 
+# Docker
+alias dps='docker ps -a'
+
 # Docker compose
 alias up='docker-compose up -d'
 alias down='docker-compose down'
