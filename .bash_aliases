@@ -39,6 +39,7 @@ alias dce='docker-compose exec'
 
 # Artisan
 alias a='php artisan'
+alias da='docker-compose exec webserver php artisan'
 alias fresh='docker-compose exec webserver php artisan migrate:refresh --seed'
 alias seed='docker-compose exec webserver php artisan db:seed'
 alias migrate="docker-compose exec webserver php artisan migrate"
