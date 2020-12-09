@@ -13,6 +13,10 @@ mkd () {
     cd $1
 }
 
+# Windows
+alias wsl='wsl.exe'
+alias choco='choco.exe'
+
 # Git
 alias gl='git log --oneline --graph --decorate -10'
 alias gla='git log --oneline --graph --decorate --all'
@@ -30,31 +34,24 @@ alias gd='git diff'
 alias dps='docker ps -a'
 
 # Docker compose
-alias up='docker-compose up -d'
-alias down='docker-compose down'
-alias build='docker-compose up -d --build'
 alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
 alias dce='docker-compose exec'
 
-# Artisan
-alias a='php artisan'
-alias da='docker-compose exec webserver php artisan'
-alias fresh='docker-compose exec webserver php artisan migrate:refresh --seed'
-alias seed='docker-compose exec webserver php artisan db:seed'
-alias migrate="docker-compose exec webserver php artisan migrate"
+# Laravel Sail
+alias sail='./vendor/bin/sail'
+alias up='./vendor/bin/sail up -d'
+alias down='./vendor/bin/sail down'
+alias build='./vendor/bin/sail up -d --build'
 
-# Testing
-alias test='docker-compose exec webserver php ./vendor/bin/phpunit'
-alias pest='docker-compose exec webserver php ./vendor/bin/pest'
-alias pests='docker-compose exec webserver php ./vendor/bin/pest --stop-on-failure'
+# Artisan
+alias a='./vendor/bin/sail artisan'
+alias fresh='./vendor/bin/sail artisan migrate:refresh --seed'
+alias migrate="./vendor/bin/sail artisan migrate"
+alias seed='./vendor/bin/sail artisan db:seed'
+alias test='./vendor/bin/sail artisan test'
 
 # Npm
-alias watch='npm run watch'
-alias dev='npm run dev'
-alias production='npm run production'
-
-# Windows
-alias wsl='wsl.exe'
-alias choco='choco.exe'
-
+alias watch='./vendor/bin/sail npm run watch'
+alias dev='./vendor/bin/sail npm run dev'
+alias production='./vendor/bin/sail npm run production'
