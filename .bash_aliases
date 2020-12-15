@@ -29,6 +29,7 @@ alias go='git checkout'
 alias gt='git tag'
 alias gm='git merge'
 alias gd='git diff'
+alias nah='git reset --hard HEAD'
 
 # Docker
 alias dps='docker ps -a'
