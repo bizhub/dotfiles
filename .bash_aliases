@@ -56,3 +56,6 @@ alias test='./vendor/bin/sail artisan test'
 alias watch='./vendor/bin/sail npm run watch'
 alias dev='./vendor/bin/sail npm run dev'
 alias production='./vendor/bin/sail npm run production'
+
+# PHP
+alias switch-php="sudo update-alternatives --config php"
