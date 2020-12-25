@@ -13,10 +13,6 @@ mkd () {
     cd $1
 }
 
-# Windows
-alias wsl='wsl.exe'
-alias choco='choco.exe'
-
 # Git
 alias gl='git log --oneline --graph --decorate -10'
 alias gla='git log --oneline --graph --decorate --all'
