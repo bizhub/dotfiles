@@ -1,5 +1,5 @@
 [credential]
-	helper = manager
+	helper = store
 [user]
 	email = lex@bizhub.co.nz
 	name = Lex van der Woude
