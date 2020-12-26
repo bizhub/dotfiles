@@ -97,6 +97,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
 # Add global composer bin path
 if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
   PATH="$HOME/.config/composer/vendor/bin:$PATH"
