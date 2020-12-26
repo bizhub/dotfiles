@@ -19,6 +19,7 @@ alias gl='git log --oneline --graph --decorate -10'
 alias gla='git log --oneline --graph --decorate --all'
 alias gc='git commit'
 alias gp='git push origin'
+alias gf='git fetch'
 alias gs='git status -s'
 alias ga='git add'
 alias gb='git branch'
@@ -30,13 +31,20 @@ alias nah='git reset --hard HEAD'
 
 # Docker
 alias dps='docker ps -a'
+alias drmd='docker rmi $(docker images -f "dangling=true" -q)'
 
 # Docker compose
 alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
 alias dce='docker-compose exec'
 
+# PHP
+alias switch-php="sudo update-alternatives --config php"
+
+#################################
 # Laravel Sail
+#################################
+
 alias sail='./vendor/bin/sail'
 alias up='./vendor/bin/sail up -d'
 alias down='./vendor/bin/sail down'
@@ -53,9 +61,6 @@ alias test='./vendor/bin/sail artisan test'
 alias watch='./vendor/bin/sail npm run watch'
 alias dev='./vendor/bin/sail npm run dev'
 alias production='./vendor/bin/sail npm run production'
-
-# PHP
-alias switch-php="sudo update-alternatives --config php"
 
 #################################
 # Functions
