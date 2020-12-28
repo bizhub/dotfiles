@@ -14,6 +14,13 @@ alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 
+# Pacman
+alias pac="sudo pacman -Syyu"
+alias pacs="pacman -Ss"
+alias paci="pacman -Si"
+alias pacr="pacman -Rns"
+alias pacc="pacman -Rns $(pacman -Qdtq)"
+
 # Git
 alias gl='git log --oneline --graph --decorate -10'
 alias gla='git log --oneline --graph --decorate --all'
