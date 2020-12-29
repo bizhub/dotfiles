@@ -1,27 +1,30 @@
 # General
 alias cls='clear'
-alias e.='explorer.exe .'
 alias ..='cd ../'
 alias ...='cd ../..'
+alias ....='cd ../../..'
 alias ll='ls -alF --group-directories-first'
 
-alias myip="curl http://ipecho.net/plain; echo"
-alias fhere="find . -name "
+alias r='ranger'
 
-alias cp="cp -i"                          # confirm before overwriting something
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -i'
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
-alias more=less
+
+alias myip='curl http://ipecho.net/plain; echo'
 
 # Pacman
-alias pac="sudo pacman -Syyu"
-alias pacs="pacman -Ss"
-alias paci="pacman -Si"
-alias pacr="pacman -Rns"
-alias pacc="pacman -Rns $(pacman -Qdtq)"
+alias pac='sudo pacman -Syyu'
+alias pacs='pacman -Ss'
+alias paci='pacman -Si'
+alias pacr='pacman -Rns'
+alias pacc='pacman -Rns $(pacman -Qdtq)'
 
 # Git
+alias g='git'
 alias gl='git log --oneline --graph --decorate -10'
 alias gla='git log --oneline --graph --decorate --all'
 alias gc='git commit'
@@ -46,7 +49,7 @@ alias dcr='docker-compose run --rm'
 alias dce='docker-compose exec'
 
 # PHP
-alias switch-php="sudo update-alternatives --config php"
+alias switch-php='sudo update-alternatives --config php'
 
 #################################
 # Laravel Sail
