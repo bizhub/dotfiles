@@ -23,6 +23,9 @@ super + b
 super + r
 	konsole -e ranger
 
+super + {comma}
+	code ~/dotfiles
+
 #
 # bspwm hotkeys
 #
