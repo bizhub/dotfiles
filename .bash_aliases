@@ -72,6 +72,8 @@ alias watch='./vendor/bin/sail npm run watch'
 alias dev='./vendor/bin/sail npm run dev'
 alias production='./vendor/bin/sail npm run production'
 
+alias wname='xprop | grep WM_CLASS'
+
 #################################
 # Functions
 #################################
