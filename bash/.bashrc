@@ -78,8 +78,8 @@ xhost +local:root > /dev/null 2>&1
 
 complete -cf sudo
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
 fi
 
 # set PATH so it includes user's private bin if it exists
