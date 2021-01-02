@@ -6,25 +6,36 @@
 super + Return
 	konsole
 
-# program launcher
+# rofi
 super + @space
 	rofi -show run
 
 super + alt @space
 	rofi -show window
 
+super + ctrl + p
+	rofi-pass
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# browser
 super + b
 	google-chrome-stable
 
+# ranger file manager
 super + r
 	konsole -e ranger
 
+# open dotfiles in vscode
 super + {comma}
 	code ~/dotfiles
+
+# disable grave for push-to-talk
+# TODO: make toggle
+grave
+	echo ""
 
 #
 # bspwm hotkeys

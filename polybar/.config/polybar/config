@@ -2,7 +2,7 @@
 background = #2e2e2e
 background-alt = #444
 foreground = #EFEFEF
-foreground-alt = #888
+foreground-alt = #666
 primary = #666666
 secondary = #6c99bb
 alert = #bd2c40

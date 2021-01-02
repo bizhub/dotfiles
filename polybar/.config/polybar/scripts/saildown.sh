@@ -3,5 +3,9 @@
 sailid=$(docker ps -a | grep sail | sed 's/\s.*$//')
 sailpath=$(docker inspect $sailid | sed -n 's|.*"com\.docker\.compose\.project\.working_dir": "\([^"]*\)".*|\1|p')
 
+dunstify -i "" "Docker Compose" "Removing: $sailpath"
+
 cd $sailpath
 "$sailpath/vendor/bin/sail" down
+
+dunstify -i "" "Docker Compose" "Removed: $sailpath"
