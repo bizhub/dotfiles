@@ -20,8 +20,8 @@ alias myip='curl http://ipecho.net/plain; echo'
 alias pac='sudo pacman -Syyu'
 alias pacs='pacman -Ss'
 alias paci='pacman -Si'
-alias pacr='pacman -Rns'
-alias pacc='pacman -Rns $(pacman -Qdtq)'
+alias pacr='sudo pacman -Rns'
+alias pacc='sudo pacman -Rns $(pacman -Qdtq)'
 
 # Git
 alias g='git'

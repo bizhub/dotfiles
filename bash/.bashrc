@@ -4,10 +4,6 @@
 
 [[ $- != *i* ]] && return
 
-HISTCONTROL=ignoreboth
-HISTSIZE=1000
-HISTFILESIZE=2000
-
 shopt -s checkwinsize
 shopt -s expand_aliases
 shopt -s histappend
@@ -78,10 +74,6 @@ xhost +local:root > /dev/null 2>&1
 
 complete -cf sudo
 
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
-fi
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -89,11 +81,18 @@ fi
 
 # Add global composer bin path
 if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
-  PATH="$HOME/.config/composer/vendor/bin:$PATH"
+	PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+for file in ~/.{aliases,exports}; do
+	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+		source "$file"
+	fi
+done
+unset file
 
 eval "$(starship init bash)"

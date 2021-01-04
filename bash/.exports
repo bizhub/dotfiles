@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export EDITOR=/usr/bin/nano
+export TERMINAL="konsole"
+
+# Bash history
+export HISTCONTROL=ignoreboth
+export HISTSIZE=1000
+export HISTFILESIZE=2000

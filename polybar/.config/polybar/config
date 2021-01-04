@@ -39,7 +39,7 @@ font-4 = FontAwesome5Brands:style=Regular:size=10;2
 
 modules-left = bspwm xwindow
 modules-center = 
-modules-right = spotify xkeyboard docker package-updates cpu eth pulseaudio date
+modules-right = xkeyboard docker package-updates cpu eth pulseaudio date
 
 tray-position = right
 tray-padding = 2
@@ -76,7 +76,7 @@ click-left = ~/.config/polybar/scripts/saildown.sh &
 [module/package-updates]
 type = custom/script
 exec = yay -Qu | wc -l
-interval = 1000
+interval = 600
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %output%

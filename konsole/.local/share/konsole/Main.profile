@@ -8,7 +8,7 @@ CursorShape=1
 UseCustomCursorColor=false
 
 [General]
-Directory=~
+Directory=~/code
 Name=Main
 Parent=FALLBACK/
 TerminalCenter=false
