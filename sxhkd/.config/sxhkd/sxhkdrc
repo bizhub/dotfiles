@@ -37,6 +37,9 @@ super + {comma}
 grave
 	echo ""
 
+super + ctrl + shift
+	xprop | grep WM_CLASS > ~/xprop
+
 #
 # bspwm hotkeys
 #

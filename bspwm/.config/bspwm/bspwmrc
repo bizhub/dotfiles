@@ -37,7 +37,10 @@ bspc rule -a TablePlus desktop='^4' follow=on
 bspc rule -a Thunderbird desktop='^5' follow=on
 bspc rule -a Gimp desktop='^8' follow=on
 bspc rule -a Screenkey manage=off
+
 bspc rule -a net-runelite-client-RuneLite state=floating
 bspc rule -a Gpick state=floating focus=on
+bspc rule -a MEGAsync state=floating follow=on border=off layer=normal
 
 feh --bg-center ~/dotfiles/wallpapers/space-mountain.jpg
+# feh --bg-scale --no-xinerama ~/dotfiles/wallpapers/bat-joke.jpg
