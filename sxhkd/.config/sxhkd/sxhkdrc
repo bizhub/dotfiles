@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	konsole
+	alacritty
 
 # rofi
 super + @space
@@ -26,7 +26,7 @@ super + b
 
 # ranger file manager
 super + r
-	konsole -e ranger
+	alacritty -e ranger
 
 # open dotfiles in vscode
 super + {comma}

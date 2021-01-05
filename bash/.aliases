@@ -17,10 +17,6 @@ alias np='nano -w PKGBUILD'
 alias myip='curl http://ipecho.net/plain; echo'
 
 # Pacman
-alias pac='sudo pacman -Syyu'
-alias pacs='pacman -Ss'
-alias paci='pacman -Si'
-alias pacr='sudo pacman -Rns'
 alias pacc='sudo pacman -Rns $(pacman -Qdtq)'
 
 # Git
