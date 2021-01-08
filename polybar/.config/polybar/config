@@ -175,7 +175,7 @@ date =
 date-alt = 
 
 time = %I:%M %p
-time-alt = %A, %B %d, %Y, %I:%M %p
+time-alt = %a %b %d %Y, %I:%M %p
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}

@@ -10,12 +10,6 @@ super + Return
 super + @space
 	rofi -show run
 
-super + alt @space
-	rofi -show window
-
-super + ctrl + p
-	rofi-pass
-
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -23,6 +17,10 @@ super + Escape
 # browser
 super + b
 	google-chrome-stable
+
+# discord
+super + d
+	discord
 
 # ranger file manager
 super + r
@@ -37,8 +35,13 @@ super + {comma}
 grave
 	echo ""
 
-super + ctrl + shift
-	xprop | grep WM_CLASS > ~/xprop
+# open htop
+super + h
+	alacritty -e htop
+
+# xprop
+super + ctrl + shift + k
+	xprop | grep WM_CLASS
 
 #
 # bspwm hotkeys
