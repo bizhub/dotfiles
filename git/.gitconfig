@@ -1,5 +1,5 @@
 [credential]
-	helper = store
+	helper = libsecret
 [user]
 	email = lex@bizhub.co.nz
 	name = Lex van der Woude
