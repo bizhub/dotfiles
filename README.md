@@ -27,10 +27,10 @@ git clone https://github.com/bizhub/dotfiles ~/dotfiles
 sudo pacman -S stow
 ```
 
-3. Install all modules
+3. Install required modules
 ```shell
 cd ~/dotfiles
-stow alacritty bash bspwm dunst git neofetch polybar rofi starship sxhkd xorg
+stow --no-folding alacritty bash bspwm dunst git neofetch polybar rofi starship sxhkd xorg
 ```
 
 # Preview
@@ -86,6 +86,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 * lightdm
 * lightdm-webkit2-greeter
 * dry-bin
+* github-cli
 
 ## Yay (aur)
 * lightdm-webkit-theme-aether
