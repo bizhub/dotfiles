@@ -1,21 +1,15 @@
 # Dotfiles (WIP)
-Dotfiles and setup notes
-* OS : Manjaro Linux
-* WM : bspwm
-* Shell : Bash
-* Terminal : Alacritty
-* Notify Daemon : Dunst
-* Compositor : Picom
-* Bar : Polybar
+Personal backup of dotfiles and setup notes for Manjaro Linux.
 
 ## Table of contents
  - [Installing](#installing)
  - [Preview](#preview)
  - [Packages](#packages)
  - [Keybinds](#keybinds)
+ - [Visual Stuido Code](#visual-studio-code)
  - [Docker](#docker)
 
-# Installing
+## Installing
 
 1. Clone
 ```shell
@@ -33,11 +27,11 @@ cd ~/dotfiles
 stow --no-folding alacritty bash bspwm dunst git neofetch polybar rofi starship sxhkd xorg
 ```
 
-# Preview
+## Preview
 
 ![](https://raw.githubusercontent.com/bizhub/dotfiles/master/preview.png)
 
-# Packages
+## Packages
 
 ```shell
 # Starship prompt
@@ -47,57 +41,43 @@ curl -fsSL https://starship.rs/install.sh | bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 ```
 
-## Pacman
-* yay
-* ttf-font-awesome
-* ttf-cascadia-code
-* git
-* xorg
-* xorg-xinit
-* alacritty
-* bspwm
+#### Graphical environment
+* <kbd>bspwm</kbd>: Window manager
 * sxhkd
-* firefox
-* htop
-* stow
-* rofi
-* nitrogen
-* picom
-* neofetch
-* vim
-* nano
-* discord
-* dunst
-* docker
-* docker-compose
-* vlc
-* timeshift
-* redshift
-* thunderbird
-* ranger
-* php
-* qbittorrent
-* keepassxc
-* gufw
-* filezilla
-* pass
-* gimp
-* numlockx
-* lightdm
-* lightdm-webkit2-greeter
-* dry-bin
-* github-cli
+* <kbd>polybar</kbd>: Bar (aur)
+* <kbd>rofi</kbd>: Program launcher
+* <kbd>dunst</kbd>: Notifications
+* <kbd>picom</kbd>: Compositor
+* <kbd>lightdm</kbd>: Display manager
+* <kbd>nitrogen</kbd>: Wallpaper manager
 
-## Yay (aur)
-* lightdm-webkit-theme-aether
-* polybar
-* visual-studio-code-bin
-* google-chrome
-* tableplus
-* ttf-ms-fonts
-* megasync-nopdfium
+#### Fonts
+* <kbd>ttf-cascadia-code</kbd>
+* <kbd>ttf-ms-fonts</kbd> (aur)
+* <kbd>ttf-font-awesome</kbd>: Icons
 
-# Keybinds
+#### Development environment
+* <kbd>alacritty</kbd>: Terminal emulator
+* <kbd>visual-studio-code-bin</kbd>: Code editor (aur)
+* <kbd>docker</kbd>
+* <kbd>docker-compose</kbd>
+* <kbd>dry-bin</kbd>: Terminal docker manager
+* <kbd>tableplus</kbd>: Database gui (aur)
+* <kbd>gimp</kbd>
+* <kbd>github-cli</kbd>
+
+#### Misc
+* <kbd>ranger</kbd>: File explorer
+* <kbd>google-chrome</kbd>: Browser (aur)
+* <kbd>firefox</kbd>: Browser
+* <kbd>discord</kbd>
+* <kbd>vlc</kbd>
+* <kbd>megasync-nopdfium</kbd> (aur)
+* <kbd>neofetch</kbd>
+* <kbd>htop</kbd>
+* <kbd>redshift</kbd>: Alternative to Flux
+
+## Keybinds
 Keybind                | Description
 -----------------------|---------------------------------------
 <kbd>super+enter</kbd> | Alacritty
@@ -106,9 +86,10 @@ Keybind                | Description
 <kbd>super+r</kbd>     | Ranger
 <kbd>super+h</kbd>     | Htop
 
-# Visual Studio Code
+## Visual Studio Code
+Theme: [Alpenglow Monokai](https://marketplace.visualstudio.com/items?itemName=kaicataldo.alpenglow-monokai)
 
-# Docker
+## Docker
 ```shell
 systemctl enable --now docker
 

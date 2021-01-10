@@ -36,6 +36,6 @@ xrandr -s 1920x1080
 xsetroot -cursor_name arrow
 
 numlockx on
-pgrep redshift &> /dev/null || redshift &> /dev/null &
+pgrep redshift-gtk &> /dev/null || redshift-gtk &> /dev/null &
 
 exec bspwm
