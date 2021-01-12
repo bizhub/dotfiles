@@ -43,7 +43,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
 #### Graphical environment
 * <kbd>bspwm</kbd>: Window manager
-* sxhkd
+* <kbd>sxhkd</kbd>: Hotkey daemon
 * <kbd>polybar</kbd>: Bar (aur)
 * <kbd>rofi</kbd>: Program launcher
 * <kbd>dunst</kbd>: Notifications
@@ -61,7 +61,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 * <kbd>visual-studio-code-bin</kbd>: Code editor (aur)
 * <kbd>docker</kbd>
 * <kbd>docker-compose</kbd>
-* <kbd>dry-bin</kbd>: Terminal docker manager
+* <kbd>dry-bin</kbd>: Terminal docker manager (aur)
 * <kbd>tableplus</kbd>: Database gui (aur)
 * <kbd>gimp</kbd>
 * <kbd>github-cli</kbd>
@@ -69,7 +69,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 #### Misc
 * <kbd>ranger</kbd>: File explorer
 * <kbd>google-chrome</kbd>: Browser (aur)
-* <kbd>firefox</kbd>: Browser
+* <kbd>brave</kbd>: Browser (aur)
 * <kbd>discord</kbd>
 * <kbd>vlc</kbd>
 * <kbd>megasync-nopdfium</kbd> (aur)
@@ -81,10 +81,11 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 Keybind                | Description
 -----------------------|---------------------------------------
 <kbd>super+enter</kbd> | Alacritty
-<kbd>super+b</kbd>     | Chrome browser
+<kbd>super+b</kbd>     | Brave
 <kbd>super+space</kbd> | Rofi (run)
 <kbd>super+r</kbd>     | Ranger
 <kbd>super+h</kbd>     | Htop
+<kbd>super+d</kbd>     | Discord
 
 ## Visual Studio Code
 Theme: [Alpenglow Monokai](https://marketplace.visualstudio.com/items?itemName=kaicataldo.alpenglow-monokai)
