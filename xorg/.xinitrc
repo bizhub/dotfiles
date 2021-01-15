@@ -32,10 +32,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
-xrandr -s 1920x1080
-xsetroot -cursor_name arrow
+# Run display script generated from arandr
+if [[ -f $HOME/.screenlayout/display.sh ]]
+then
+    $HOME/.screenlayout/display.sh &
+fi
 
-numlockx on
+xsetroot -cursor_name left_ptr &
+
+numlockx on &
 pgrep redshift-gtk &> /dev/null || redshift-gtk &> /dev/null &
 
 exec bspwm
