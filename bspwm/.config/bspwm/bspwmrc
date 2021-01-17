@@ -3,6 +3,7 @@
 killall -q sxhkd
 killall -q polybar
 killall -q dunst
+killall -q picom
 
 while pgrep -u $UID -x sxhkd >/dev/null; do sleep 1; done
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done

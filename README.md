@@ -24,7 +24,7 @@ sudo pacman -S stow
 3. Install required modules
 ```shell
 cd ~/dotfiles
-stow --no-folding alacritty bash bspwm dunst git neofetch polybar rofi starship sxhkd xorg
+stow --no-folding alacritty bash bspwm dunst git neofetch picom polybar rofi starship sxhkd vim xorg
 ```
 
 ## Preview
@@ -70,11 +70,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 * <kbd>ranger</kbd>: File explorer
 * <kbd>google-chrome</kbd>: Browser (aur)
 * <kbd>brave</kbd>: Browser (aur)
-* <kbd>discord</kbd>
-* <kbd>vlc</kbd>
-* <kbd>megasync-nopdfium</kbd> (aur)
-* <kbd>neofetch</kbd>
-* <kbd>htop</kbd>
 * <kbd>redshift</kbd>: Alternative to Flux
 
 ## Keybinds
