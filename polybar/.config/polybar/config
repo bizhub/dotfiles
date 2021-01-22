@@ -1,5 +1,6 @@
 [colors]
 background = #2e2e2e
+;background = #282a36
 background-alt = #444
 foreground = #EFEFEF
 foreground-alt = #666
@@ -307,7 +308,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini

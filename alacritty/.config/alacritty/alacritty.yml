@@ -5,8 +5,8 @@
 # These configuration files will be loaded in order, replacing values in files
 # loaded earlier with those loaded later in the chain. The file itself will
 # always be loaded last.
-#import:
-#  - /path/to/alacritty.yml
+import:
+  - /home/lex/.config/alacritty/alpenglow-monokai.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -173,11 +173,11 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
-colors:
+# colors:
   # Default colors
-  primary:
-    background: '0x2e2e2e'
-    foreground: '0xc5c8c6'
+  # primary:
+    # background: '0x2e2e2e'
+    # foreground: '0xc5c8c6'
 
     # Bright and dim foreground colors
     #
@@ -236,15 +236,15 @@ colors:
     #  foreground: '#1d1f21'
 
   # Normal colors
-  normal:
-    black:   '0x1d1f21'
-    red:     '0xb05279'
-    green:   '0xb4c973'
-    yellow:  '0xe5b567'
-    blue:    '0x6c99bb'
-    magenta: '0xb05279'
-    cyan:    '0x6c99bb'
-    white:   '0xffffff'
+  # normal:
+    # black:   '0x1d1f21'
+    # red:     '0xb05279'
+    # green:   '0xb4c973'
+    # yellow:  '0xe5b567'
+    # blue:    '0x6c99bb'
+    # magenta: '0xb05279'
+    # cyan:    '0x6c99bb'
+    # white:   '0xffffff'
 
   # Bright colors
   # bright:

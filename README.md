@@ -21,7 +21,7 @@ git clone https://github.com/bizhub/dotfiles ~/dotfiles
 sudo pacman -S stow
 ```
 
-3. Install required modules
+3. Install required dotfiles
 ```shell
 cd ~/dotfiles
 stow --no-folding alacritty bash bspwm dunst git neofetch picom polybar rofi starship sxhkd vim xorg
@@ -37,10 +37,6 @@ stow --no-folding alacritty bash bspwm dunst git neofetch picom polybar rofi sta
 # Starship prompt
 curl -fsSL https://starship.rs/install.sh | bash
 
-# NVM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-```
-
 #### Graphical environment
 * <kbd>bspwm</kbd>: Window manager
 * <kbd>sxhkd</kbd>: Hotkey daemon
@@ -50,20 +46,20 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 * <kbd>picom</kbd>: Compositor
 * <kbd>lightdm</kbd>: Display manager
 * <kbd>nitrogen</kbd>: Wallpaper manager
+* <kbd>polkit-gnome</kbd>
 
 #### Fonts
 * <kbd>ttf-cascadia-code</kbd>
 * <kbd>ttf-ms-fonts</kbd> (aur)
 * <kbd>ttf-font-awesome</kbd>: Icons
 
-#### Development environment
+#### Development
 * <kbd>alacritty</kbd>: Terminal emulator
 * <kbd>visual-studio-code-bin</kbd>: Code editor (aur)
 * <kbd>docker</kbd>
 * <kbd>docker-compose</kbd>
 * <kbd>dry-bin</kbd>: Terminal docker manager (aur)
 * <kbd>tableplus</kbd>: Database gui (aur)
-* <kbd>gimp</kbd>
 * <kbd>github-cli</kbd>
 
 #### Misc
