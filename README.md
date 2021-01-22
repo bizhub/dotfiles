@@ -36,6 +36,7 @@ stow --no-folding alacritty bash bspwm dunst git neofetch picom polybar rofi sta
 ```shell
 # Starship prompt
 curl -fsSL https://starship.rs/install.sh | bash
+```
 
 #### Graphical environment
 * <kbd>bspwm</kbd>: Window manager

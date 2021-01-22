@@ -37,8 +37,8 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = FontAwesome5Free:style=Solid:size=10;2
 font-3 = FontAwesome5Free:style=Regular:size=10;2
 font-4 = FontAwesome5Brands:style=Regular:size=10;2
-
-modules-left = bspwm xwindow
+;xwindow
+modules-left = bspwm
 modules-center = 
 modules-right = xkeyboard docker package-updates cpu eth pulseaudio date
 
@@ -107,7 +107,8 @@ type = internal/bspwm
 
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= #6c99bb
+;label-focused-underline= #6c99bb
+label-focused-underline= #666666
 label-focused-padding = 2
 
 label-occupied = %index%
