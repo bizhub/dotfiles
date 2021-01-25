@@ -17,7 +17,7 @@ picom -b
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 bspc monitor DisplayPort-0 -d 1 2 3 4 5 6 7 8 9
-bspc monitor DisplayPort-1 -d
+bspc monitor DisplayPort-1 -d 0
 
 bspc config border_width         2
 bspc config window_gap           6
@@ -40,10 +40,12 @@ bspc config presel_feedback_color "#666666"
 
 bspc config focus_follows_pointer true
 
+# Specific windows
 bspc rule -a TablePlus desktop='^4' follow=on
 bspc rule -a Thunderbird desktop='^5' follow=on
 bspc rule -a Gimp desktop='^8' follow=on
 
+# Floating windows
 bspc rule -a Pavucontrol state=floating center=true
 bspc rule -a Thunderbird:Msgcompose state=floating
 bspc rule -a net-runelite-client-RuneLite state=floating
