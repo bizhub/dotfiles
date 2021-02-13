@@ -18,7 +18,10 @@ alias myip='curl http://ipecho.net/plain; echo'
 
 # Package managers
 alias pacc='sudo pacman -Rns $(pacman -Qdtq)'
-alias yay='paru'
+
+# Systemd
+alias sc='systemctl'
+alias scu='systemctl --user'
 
 # Git
 alias g='git'

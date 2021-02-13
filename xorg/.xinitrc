@@ -41,6 +41,5 @@ fi
 xsetroot -cursor_name left_ptr &
 
 numlockx on &
-pgrep redshift-gtk &> /dev/null || redshift-gtk &> /dev/null &
 
 exec bspwm

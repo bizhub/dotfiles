@@ -76,7 +76,7 @@ click-left = ~/.config/polybar/scripts/saildown.sh &
 
 [module/package-updates]
 type = custom/script
-exec = paru -Qu | wc -l
+exec = yay -Qu | wc -l
 interval = 600
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}

@@ -48,6 +48,7 @@ bspc rule -a Gimp desktop='^8' follow=on
 # Floating windows
 bspc rule -a Pavucontrol state=floating center=true
 bspc rule -a Thunderbird:Msgcompose state=floating
+bspc rule -a net-runelite-launcher-Launcher state=floating
 bspc rule -a net-runelite-client-RuneLite state=floating
 bspc rule -a Gpick state=floating focus=on
 bspc rule -a Gufw.py state=floating focus=on center=on
