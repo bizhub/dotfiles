@@ -41,7 +41,8 @@ alias nah='git reset --hard HEAD'
 
 # Docker
 alias dps='docker ps -a'
-alias drmd='docker rmi $(docker images -f "dangling=true" -q)'
+alias drmid='docker rmi $(docker images -f "dangling=true" -q)'
+alias drmca='docker rm $(docker ps -a -f status=exited -q)'
 
 # Docker compose
 alias dc='docker-compose'
@@ -81,6 +82,10 @@ alias wname='xprop | grep WM_CLASS'
 mkd() {
     mkdir -p $1
     cd $1
+}
+
+xevv() {
+  xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 }
 
 colors() {
