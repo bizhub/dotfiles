@@ -1,5 +1,5 @@
 #
-# wm independent hotkeys
+# programs
 #
 
 # terminal emulator
@@ -9,10 +9,6 @@ super + Return
 # rofi
 super + @space
 	rofi -show run
-
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd
 
 # browser
 super + b
@@ -30,14 +26,25 @@ super + r
 super + {comma}
 	code ~/dotfiles
 
+# open htop
+super + h
+	alacritty -e htop
+
+super + l
+	alacritty -e qalc
+
+#
+# wm independent hotkeys
+#
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
 # disable grave for push-to-talk
 # TODO: make toggle
 grave
 	echo ""
-
-# open htop
-super + h
-	alacritty -e htop
 
 # xprop
 super + ctrl + shift + k
