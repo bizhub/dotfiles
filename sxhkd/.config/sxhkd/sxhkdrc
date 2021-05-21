@@ -18,6 +18,10 @@ super + b
 super + d
 	discord
 
+# file explorer
+super + e
+	pcmanfm
+
 # ranger file manager
 super + r
 	alacritty -e ranger
