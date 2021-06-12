@@ -84,6 +84,11 @@ if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
 	PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi
 
+# Add gem path
+if [ -d "$HOME/.local/share/gem/ruby/3.0.0/bin" ] ; then
+	PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+fi
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
