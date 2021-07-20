@@ -180,13 +180,13 @@ super + {Left,Down,Up,Right}
 # Media Keys
 #
 XF86AudioRaiseVolume
-	pactl set-sink-volume 0 +1%
+	amixer set 'Master' 1%+
 
 XF86AudioLowerVolume
-	pactl set-sink-volume 0 -1%
+	amixer set 'Master' 1%-
 
 XF86AudioMute
-	pactl set-sink-mute 0 toggle
+	amixer -D pulse set Master 1+ toggle
 
 XF86AudioPlay
 	playerctl play-pause
