@@ -13,8 +13,9 @@ alias rm='rm -i'
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
-
+alias h='history'
 alias myip='curl http://ipecho.net/plain; echo'
+alias wname='xprop | grep WM_CLASS'
 
 # Package managers
 alias pacc='sudo pacman -Rns $(pacman -Qdtq)'
@@ -51,9 +52,6 @@ alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
 alias dce='docker-compose exec'
 
-# PHP
-alias switch-php='sudo update-alternatives --config php'
-
 #################################
 # Laravel Sail
 #################################
@@ -69,13 +67,14 @@ alias fresh='./vendor/bin/sail artisan migrate:refresh --seed'
 alias migrate="./vendor/bin/sail artisan migrate"
 alias seed='./vendor/bin/sail artisan db:seed'
 alias test='./vendor/bin/sail artisan test'
+alias serve='./vendor/bin/sail artisan serve'
 
 # Npm
 alias watch='./vendor/bin/sail npm run watch'
 alias dev='./vendor/bin/sail npm run dev'
 alias production='./vendor/bin/sail npm run production'
 
-alias wname='xprop | grep WM_CLASS'
+alias cuw='code . && up && watch'
 
 #################################
 # Functions
