@@ -45,7 +45,7 @@ bspc config focus_follows_pointer true
 # Specific windows
 bspc rule -a TablePlus desktop='^4' follow=on
 bspc rule -a Thunderbird desktop='^5' follow=on
-bspc rule -a Gimp desktop='^8' follow=on
+bspc rule -a Gimp desktop='^6' follow=on
 
 # Floating windows
 bspc rule -a Pavucontrol state=floating center=true
