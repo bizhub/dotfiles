@@ -6,7 +6,7 @@ Personal backup of dotfiles and setup notes for Manjaro Linux.
  - [Preview](#preview)
  - [Packages](#packages)
  - [Keybinds](#keybinds)
- - [Visual Stuido Code](#visual-studio-code)
+ - [Visual Studio Code](#visual-studio-code)
  - [Docker](#docker)
 
 ## Installing
@@ -65,7 +65,6 @@ curl -fsSL https://starship.rs/install.sh | bash
 
 #### Misc
 * <kbd>ranger</kbd>: File explorer
-* <kbd>google-chrome</kbd>: Browser (aur)
 * <kbd>brave</kbd>: Browser (aur)
 * <kbd>redshift</kbd>: Alternative to Flux
 
