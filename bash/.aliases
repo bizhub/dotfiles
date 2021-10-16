@@ -52,27 +52,32 @@ alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
 alias dce='docker-compose exec'
 
+# PHP Unit
+alias pu='./vendor/bin/phpunit'
+alias puf='./vendor/bin/phpunit --filter='
+
 #################################
 # Laravel Sail
 #################################
 
 alias sail='./vendor/bin/sail'
-alias up='./vendor/bin/sail up -d'
-alias down='./vendor/bin/sail down'
-alias build='./vendor/bin/sail up -d --build'
+alias up='sail up -d'
+alias down='sail down'
+alias build='sail up -d --build'
 
 # Artisan
-alias a='./vendor/bin/sail artisan'
-alias fresh='./vendor/bin/sail artisan migrate:refresh --seed'
-alias migrate="./vendor/bin/sail artisan migrate"
-alias seed='./vendor/bin/sail artisan db:seed'
-alias test='./vendor/bin/sail artisan test'
-alias serve='./vendor/bin/sail artisan serve'
+alias a='sail artisan'
+alias fresh='sail artisan migrate:refresh --seed'
+alias migrate="sail artisan migrate"
+alias seed='sail artisan db:seed'
+alias test='sail artisan test'
+alias testf='sail artisan test --filter='
+alias serve='sail artisan serve'
 
 # Npm
-alias watch='./vendor/bin/sail npm run watch'
-alias dev='./vendor/bin/sail npm run dev'
-alias production='./vendor/bin/sail npm run production'
+alias watch='sail npm run watch'
+alias dev='sail npm run dev'
+alias prod='sail npm run production'
 
 alias cuw='code . && up && watch'
 
