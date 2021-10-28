@@ -42,7 +42,7 @@ modules-left = bspwm
 modules-center = 
 modules-right = xkeyboard docker package-updates cpu eth pulseaudio date
 
-tray-position = right
+tray-position = none
 tray-padding = 2
 ;tray-background = #0063ff
 
