@@ -1,4 +1,4 @@
-# Dotfiles (WIP)
+# Dotfiles
 Personal backup of dotfiles and setup notes for Manjaro Linux.
 
 ## Table of contents

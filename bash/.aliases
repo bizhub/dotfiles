@@ -56,6 +56,17 @@ alias dce='docker-compose exec'
 alias pu='./vendor/bin/phpunit'
 alias puf='./vendor/bin/phpunit --filter='
 
+# PHP Stan
+alias stan='./vendor/bin/phpstan'
+alias stanl='stan analyse --memory-limit=2G'
+
+# Vim
+alias v='vim'
+alias vf='vim $(fzf)'
+
+# Vscode
+alias codef='code $(fzf)'
+
 #################################
 # Laravel Sail
 #################################
