@@ -4,6 +4,7 @@ alias ..='cd ../'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ll='ls -alF --group-directories-first'
+alias repo='cd $(ls -d ~/repos/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
 
 alias r='ranger'
 
@@ -19,7 +20,8 @@ alias wname='xprop | grep WM_CLASS'
 
 # Package managers
 alias pacc='sudo pacman -Rns $(pacman -Qdtq)'
-alias yaya="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
+alias yayf="yay -Slq | fzf --multi --height 100% --preview 'yay -Si {1}' | xargs -ro yay -S"
+alias yayr="yay -Qq | fzf --multi --height 100% --preview 'yay -Qi {1}' | xargs -ro yay -Rns"
 
 # Systemd
 alias sc='systemctl'
@@ -35,6 +37,8 @@ alias gpt='git push origin --tags'
 alias gf='git fetch'
 alias gs='git status -s'
 alias ga='git add'
+alias gaf='git ls-files -m -o --exclude-standard | fzf --reverse -m --print0 | xargs -0 git add'
+alias gr='git restore --staged'
 alias gb='git branch'
 alias go='git checkout'
 alias gt='git tag'
@@ -62,10 +66,10 @@ alias stanl='stan analyse --memory-limit=2G'
 
 # Vim
 alias v='vim'
-alias vf='vim $(fzf)'
+alias vf='fzf --reverse | xargs -ro vim'
 
 # Vscode
-alias codef='code $(fzf)'
+alias codef='fzf --reverse | xargs -ro code'
 
 #################################
 # Laravel Sail
@@ -155,4 +159,13 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+# find-in-file - usage: fif <SEARCH_TERM>
+fif() {
+  if [ ! "$#" -gt 0 ]; then
+    echo "Need a string to search for!";
+    return 1;
+  fi
+  rg --files-with-matches --no-messages "$1" | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
 }
