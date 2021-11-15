@@ -45,6 +45,7 @@ alias gt='git tag'
 alias gm='git merge'
 alias gd='git diff'
 alias nah='git reset --hard HEAD'
+alias gclear='git config --unset credential.helper'
 
 # Docker
 alias dps='docker ps -a'
