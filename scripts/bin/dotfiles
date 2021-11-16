@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# set -x
+
+# Colorcode
+GREEN='\e[0;32m'
+ORANGE='\e[0;33m'
+RED='\e[0;31m'
+PURPLE='\e[0;35m'
+NC='\e[0m' # No Color
+
+option_help() {
+    sed 's/^        //' <<EOF
+        dotfiles - A collection of dotfiles for my personal use.
+
+        Usage: dotfiles [options]
+
+        Options:
+            -h, --help      Display this help message.
+            -v, --version   Display the version number.
+            -s, --stow      Stow dotfiles.
+            -u, --update    Update dotfiles.
+EOF
+
+    exit
+}
+
+option_stow() {
+    if [ ! -d "$HOME/dotfiles" ]; then
+        echo -e "${RED}dotfiles not found.${NC}"
+        exit 1
+    fi
+
+    echo -e "${GREEN}Stowing dotfiles...${NC}"
+    stow --no-folding -d ~/dotfiles alacritty bash bspwm dunst git neofetch picom polybar rofi starship sxhkd vim xorg
+
+    exit
+}
+
+option_update() {
+    if [ ! -d "$HOME/dotfiles" ]; then
+        echo -e "${RED}dotfiles not found.${NC}"
+        exit 1
+    fi
+
+    echo -e "${GREEN}Updating dotfiles...${NC}"
+
+    git --git-dir ~/dotfiles/.git pull
+
+    exit
+}
+
+option_version() {
+    if [ ! -d "$HOME/dotfiles" ]; then
+        echo -e "${RED}dotfiles not found.${NC}"
+        exit 1
+    fi
+
+    echo -e "${GREEN}dotfiles version: ${NC}$(git --git-dir ~/dotfiles/.git describe --tags --abbrev=0)"
+    exit
+}
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -h | --help )
+            option_help
+            ;;
+        -v | --version )
+            option_version
+            ;;
+        -s | --stow )
+            option_stow
+            ;;
+        -u | --update )
+            option_update
+            ;;
+        * )
+            option_help
+    esac
+    shift
+done
