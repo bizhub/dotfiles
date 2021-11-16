@@ -79,3 +79,5 @@ while [ "$1" != "" ]; do
     esac
     shift
 done
+
+option_help
