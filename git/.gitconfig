@@ -1,8 +1,13 @@
 [credential]
 	helper = libsecret
 [user]
+    name = Lex van der Woude
 	email = lex@bizhub.co.nz
-	name = Lex van der Woude
+    signingkey = lex@bizhub.co.nz
+[commit]
+    gpgsign = true
+[tag]
+    gpgsign = true
 [core]
 	safecrlf = false
 	autocrlf = input
