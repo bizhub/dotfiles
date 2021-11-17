@@ -1,83 +1,210 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # set -x
 
-# Colorcode
+export DOTFILES_PATH="${DOTFILES_PATH:-$HOME/dotfiles}"
+
 GREEN='\e[0;32m'
 ORANGE='\e[0;33m'
 RED='\e[0;31m'
 PURPLE='\e[0;35m'
-NC='\e[0m' # No Color
+YELLOW='\e[0;33m'
+NC='\e[0m'
 
-option_help() {
-    sed 's/^        //' <<EOF
-        dotfiles - A collection of dotfiles for my personal use.
-
-        Usage: dotfiles [options]
-
-        Options:
-            -h, --help      Display this help message.
-            -v, --version   Display the version number.
-            -s, --stow      Stow dotfiles.
-            -u, --update    Update dotfiles.
-EOF
-
-    exit
+usage() {
+    echo "bizhub/dotfiles manager (with a few extras)"
+    echo
+    echo -e "${YELLOW}Usage:${NC} dotfiles [command] [options]"
+    echo
+    echo -e "${YELLOW}Commands:${NC}"
+    echo -e "   ${GREEN}install${NC}         Install dotfiles."
+    echo -e "   ${GREEN}update${NC}          Update dotfiles."
+    echo -e "   ${GREEN}stow${NC}            Stow dotfiles."
+    echo
+    echo -e "   ${GREEN}vundle:install${NC}  Install Vundle."
+    echo -e "   ${GREEN}vundle:update${NC}   Update Vundle."
+    echo -e "   ${GREEN}vundle:list${NC}     List Vundle plugins."
+    echo -e "   ${GREEN}vundle:clean${NC}    Clean Vundle plugins."
+    echo
+    echo -e "${YELLOW}Options:${NC}"
+    echo -e "   ${GREEN}--help${NC}          Display this help message."
+    echo -e "   ${GREEN}-v, --version${NC}   Display the version number."
+    exit 0
 }
 
-option_stow() {
-    if [ ! -d "$HOME/dotfiles" ]; then
+version() {
+    if [ ! -d $DOTFILES_PATH ]; then
         echo -e "${RED}dotfiles not found.${NC}"
         exit 1
     fi
 
-    echo -e "${GREEN}Stowing dotfiles...${NC}"
-    stow --no-folding -d ~/dotfiles alacritty bash bspwm dunst git neofetch picom polybar rofi starship sxhkd vim xorg
-
-    exit
+    echo -e "${GREEN}dotfiles version: ${NC}$(git -C $DOTFILES_PATH describe --tags --abbrev=0)"
+    exit 0
 }
 
-option_update() {
-    if [ ! -d "$HOME/dotfiles" ]; then
+install() {
+    if [ -d $DOTFILES_PATH ]; then
+        echo -e "${GREEN}dotfiles already exists.${NC}"
+        exit 1
+    fi
+
+    git clone https://github.com/bizhub/dotfiles $DOTFILES_PATH
+
+    read -p "Do you want to stow all dotfiles? [y/N] " -r
+    echo
+
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        stow_dotfiles
+    fi
+
+    exit 0
+}
+
+stow_dotfiles() {
+    if [ ! -d $DOTFILES_PATH ]; then
+        echo -e "${RED}dotfiles not found.${NC}"
+        exit 1
+    fi
+
+    if ! command -v stow >/dev/null 2>&1; then
+        echo -e "${RED}stow not found.${NC}"
+
+        read -p "Do you want to install stow? [y/N] " -r
+        echo
+
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            sudo pacman -S stow
+        fi
+    fi
+
+    echo -e "${GREEN}Stowing dotfiles...${NC}"
+    stow --no-folding -d $DOTFILES_PATH \
+        alacritty \
+        bash \
+        bspwm \
+        dunst \
+        git \
+        neofetch \
+        picom \
+        polybar \
+        rofi \
+        starship \
+        sxhkd \
+        vim \
+        xorg \
+    /
+    exit 0
+}
+
+update() {
+    if [ ! -d $DOTFILES_PATH ]; then
         echo -e "${RED}dotfiles not found.${NC}"
         exit 1
     fi
 
     echo -e "${GREEN}Updating dotfiles...${NC}"
 
-    git --git-dir ~/dotfiles/.git pull
-
-    exit
+    git -C $DOTFILES_PATH pull
+    exit 0
 }
 
-option_version() {
-    if [ ! -d "$HOME/dotfiles" ]; then
-        echo -e "${RED}dotfiles not found.${NC}"
+install_vundle() {
+    if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
+        echo -e "${GREEN}Installing Vundle...${NC}"
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    else
+        echo -e "${GREEN}Vundle already installed."
+    fi
+
+    vim +PluginInstall +qall
+
+    exit 0
+}
+
+update_vundle() {
+    if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
+        echo -e "${RED}Vundle not found.${NC}"
         exit 1
     fi
 
-    echo -e "${GREEN}dotfiles version: ${NC}$(git --git-dir ~/dotfiles/.git describe --tags --abbrev=0)"
-    exit
+    echo -e "${GREEN}Updating Vundle...${NC}"
+    git -C ~/.vim/bundle/Vundle.vim pull
+
+    vim +PluginInstall +qall
+
+    exit 0
 }
 
-while [ "$1" != "" ]; do
-    case $1 in
-        -h | --help )
-            option_help
-            ;;
-        -v | --version )
-            option_version
-            ;;
-        -s | --stow )
-            option_stow
-            ;;
-        -u | --update )
-            option_update
-            ;;
-        * )
-            option_help
-    esac
-    shift
-done
+list_vundle() {
+    if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
+        echo -e "${RED}Vundle not found.${NC}"
+        exit 1
+    fi
 
-option_help
+    echo -e "${GREEN}Listing Vundle plugins...${NC}"
+    vim +PluginList
+
+    exit 0
+}
+
+clean_vundle() {
+    if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
+        echo -e "${RED}Vundle not found.${NC}"
+        exit 1
+    fi
+
+    echo -e "${GREEN}Cleaning Vundle plugins...${NC}"
+    vim +PluginClean +qall
+
+    exit 0
+}
+
+if [ $# -gt 0 ]; then
+    # Show dotfiles usage
+    if [ "$1" == "--help" ]; then
+        shift 1
+        usage
+
+    # Show dotfiles version
+    elif [ "$1" == "--version" ] || [ "$1" == "-v" ]; then
+        shift 1
+        version
+
+    # Install dotfiles
+    elif [ "$1" == "install" ]; then
+        shift 1
+        install
+
+    # Update dotfiles
+    elif [ "$1" == "update" ]; then
+        shift 1
+        update
+
+    # Stow dotfiles
+    elif [ "$1" == "stow" ]; then
+        shift 1
+        stow_dotfiles
+
+    # Install Vundle
+    elif [ "$1" == "vundle:install" ]; then
+        shift 1
+        install_vundle
+
+    # Update Vundle
+    elif [ "$1" == "vundle:update" ]; then
+        shift 1
+        update_vundle
+
+    # List Vundle plugins
+    elif [ "$1" == "vundle:list" ]; then
+        shift 1
+        list_vundle
+
+    # Clean Vundle plugins
+    elif [ "$1" == "vundle:clean" ]; then
+        shift 1
+        clean_vundle
+    fi
+else
+    usage
+fi
