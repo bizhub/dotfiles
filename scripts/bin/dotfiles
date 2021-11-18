@@ -29,6 +29,9 @@ usage() {
     echo -e "${YELLOW}Options:${NC}"
     echo -e "   ${GREEN}--help${NC}          Display this help message."
     echo -e "   ${GREEN}-v, --version${NC}   Display the version number."
+    echo
+    echo -e "${YELLOW}Environment variables:${NC}"
+    echo -e "   ${GREEN}DOTFILES_PATH${NC}   Path to dotfiles folder"
     exit 0
 }
 
@@ -68,12 +71,13 @@ stow_dotfiles() {
 
     if ! command -v stow >/dev/null 2>&1; then
         echo -e "${RED}stow not found.${NC}"
+        echo
 
         read -p "Do you want to install stow? [y/N] " -r
         echo
 
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            sudo pacman -S stow
+            sudo pacman --noconfirm -S stow
         fi
     fi
 
@@ -87,7 +91,9 @@ stow_dotfiles() {
         neofetch \
         picom \
         polybar \
+        ranger \
         rofi \
+        scripts \
         starship \
         sxhkd \
         vim \

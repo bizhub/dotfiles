@@ -24,7 +24,7 @@ sudo pacman -S stow
 3. Install required dotfiles
 ```shell
 cd ~/dotfiles
-stow --no-folding alacritty bash bspwm dunst git neofetch picom polybar rofi starship sxhkd vim xorg
+stow --no-folding alacritty bash bspwm dunst git neofetch picom polybar ranger rofi scripts starship sxhkd vim xorg
 ```
 
 ## Preview

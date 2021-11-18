@@ -33,8 +33,14 @@ entry {
 }
 
 element {
-    padding: 0px 2px;
+    padding: 0px 3px;
+}
+element-icon {
+    background-color: transparent;
+}
+element-text {
+    background-color: transparent;
 }
 element selected {
-    background-color: #6c99bb;
+    background-color: #444444;
 }
