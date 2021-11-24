@@ -12,7 +12,7 @@ YELLOW='\e[0;33m'
 NC='\e[0m'
 
 usage() {
-    echo "bizhub/dotfiles manager (with a few extras)"
+    echo "Bizhub dotfiles manager (with a few extras)"
     echo
     echo -e "${YELLOW}Usage:${NC} dotfiles [command] [options]"
     echo
@@ -20,6 +20,7 @@ usage() {
     echo -e "   ${GREEN}install${NC}         Install dotfiles."
     echo -e "   ${GREEN}update${NC}          Update dotfiles."
     echo -e "   ${GREEN}stow${NC}            Stow dotfiles."
+    echo -e "   ${GREEN}unstow${NC}          Unstow dotfiles."
     echo
     echo -e "   ${GREEN}vundle:install${NC}  Install Vundle."
     echo -e "   ${GREEN}vundle:update${NC}   Update Vundle."
@@ -35,13 +36,17 @@ usage() {
     exit 0
 }
 
-version() {
-    if [ ! -d $DOTFILES_PATH ]; then
-        echo -e "${RED}dotfiles not found.${NC}"
+check_if_dotfiles_exist() {
+    if [ ! -d "$DOTFILES_PATH" ]; then
+        echo -e "${RED}ERROR:${NC} dotfiles folder not found at $DOTFILES_PATH"
         exit 1
     fi
+}
 
-    echo -e "${GREEN}dotfiles version: ${NC}$(git -C $DOTFILES_PATH describe --tags --abbrev=0)"
+version() {
+    check_if_dotfiles_exist
+
+    echo -e "${GREEN}dotfiles version:${NC} $(git -C $DOTFILES_PATH describe --tags --abbrev=0)"
     exit 0
 }
 
@@ -63,14 +68,9 @@ install() {
     exit 0
 }
 
-stow_dotfiles() {
-    if [ ! -d $DOTFILES_PATH ]; then
-        echo -e "${RED}dotfiles not found.${NC}"
-        exit 1
-    fi
-
+check_if_stow_exists() {
     if ! command -v stow >/dev/null 2>&1; then
-        echo -e "${RED}stow not found.${NC}"
+        echo -e "${RED}ERROR:${NC} stow not found."
         echo
 
         read -p "Do you want to install stow? [y/N] " -r
@@ -80,6 +80,11 @@ stow_dotfiles() {
             sudo pacman --noconfirm -S stow
         fi
     fi
+}
+
+stow_dotfiles() {
+    check_if_dotfiles_exist
+    check_if_stow_exists
 
     echo -e "${GREEN}Stowing dotfiles...${NC}"
     stow --no-folding -d $DOTFILES_PATH \
@@ -97,16 +102,36 @@ stow_dotfiles() {
         starship \
         sxhkd \
         vim \
-        xorg \
-    /
+        xorg
+    exit 0
+}
+
+unstow_dotfiles() {
+    check_if_dotfiles_exist
+    check_if_stow_exists
+
+    echo -e "${GREEN}Unstowing dotfiles...${NC}"
+    stow --no-folding -d $DOTFILES_PATH --delete \
+        alacritty \
+        bash \
+        bspwm \
+        dunst \
+        git \
+        neofetch \
+        picom \
+        polybar \
+        ranger \
+        rofi \
+        scripts \
+        starship \
+        sxhkd \
+        vim \
+        xorg
     exit 0
 }
 
 update() {
-    if [ ! -d $DOTFILES_PATH ]; then
-        echo -e "${RED}dotfiles not found.${NC}"
-        exit 1
-    fi
+    check_if_dotfiles_exist
 
     echo -e "${GREEN}Updating dotfiles...${NC}"
 
@@ -127,11 +152,15 @@ install_vundle() {
     exit 0
 }
 
-update_vundle() {
+check_vundle() {
     if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
-        echo -e "${RED}Vundle not found.${NC}"
+        echo -e "${RED}ERROR:${NC} Vundle not found."
         exit 1
     fi
+}
+
+update_vundle() {
+    check_vundle
 
     echo -e "${GREEN}Updating Vundle...${NC}"
     git -C ~/.vim/bundle/Vundle.vim pull
@@ -142,10 +171,7 @@ update_vundle() {
 }
 
 list_vundle() {
-    if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
-        echo -e "${RED}Vundle not found.${NC}"
-        exit 1
-    fi
+    check_vundle
 
     echo -e "${GREEN}Listing Vundle plugins...${NC}"
     vim +PluginList
@@ -154,10 +180,7 @@ list_vundle() {
 }
 
 clean_vundle() {
-    if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
-        echo -e "${RED}Vundle not found.${NC}"
-        exit 1
-    fi
+    check_vundle
 
     echo -e "${GREEN}Cleaning Vundle plugins...${NC}"
     vim +PluginClean +qall
@@ -190,6 +213,11 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "stow" ]; then
         shift 1
         stow_dotfiles
+
+    # Unstow dotfiles
+    elif [ "$1" == "unstow" ]; then
+        shift 1
+        unstow_dotfiles
 
     # Install Vundle
     elif [ "$1" == "vundle:install" ]; then

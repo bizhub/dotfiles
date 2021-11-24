@@ -4,9 +4,12 @@ alias ..='cd ../'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ll='ls -alF --group-directories-first'
+alias llc='clear && ls -alF --group-directories-first'
 alias repo='cd $(ls -d ~/repos/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
 
 alias r='ranger'
+alias o='xdg-open 2>/dev/null'
+alias of='fzf --reverse | xargs -ro xdg-open 2>/dev/null'
 
 alias mv='mv -i'
 alias cp='cp -i'
