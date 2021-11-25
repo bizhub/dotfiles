@@ -1,10 +1,10 @@
-EDITOR=/usr/bin/vim
-TERMINAL=/usr/bin/alacritty
+export EDITOR=/usr/bin/vim
+export TERMINAL=/usr/bin/alacritty
 
 # History
-HISTFILE=~/.cache/zsh/history
-HISTSIZE=10000
-SAVEHIST=10000
+export HISTFILE=~/.cache/zsh/history
+export HISTSIZE=10000
+export SAVEHIST=10000
 
 # FZF
-FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
+export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"

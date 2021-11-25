@@ -40,7 +40,7 @@ super + h
 
 # open calculator
 super + l
-	alacritty -e qalc
+	slock
 
 # take screenshot
 Print
