@@ -89,7 +89,6 @@ stow_dotfiles() {
     echo -e "${GREEN}Stowing dotfiles...${NC}"
     stow --no-folding -d $DOTFILES_PATH \
         alacritty \
-        bash \
         bspwm \
         dunst \
         git \
@@ -99,6 +98,7 @@ stow_dotfiles() {
         ranger \
         rofi \
         scripts \
+        shell \
         starship \
         sxhkd \
         vim \
@@ -113,7 +113,6 @@ unstow_dotfiles() {
     echo -e "${GREEN}Unstowing dotfiles...${NC}"
     stow --no-folding -d $DOTFILES_PATH --delete \
         alacritty \
-        bash \
         bspwm \
         dunst \
         git \
@@ -123,6 +122,7 @@ unstow_dotfiles() {
         ranger \
         rofi \
         scripts \
+        shell \
         starship \
         sxhkd \
         vim \
