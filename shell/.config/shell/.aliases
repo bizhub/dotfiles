@@ -1,10 +1,11 @@
-# General
+# Navigation
 alias cls='clear'
 alias ..='cd ../'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias ls='exa --ignore-glob=".git"'
 alias ll='ls -alF --group-directories-first'
-alias llc='clear && ls -alF --group-directories-first'
+alias llc='clear && ll'
 alias repo='cd $(ls -d ~/repos/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
 
 alias r='ranger'
@@ -22,6 +23,8 @@ alias myip='curl http://ipecho.net/plain; echo'
 
 alias wname='xprop | grep WM_CLASS'
 alias clip='xclip -sel clip'
+
+alias cat='bat'
 
 # Package managers
 alias pacc='sudo pacman -Rns $(pacman -Qdtq)'
