@@ -1,3 +1,33 @@
+## Helper functions
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+source_if_exists() {
+    if [ -f "$1" ]; then
+        source "$1"
+    fi
+}
+
+## Shell
+source_if_exists $HOME/.config/shell/aliases
+source_if_exists $HOME/.config/shell/exports
+
+## Zsh plugins
+source_if_exists /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source_if_exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source_if_exists /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+## FZF
+source_if_exists /usr/share/fzf/key-bindings.zsh
+source_if_exists /usr/share/fzf/completion.zsh
+
+## Paths
+pathadd $HOME/.local/bin
+pathadd $HOME/.config/composer/vendor/bin
+
 ## Options
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
@@ -16,13 +46,6 @@ zstyle ':completion:*' rehash true                              # automatically 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-
-for file in ~/.config/shell/.{aliases,exports}; do
-  if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-    source "$file"
-  fi
-done
-unset file
 
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
@@ -53,6 +76,10 @@ bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
+# Bind UP and DOWN arrow keys to history substring search
+bindkey '^[[A' history-substring-search-up			
+bindkey '^[[B' history-substring-search-down
+
 # Theming section  
 autoload -U compinit colors zcalc
 compinit -d
@@ -67,30 +94,5 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
-
-## Plugins
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-# bind UP and DOWN arrow keys to history substring search
-bindkey '^[[A' history-substring-search-up			
-bindkey '^[[B' history-substring-search-down
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# Add global composer bin path
-if [ -d "$HOME/.config/composer/vendor/bin" ] ; then
-  PATH="$HOME/.config/composer/vendor/bin:$PATH"
-fi
-
-# Source fzf
-if [ -f "/usr/share/fzf/key-bindings.zsh" ] ; then
-    source /usr/share/fzf/key-bindings.zsh
-    source /usr/share/fzf/completion.zsh
-fi
 
 eval "$(starship init zsh)"
