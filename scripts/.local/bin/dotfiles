@@ -5,10 +5,10 @@
 export DOTFILES_PATH="${DOTFILES_PATH:-$HOME/dotfiles}"
 
 GREEN='\e[0;32m'
-ORANGE='\e[0;33m'
-RED='\e[0;31m'
-PURPLE='\e[0;35m'
 YELLOW='\e[0;33m'
+RED='\e[0;31m'
+BLUE='\e[0;34m'
+BOLD='\e[1m'
 NC='\e[0m'
 
 usage() {
@@ -16,22 +16,23 @@ usage() {
     echo
     echo -e "${YELLOW}Usage:${NC} dotfiles [command] [options]"
     echo
-    echo -e "${YELLOW}Commands:${NC}"
-    echo -e "   ${GREEN}install${NC}         Install dotfiles."
-    echo -e "   ${GREEN}update${NC}          Update dotfiles."
+    echo -e "${YELLOW}Commands:"
+    echo -e "   ${GREEN}pull${NC}            Pull latest changes from remote."
     echo -e "   ${GREEN}stow${NC}            Stow dotfiles."
     echo -e "   ${GREEN}unstow${NC}          Unstow dotfiles."
+    echo
+    echo -e "   ${GREEN}arch:install${NC}    Install packages on Arch."
     echo
     echo -e "   ${GREEN}vundle:install${NC}  Install Vundle."
     echo -e "   ${GREEN}vundle:update${NC}   Update Vundle."
     echo -e "   ${GREEN}vundle:list${NC}     List Vundle plugins."
     echo -e "   ${GREEN}vundle:clean${NC}    Clean Vundle plugins."
     echo
-    echo -e "${YELLOW}Options:${NC}"
+    echo -e "${YELLOW}Options:"
     echo -e "   ${GREEN}--help${NC}          Display this help message."
     echo -e "   ${GREEN}-v, --version${NC}   Display the version number."
     echo
-    echo -e "${YELLOW}Environment variables:${NC}"
+    echo -e "${YELLOW}Environment variables:"
     echo -e "   ${GREEN}DOTFILES_PATH${NC}   Path to dotfiles folder"
     exit 0
 }
@@ -47,24 +48,6 @@ version() {
     check_if_dotfiles_exist
 
     echo -e "${GREEN}dotfiles version:${NC} $(git -C $DOTFILES_PATH describe --tags --abbrev=0)"
-    exit 0
-}
-
-install() {
-    if [ -d $DOTFILES_PATH ]; then
-        echo -e "${GREEN}dotfiles already exists.${NC}"
-        exit 1
-    fi
-
-    git clone https://github.com/bizhub/dotfiles $DOTFILES_PATH
-
-    read -p "Do you want to stow all dotfiles? [y/N] " -r
-    echo
-
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        stow_dotfiles
-    fi
-
     exit 0
 }
 
@@ -86,7 +69,7 @@ stow_dotfiles() {
     check_if_dotfiles_exist
     check_if_stow_exists
 
-    echo -e "${GREEN}Stowing dotfiles...${NC}"
+    echo -e "${GREEN}Stowing dotfiles..."
     stow --no-folding -d $DOTFILES_PATH \
         alacritty \
         bspwm \
@@ -103,14 +86,13 @@ stow_dotfiles() {
         sxhkd \
         vim \
         xorg
-    exit 0
 }
 
 unstow_dotfiles() {
     check_if_dotfiles_exist
     check_if_stow_exists
 
-    echo -e "${GREEN}Unstowing dotfiles...${NC}"
+    echo -e "${GREEN}Unstowing dotfiles..."
     stow --no-folding -d $DOTFILES_PATH --delete \
         alacritty \
         bspwm \
@@ -127,29 +109,243 @@ unstow_dotfiles() {
         sxhkd \
         vim \
         xorg
-    exit 0
 }
 
-update() {
+pull_dotfiles() {
     check_if_dotfiles_exist
 
-    echo -e "${GREEN}Updating dotfiles...${NC}"
+    echo -e "${GREEN}Pulling dotfiles..."
 
     git -C $DOTFILES_PATH pull
-    exit 0
+}
+
+install_packages() {
+    PKGS=(
+        'stow'                  # symbolic link manager
+
+        # System
+        'xorg'
+        'xorg-xinit'
+        'reflector'             # mirror manager
+        'gufw'
+
+        # Environment
+        'bspwm'                 # window manager
+        'sxhkd'                 # hotkey daemon
+        'rofi'                  # launcher
+        'nitrogen'              # wallpaper manager
+        'picom'                 # compositor
+        'dunst'                 # notifcations
+        
+        'alacritty'             # terminal emulator
+        'starship'              # prompt
+        'pcmanfm'               # gui file manager
+        'ranger'                # terminal file manager
+        'ueberzug'              # image previewer for ranger
+        'neofetch'              # system information tool
+        'numlockx'              # numlock control
+
+        # Shell (zsh)
+        'zsh'
+        'zsh-autosuggestions'
+        'zsh-syntax-highlighting'
+        'zsh-history-substring-search'
+
+        # Display manager
+        'lightdm'
+        'lightdm-gtk-greeter'
+
+        # Fonts
+        'ttf-font-awesome'      # icons
+        'ttf-cascadia-code'     # theme font
+
+        # Misc
+        'vim'                   # default terminal editor
+        'discord'               # chat
+        'redshift'              # screen color temperature
+        'thunderbird'           # email client
+        'keepassxc'             # password manager
+        'vlc'                   # video player
+        # 'libqalcuate'           # terminal calculator
+        'gimp'                  # image editor
+        'pass'                  # password manager
+        'qbittorrent'
+        'libsecret'
+        'polkit-gnome'
+        'htop'
+        'xdg-utils'
+        'xdg-user-dirs'
+
+        # Drivers
+        # 'openrgb'               # logitech g815 editor
+
+        # Audio
+        'pipewire'              # sound server
+        'pipewire-alsa'         # pipewire alsa replacement
+        'pipewire-pulse'        # pipewire pulse replacement
+        'wireplumber'           # pipewire gui
+        'pavucontrol'           # gui volume control
+#       'playerctl'             # player controls
+#       'amixer'                # alsa cli mixer
+
+        # Printer
+        'cups'
+
+        # Development
+        'git'
+        'github-cli'
+        'docker'
+        'docker-compose'
+        # 'filezilla'
+        'php'
+        'npm'
+
+        # Utils
+        # 'filelight'         # diskspace
+        'pacman-contrib'    # pacman utils
+        'fzf'               # fuzzy finder
+        'ripgrep'           # search tool
+        'flameshot'         # screenshots
+        'lxappearance'      # GTK appearance editor
+        'xclip'             # clipboard
+        'bat'               # replacement for cat
+        'exa'               # replacement for ls
+        'tldr'              # simplify man pages
+    )
+
+    AUR_PKGS=(
+        'megasync-bin'
+        'polybar'
+        'tableplus'
+        'visual-studio-code-bin'
+        'ttf-ms-fonts'
+        'brave-bin'
+    )
+
+    echo
+    echo "1) amd-ucode 2) intel-ucode 3) Skip"
+    read -r -p "Processor (default = 1): " choice
+
+    case $choice in 
+    [1])
+        PKGS+='amd-ucode'
+        ;;
+    [2])
+        PKGS+='intel-ucode'
+        ;;
+    [3])
+        ;;
+    [*])
+        PKGS+='amd-ucode'
+        ;;
+    esac
+
+    echo
+    echo "1) xf86-video-amdgpu 2) xf86-video-intel 3) nvidia 4) Skip"
+    read -r -p "GPU driver (default = 1): " choice
+
+    case $choice in 
+    [1])
+        PKGS+='xf86-video-amdgpu'
+        ;;
+    [2])
+        PKGS+='xf86-video-intel'
+        ;;
+    [3])
+        PKGS+=(
+            'nvidia'
+            'nvidia-settings'
+            'nvidia-utils'
+        )
+        ;;
+    [4])
+        ;;
+    [*])
+        PKGS+='xf86-video-amdgpu'
+        ;;
+    esac
+
+    echo
+    echo "1) timeshift 2) snapper 3) Skip"
+    read -r -p "Backup package (default = 1): " choice
+
+    case $choice in 
+    [1])
+        AUR_PKGS+='timeshift'
+        ;;
+    [2])
+        PKGS+='snapper'
+        ;;
+    [3])
+        ;;
+    [*])
+        AUR_PKGS+='timeshift'
+        ;;
+    esac
+
+    stow_dotfiles
+    install_vundle
+
+    echo
+    echo -e "${BLUE}::${NC} ${BOLD}Updating pacman conf..."
+
+    sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
+    sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+
+    echo
+    echo -e "${BLUE}::${NC} ${BOLD}Installing packages..."
+
+    sudo pacman -S --needed --noconfirm ${PKGS[@]}
+
+    if ! command -v yay &> /dev/null
+    then
+        echo "YAY doesn't exist. Installing..."
+        git clone https://aur.archlinux.org/yay-git ~/yay
+        cd ~/yay
+        makepkg -si
+        rm -rf ~/yay
+    fi
+
+    echo
+    echo -e "${BLUE}::${NC} ${BOLD}Installing AUR packages..."
+
+    yay -S --needed --noconfirm ${AUR_PKGS[@]}
+
+    echo
+    echo -e "${BLUE}::${NC} ${BOLD}Enabling services..."
+
+    sudo systemctl enable NetworkManager
+    sudo systemctl enable reflector.timer
+    sudo systemctl enable fstrim.timer
+    sudo systemctl enable lightdm
+    sudo systemctl enable --user redshift.service
+    sudo systemctl enable cups.service
+    sudo systemctl enable docker
+    
+    echo
+    echo -e "${BLUE}::${NC} ${BOLD}Setting up docker..."
+
+    if ! grep -q docker /etc/group
+    then
+        sudo groupadd docker
+    fi
+
+    sudo usermod -aG docker $USER
+
+    sudo chsh -s /usr/bin/zsh $USER
+
+    echo -e "${GREEN}Done! Please reboot."
 }
 
 install_vundle() {
     if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
-        echo -e "${GREEN}Installing Vundle...${NC}"
+        echo -e "${GREEN}Installing Vundle..."
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     else
         echo -e "${GREEN}Vundle already installed."
     fi
 
     vim +PluginInstall +qall
-
-    exit 0
 }
 
 check_vundle() {
@@ -162,30 +358,24 @@ check_vundle() {
 update_vundle() {
     check_vundle
 
-    echo -e "${GREEN}Updating Vundle...${NC}"
+    echo -e "${GREEN}Updating Vundle..."
     git -C ~/.vim/bundle/Vundle.vim pull
 
     vim +PluginInstall +qall
-
-    exit 0
 }
 
 list_vundle() {
     check_vundle
 
-    echo -e "${GREEN}Listing Vundle plugins...${NC}"
+    echo -e "${GREEN}Listing Vundle plugins..."
     vim +PluginList
-
-    exit 0
 }
 
 clean_vundle() {
     check_vundle
 
-    echo -e "${GREEN}Cleaning Vundle plugins...${NC}"
+    echo -e "${GREEN}Cleaning Vundle plugins..."
     vim +PluginClean +qall
-
-    exit 0
 }
 
 if [ $# -gt 0 ]; then
@@ -199,15 +389,10 @@ if [ $# -gt 0 ]; then
         shift 1
         version
 
-    # Install dotfiles
-    elif [ "$1" == "install" ]; then
+    # Pull dotfile changes
+    elif [ "$1" == "pull" ]; then
         shift 1
-        install
-
-    # Update dotfiles
-    elif [ "$1" == "update" ]; then
-        shift 1
-        update
+        pull_dotfiles
 
     # Stow dotfiles
     elif [ "$1" == "stow" ]; then
@@ -218,6 +403,11 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "unstow" ]; then
         shift 1
         unstow_dotfiles
+
+    # Install packages
+    elif [ "$1" == "arch:install" ]; then
+        shift 1
+        install_packages
 
     # Install Vundle
     elif [ "$1" == "vundle:install" ]; then

@@ -2,8 +2,8 @@
 # ~/.zprofile
 #
 
-# if [ -f ~/.bashrc ]; then
-#     source ~/.bashrc
+# if [ -f ~/.zshrc ]; then
+#     source ~/.zshrc
 # fi
 
 # if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
