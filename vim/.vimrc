@@ -1,5 +1,5 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -7,18 +7,11 @@ call vundle#begin()
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'tpope/vim-fugitive'
     Plugin 'itchyny/lightline.vim'
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'junegunn/fzf'
+    Plugin 'junegunn/fzf.vim'
+call vundle#end()
+filetype plugin indent on
 
 " Lightline
 set ttimeout ttimeoutlen=30     " Fix lag when pressing esc
@@ -45,6 +38,10 @@ set shiftwidth=4
 set smarttab
 set tabstop=4
 
+set numberwidth=3
+set number
+highlight LineNr ctermfg=grey
+
 set hlsearch
 set ignorecase
 set incsearch
@@ -53,3 +50,10 @@ set smartcase
 set mouse=a
 
 set confirm
+
+" Keybindings
+nmap <C-p> :Files<CR>
+nmap <C-b> :NERDTreeToggle<CR>
+
+nnoremap ;w :w<cr>
+inoremap <C-S> <Esc>:w<cr>i
