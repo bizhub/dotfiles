@@ -34,6 +34,7 @@ alias yayr="yay -Qq | fzf --multi --height 100% --preview 'yay -Qi {1}' | xargs 
 # Systemd
 alias sc='systemctl'
 alias scu='systemctl --user'
+alias scs='systemctl --type=service'
 
 # Git
 alias g='git'

@@ -54,11 +54,6 @@ Print
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# disable grave for push-to-talk
-# TODO: make toggle
-grave
-	echo ""
-
 # xprop
 super + ctrl + shift + k
 	xprop | grep WM_CLASS

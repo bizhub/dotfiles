@@ -12,6 +12,12 @@ BOLD='\e[1m'
 NC='\e[0m'
 
 usage() {
+    echo " ____   ___ _____ _____ ___ _     _____ ____"
+    echo "|  _ \ / _ \_   _|  ___|_ _| |   | ____/ ___|"
+    echo "| | | | | | || | | |_   | || |   |  _| \___ \ "
+    echo "| |_| | |_| || | |  _|  | || |___| |___ ___) |"
+    echo "|____/ \___/ |_| |_|   |___|_____|_____|____/"
+    echo 
     echo "Bizhub dotfiles manager (with a few extras)"
     echo
     echo -e "${YELLOW}Usage:${NC} dotfiles [command] [options]"
@@ -21,7 +27,7 @@ usage() {
     echo -e "   ${GREEN}stow${NC}            Stow dotfiles."
     echo -e "   ${GREEN}unstow${NC}          Unstow dotfiles."
     echo
-    echo -e "   ${GREEN}arch:install${NC}    Install packages on Arch."
+    echo -e "   ${GREEN}arch:setup${NC}      Install packages on Arch."
     echo
     echo -e "   ${GREEN}vundle:install${NC}  Install Vundle."
     echo -e "   ${GREEN}vundle:update${NC}   Update Vundle."
@@ -119,7 +125,7 @@ pull_dotfiles() {
     git -C $DOTFILES_PATH pull
 }
 
-install_packages() {
+setup_arch() {
     PKGS=(
         'stow'                  # symbolic link manager
 
@@ -196,7 +202,6 @@ install_packages() {
         'github-cli'
         'docker'
         'docker-compose'
-        # 'filezilla'
         'php'
         'npm'
 
@@ -334,6 +339,9 @@ install_packages() {
 
     sudo chsh -s /usr/bin/zsh $USER
 
+    mkdir $HOME/.cache/zsh
+    touch $HOME/.cache/zsh/history
+
     echo -e "${GREEN}Done! Please reboot."
 }
 
@@ -404,10 +412,10 @@ if [ $# -gt 0 ]; then
         shift 1
         unstow_dotfiles
 
-    # Install packages
-    elif [ "$1" == "arch:install" ]; then
+    # Arch setup
+    elif [ "$1" == "arch:setup" ]; then
         shift 1
-        install_packages
+        setup_arch
 
     # Install Vundle
     elif [ "$1" == "vundle:install" ]; then
@@ -427,7 +435,7 @@ if [ $# -gt 0 ]; then
     # Clean Vundle plugins
     elif [ "$1" == "vundle:clean" ]; then
         shift 1
-        clean_vundle
+        clean_vundle    
     fi
 else
     usage
