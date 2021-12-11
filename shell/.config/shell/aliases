@@ -74,9 +74,10 @@ alias puf='./vendor/bin/phpunit --filter='
 alias stan='./vendor/bin/phpstan'
 alias stanl='stan analyse --memory-limit=2G'
 
-# Vim
-alias v='vim'
-alias vf='fzf --reverse | xargs -ro vim'
+# Neovim
+alias vim='nvim'
+alias v='nvim'
+alias vf='fzf --reverse | xargs -ro nvim'
 
 # Vscode
 alias codef='fzf --reverse | xargs -ro code'

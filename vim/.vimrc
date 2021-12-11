@@ -6,10 +6,31 @@ call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
     Plugin 'itchyny/lightline.vim'
+
+    " Navigation
     Plugin 'scrooloose/nerdtree'
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
+
+    " Javascript
+    Plugin 'jelera/vim-javascript-syntax'
+
+    " PHP
+    Plugin 'phpactor/phpactor'
+    Plugin 'stephpy/vim-php-cs-fixer'
+    Plugin 'shawncplus/phpcomplete.vim'
+
+    " Typescript
+    Plugin 'leafgarland/typescript-vim'
+    Plugin 'HerringtonDarkholme/yats.vim'
+
+    " Vuejs
+    Plugin 'posva/vim-vue'
+    Plugin 'leafOfTree/vim-vue-plugin'
+
 call vundle#end()
 filetype plugin indent on
 
