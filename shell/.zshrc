@@ -29,7 +29,8 @@ pathadd $HOME/.local/bin
 pathadd $HOME/.config/composer/vendor/bin
 
 ## Options
-setopt correct                                                  # Auto correct mistakes
+setopt nocorrectall
+
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob                                               # Case insensitive globbing
 setopt rcexpandparam                                            # Array expension with parameters

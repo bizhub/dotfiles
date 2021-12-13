@@ -28,11 +28,7 @@ usage() {
     echo -e "   ${GREEN}unstow${NC}          Unstow dotfiles."
     echo
     echo -e "   ${GREEN}arch:setup${NC}      Install packages on Arch."
-    echo
-    echo -e "   ${GREEN}vundle:install${NC}  Install Vundle."
-    echo -e "   ${GREEN}vundle:update${NC}   Update Vundle."
-    echo -e "   ${GREEN}vundle:list${NC}     List Vundle plugins."
-    echo -e "   ${GREEN}vundle:clean${NC}    Clean Vundle plugins."
+    echo -e "   ${GREEN}vp:install${NC}      Install vim plug."
     echo
     echo -e "${YELLOW}Options:"
     echo -e "   ${GREEN}--help${NC}          Display this help message."
@@ -82,6 +78,7 @@ stow_dotfiles() {
         dunst \
         git \
         neofetch \
+        nvim \
         picom \
         polybar \
         ranger \
@@ -90,7 +87,6 @@ stow_dotfiles() {
         shell \
         starship \
         sxhkd \
-        vim \
         xorg
 }
 
@@ -105,6 +101,7 @@ unstow_dotfiles() {
         dunst \
         git \
         neofetch \
+        nvim \
         picom \
         polybar \
         ranger \
@@ -113,7 +110,6 @@ unstow_dotfiles() {
         shell \
         starship \
         sxhkd \
-        vim \
         xorg
 }
 
@@ -289,7 +285,6 @@ setup_arch() {
     esac
 
     stow_dotfiles
-    install_vundle
 
     echo
     echo -e "${BLUE}::${NC} ${BOLD}Updating pacman conf..."
@@ -345,45 +340,9 @@ setup_arch() {
     echo -e "${GREEN}Done! Please reboot."
 }
 
-install_vundle() {
-    if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
-        echo -e "${GREEN}Installing Vundle..."
-        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    else
-        echo -e "${GREEN}Vundle already installed."
-    fi
-
-    vim +PluginInstall +qall
-}
-
-check_vundle() {
-    if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
-        echo -e "${RED}ERROR:${NC} Vundle not found."
-        exit 1
-    fi
-}
-
-update_vundle() {
-    check_vundle
-
-    echo -e "${GREEN}Updating Vundle..."
-    git -C ~/.vim/bundle/Vundle.vim pull
-
-    vim +PluginInstall +qall
-}
-
-list_vundle() {
-    check_vundle
-
-    echo -e "${GREEN}Listing Vundle plugins..."
-    vim +PluginList
-}
-
-clean_vundle() {
-    check_vundle
-
-    echo -e "${GREEN}Cleaning Vundle plugins..."
-    vim +PluginClean +qall
+vimplug_install() {
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 }
 
 if [ $# -gt 0 ]; then
@@ -412,30 +371,16 @@ if [ $# -gt 0 ]; then
         shift 1
         unstow_dotfiles
 
+    # Install vimplug
+    elif [ "$1" == "vp:install" ]; then
+        shift 1
+        vimplug_install
+
     # Arch setup
     elif [ "$1" == "arch:setup" ]; then
         shift 1
         setup_arch
 
-    # Install Vundle
-    elif [ "$1" == "vundle:install" ]; then
-        shift 1
-        install_vundle
-
-    # Update Vundle
-    elif [ "$1" == "vundle:update" ]; then
-        shift 1
-        update_vundle
-
-    # List Vundle plugins
-    elif [ "$1" == "vundle:list" ]; then
-        shift 1
-        list_vundle
-
-    # Clean Vundle plugins
-    elif [ "$1" == "vundle:clean" ]; then
-        shift 1
-        clean_vundle    
     fi
 else
     usage

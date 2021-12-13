@@ -6,37 +6,44 @@ let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 let curl_exists=expand('curl')
 
 if !filereadable(vimplug_exists)
-  if !executable(curl_exists)
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent exec "!"curl_exists" -fLo " . shellescape(vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  let g:not_finish_vimplug = "yes"
+    if !executable(curl_exists)
+        echoerr "You have to install curl or first install vim-plug yourself!"
+        execute "q!"
+    endif
 
-  autocmd VimEnter * PlugInstall
+    echo "Installing Vim-Plug..."
+    echo ""
+    silent exec "!"curl_exists" -fLo " . shellescape(vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    let g:not_finish_vimplug = "yes"
+
+    autocmd VimEnter * PlugInstall
 endif
 
 " Plugins
 call plug#begin(expand('~/.config/nvim/plugged'))
+    
+    " Themes
+    Plug 'ap/vim-css-color'
 
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-rhubarb'
-  Plug 'itchyny/lightline.vim'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-rhubarb'
+    Plug 'itchyny/lightline.vim'
 
-  " Navigation
-  Plug 'bagrat/vim-buffet'
-  Plug 'scrooloose/nerdtree'
-  Plug 'junegunn/fzf'
-  Plug 'junegunn/fzf.vim'
+    " Navigation
+    Plug 'bagrat/vim-buffet'
+    Plug 'scrooloose/nerdtree'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
 
-  " Include user's extra bundle
-  if filereadable(expand("~/.config/nvim/local_bundles.vim"))
-    source ~/.config/nvim/local_bundles.vim
-  endif
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'terryma/vim-multiple-cursors'
+
+    " Include user's extra bundle
+    if filereadable(expand("~/.config/nvim/local_bundles.vim"))
+        source ~/.config/nvim/local_bundles.vim
+    endif
 
 call plug#end()
 
@@ -46,34 +53,15 @@ filetype plugin indent on
 "" Basic Setup
 "*****************************************************************************"
 
-"" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-set ttyfast
-
-"" Fix backspace indent
-set backspace=indent,eol,start
-
 "" Tabs. May be overridden by autocmd rules
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
 
-"" Map leader to ,
-let mapleader=','
-
-"" Enable hidden buffers
-set hidden
-
 "" Searching
-set hlsearch
-set incsearch
 set ignorecase
 set smartcase
-
-" set fileformats=unix,dos,mac
 
 if exists('$SHELL')
     set shell=$SHELL
@@ -96,7 +84,8 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [['lineinfo'], ['percent'], ['filetype']]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
@@ -107,46 +96,48 @@ let g:lightline = {
 "" Visual Settings
 "*****************************************************************************
 
+let mapleader=','
+
 syntax on
-set ruler
+colorscheme alpenglow
+
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
+
 set number
 
 let no_buffers_menu=1
-" colorscheme molokai
-
-" Better command line completion 
-set wildmenu
 
 " mouse support
 set mouse=a
 
-set mousemodel=popup
-set t_Co=256
-set guioptions=egmrti
-set gfn=Monospace\ 10
+" set mousemodel=popup
+" set t_Co=256
+" set guioptions=egmrti
+" set gfn=Monospace\ 10
 
 "" Disable the blinking cursor.
-set gcr=a:blinkon0
+" set gcr=a:blinkon0
 
-set scrolloff=3
+" set scrolloff=3
 
 "" Status bar
-set laststatus=2
+" set laststatus=2
 
 "" Use modeline overrides
-set modeline
-set modelines=10
+" set modeline
+" set modelines=10
 
-set title
-set titleold="Terminal"
-set titlestring=%F
+" set title
+" set titleold="Terminal"
+" set titlestring=%F
 
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+" set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
 
 if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
@@ -206,8 +197,6 @@ augroup vimrc-remember-cursor-position
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-set autoread
-
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
@@ -216,31 +205,33 @@ set autoread
 nmap <C-p> :Files<CR>
 nmap <leader>y :History:<CR>
 
-" Buffet tabs
-nmap <leader>1 <Plug>BuffetSwitch(1)
-nmap <leader>2 <Plug>BuffetSwitch(2)
-nmap <leader>3 <Plug>BuffetSwitch(3)
-nmap <leader>4 <Plug>BuffetSwitch(4)
-nmap <leader>5 <Plug>BuffetSwitch(5)
-nmap <leader>6 <Plug>BuffetSwitch(6)
-nmap <leader>7 <Plug>BuffetSwitch(7)
-nmap <leader>8 <Plug>BuffetSwitch(8)
-nmap <leader>9 <Plug>BuffetSwitch(9)
-nmap <leader>0 <Plug>BuffetSwitch(10)
+" Tabs
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<CR>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
 
 "" Split
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
+noremap <leader>h :<C-u>split<CR>
+noremap <leader>v :<C-u>vsplit<CR>
 
 "" Git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Git commit --verbose<CR>
-noremap <Leader>gsh :Git push<CR>
-noremap <Leader>gll :Git pull<CR>
-noremap <Leader>gs :Git<CR>
-noremap <Leader>gb :Git blame<CR>
-noremap <Leader>gd :Gvdiffsplit<CR>
-noremap <Leader>gr :GRemove<CR>
+noremap <leader>ga :Gwrite<CR>
+noremap <leader>gc :Git commit --verbose<CR>
+noremap <leader>gsh :Git push<CR>
+noremap <leader>gll :Git pull<CR>
+noremap <leader>gs :Git<CR>
+noremap <leader>gb :Git blame<CR>
+noremap <leader>gd :Gvdiffsplit<CR>
+noremap <leader>gr :GRemove<CR>
 
 " session management
 nnoremap <leader>so :OpenSession<Space>
@@ -291,6 +282,10 @@ vnoremap K :m '<-2<CR>gv=gv
 
 "" Open current line on GitHub
 nnoremap <Leader>o :.Gbrowse<CR>
+
+" Easy saving
+nnoremap <leader>w :w<CR>
+inoremap <C-S> <Esc>:w<CR>i
 
 " Include user's local vim config
 if filereadable(expand("~/.config/nvim/local_init.vim"))
