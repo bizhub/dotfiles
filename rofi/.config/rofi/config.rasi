@@ -151,4 +151,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 
-@theme "bizhub"
+@theme "onedark"

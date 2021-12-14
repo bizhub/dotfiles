@@ -18,3 +18,6 @@ export SAVEHIST=10000
 
 # FZF
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
+
+# Onedark fzf
+export FZF_DEFAULT_OPTS='--color=fg:#abb2bf,bg:#282c34,hl:#c678dd --color=fg+:#f8f8f2,bg+:#282c34,hl+:#98c379 --color=info:#abb2bf,prompt:#c678dd,pointer:#56b6c2 --color=marker:#ff79c6,spinner:#b6bdca,header:#6272a4'

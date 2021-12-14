@@ -6,4 +6,4 @@ sailpath=$(docker inspect $sailid | sed -n 's|.*"com\.docker\.compose\.project\.
 cd $sailpath
 "$sailpath/vendor/bin/sail" down
 
-dunstify -i "" "Docker Compose" "Removed: $sailpath"
+dunstify -i " " "Docker Compose" "Removed: $sailpath"
