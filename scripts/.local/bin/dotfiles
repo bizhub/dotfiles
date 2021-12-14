@@ -162,7 +162,7 @@ setup_arch() {
         'ttf-cascadia-code'     # theme font
 
         # Misc
-        'nvim'                  # default terminal editor
+        'neovim'                # default terminal editor
         'discord'               # chat
         'redshift'              # screen color temperature
         'thunderbird'           # email client
