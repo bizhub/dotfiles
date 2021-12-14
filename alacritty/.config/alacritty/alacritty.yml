@@ -6,7 +6,7 @@
 # loaded earlier with those loaded later in the chain. The file itself will
 # always be loaded last.
 import:
-  - /home/lex/.config/alacritty/alpenglow-monokai.yml
+  - /home/lex/.config/alacritty/onedark.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -147,7 +147,7 @@ font:
     # style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

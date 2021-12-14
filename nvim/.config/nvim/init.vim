@@ -23,12 +23,16 @@ endif
 call plug#begin(expand('~/.config/nvim/plugged'))
     
     " Themes
+    Plug 'joshdick/onedark.vim'
     Plug 'ap/vim-css-color'
 
+    Plug 'mhinz/vim-startify'
+    
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-rhubarb'
+    Plug 'tpope/vim-commentary'
     Plug 'itchyny/lightline.vim'
 
     " Navigation
@@ -39,6 +43,9 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'terryma/vim-multiple-cursors'
+
+    " PHP
+    Plug 'stanangeloff/php.vim'
 
     " Include user's extra bundle
     if filereadable(expand("~/.config/nvim/local_bundles.vim"))
@@ -81,25 +88,20 @@ set noshowmode                  " Hide default mode
 set laststatus=2                " Enable colors
 
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [['lineinfo'], ['percent'], ['filetype']]
+      \             [ 'gitbranch', 'readonly', 'modified' ] ],
+      \   'right': [['lineinfo'], ['filetype']]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
 
-"*****************************************************************************
-"" Visual Settings
-"*****************************************************************************
-
-let mapleader=','
-
+"" Theme
 syntax on
-colorscheme alpenglow
+colorscheme onedark
 
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
@@ -112,7 +114,10 @@ let no_buffers_menu=1
 set mouse=a
 
 " set mousemodel=popup
-" set t_Co=256
+set t_Co=256
+if !has('gui_running')
+  set t_Co=256
+endif
 " set guioptions=egmrti
 " set gfn=Monospace\ 10
 
@@ -169,10 +174,15 @@ let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
 
 nnoremap <silent> <F2> :NERDTreeFind<CR>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
+nnoremap <silent> <C-b> :NERDTreeToggle<CR>
 
 " terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
+
+" Custom Buffet colors
+function! g:BuffetSetCustomColors()
+  hi! BuffetTab cterm=NONE ctermbg=5 ctermfg=8 guibg=#00FF00 guifg=#000000
+endfunction
 
 " remove trailing whitespaces
 command! FixWhitespace :%s/\s\+$//e
@@ -201,6 +211,8 @@ augroup END
 "" Mappings
 "*****************************************************************************
 
+let mapleader=','
+
 " FZF
 nmap <C-p> :Files<CR>
 nmap <leader>y :History:<CR>
@@ -218,6 +230,7 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
+nnoremap <leader>t :tabnew<CR>
 
 "" Split
 noremap <leader>h :<C-u>split<CR>
@@ -246,9 +259,7 @@ cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 
 "" Copy/Paste/Cut
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-endif
+set clipboard=unnamedplus
 
 noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>

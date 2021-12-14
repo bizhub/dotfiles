@@ -1,12 +1,11 @@
 [colors]
-background = #2e2e2e
-;background = #282a36
-background-alt = #444
+background = #282C34
+background-alt = #3a404b
 foreground = #EFEFEF
-foreground-alt = #666
+foreground-alt = #535b6b
 primary = #666666
-secondary = #6c99bb
-alert = #bd2c40
+secondary = #56b6c2
+alert = #e06c75
 
 [bar/top]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -39,7 +38,7 @@ font-3 = FontAwesome5Free:style=Regular:size=10;2
 font-4 = FontAwesome5Brands:style=Regular:size=10;2
 ;xwindow
 modules-left = bspwm
-modules-center = 
+modules-center =
 modules-right = xkeyboard docker package-updates cpu eth pulseaudio date
 
 tray-position = none
