@@ -17,6 +17,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -i'
 alias df='df -h'                          # human-readable sizes
+alias du='du -h'
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias h='history'

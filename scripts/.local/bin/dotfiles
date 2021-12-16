@@ -202,7 +202,7 @@ setup_arch() {
         'npm'
 
         # Utils
-        # 'filelight'         # diskspace
+        'filelight'         # diskspace
         'pacman-contrib'    # pacman utils
         'fzf'               # fuzzy finder
         'ripgrep'           # search tool

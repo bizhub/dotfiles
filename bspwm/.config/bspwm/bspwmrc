@@ -41,8 +41,8 @@ bspc config gapless_monocle      true
 # bspc config presel_feedback_color "#6272a4"
 
 # Onedark
-bspc config normal_border_color "#282c34"
-bspc config active_border_color "#282c34"
+bspc config normal_border_color "#3a404b"
+bspc config active_border_color "#3a404b"
 bspc config focused_border_color "#535b6b"
 bspc config presel_feedback_color "#535b6b"
 

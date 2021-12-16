@@ -24,8 +24,9 @@ call plug#begin(expand('~/.config/nvim/plugged'))
     
     " Themes
     Plug 'joshdick/onedark.vim'
-    Plug 'ap/vim-css-color'
 
+    " Visual
+    Plug 'ap/vim-css-color'
     Plug 'mhinz/vim-startify'
     
     Plug 'terryma/vim-multiple-cursors'
@@ -47,6 +48,9 @@ call plug#begin(expand('~/.config/nvim/plugged'))
     " PHP
     Plug 'stanangeloff/php.vim'
 
+    " Javascript
+    Plug 'posva/vim-vue'
+
     " Include user's extra bundle
     if filereadable(expand("~/.config/nvim/local_bundles.vim"))
         source ~/.config/nvim/local_bundles.vim
@@ -65,6 +69,7 @@ set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
+set cursorline
 
 "" Searching
 set ignorecase
@@ -99,12 +104,18 @@ let g:lightline = {
       \ },
       \ }
 
+let g:lightline.component = { 'close': '' }
+
 "" Theme
 syntax on
 colorscheme onedark
 
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
+
+" let s:palette = g:lightline#colorscheme#onedark#palette
+" let s:palette.tabline.tabsel = [ [ '#d0d0d0', '#535b6b', 255, 55, 'bold' ] ]
+" unlet s:palette
 
 set number
 
@@ -152,6 +163,8 @@ endif
 "" Abbreviations
 "*****************************************************************************
 
+let mapleader=','
+
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
@@ -165,12 +178,13 @@ cnoreabbrev Qall qall
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['node_modules','\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeIgnore=['.git', 'node_modules','\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
+let NERDTreeShowHidden=1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
 
 nnoremap <silent> <F2> :NERDTreeFind<CR>
@@ -211,7 +225,9 @@ augroup END
 "" Mappings
 "*****************************************************************************
 
-let mapleader=','
+" now it is possible to paste many times over selected text
+xnoremap <expr> p 'pgv"'.v:register.'y`>'
+xnoremap <expr> P 'Pgv"'.v:register.'y`>'
 
 " FZF
 nmap <C-p> :Files<CR>
