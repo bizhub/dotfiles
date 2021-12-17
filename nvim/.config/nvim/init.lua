@@ -1,12 +1,3 @@
 require('bizhub.plugins')
 require('bizhub.options')
 require('bizhub.maps')
-
-require('bizhub.plugins.treesitter')
-require('bizhub.plugins.lsp')
-require('bizhub.plugins.completions')
-require('bizhub.plugins.lualine')
-require('bizhub.plugins.telescope')
-require('bizhub.plugins.gitsigns')
-require('bizhub.plugins.transparent')
-require('bizhub.plugins.nerdtree')

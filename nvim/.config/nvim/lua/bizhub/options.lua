@@ -31,3 +31,5 @@ opt.mouse = 'a'
 -- Set color scheme
 opt.termguicolors = true
 vim.cmd('colorscheme onedark')
+
+vim.cmd [[filetype plugin indent on]]

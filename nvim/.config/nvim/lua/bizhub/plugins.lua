@@ -1,58 +1,110 @@
--- Plugins
-local Plug = vim.fn['plug#']
-vim.call('plug#begin', '~/.config/nvim/plugged')
+-- Get config helper
+local function get_config(name)
+    return string.format("require(\"bizhub.configs.%s\")", name)
+end
 
--- IDE
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'terryma/vim-multiple-cursors'
+-- Automatic packer bootstraping
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
+if fn.empty(fn.glob(install_path)) > 0 then
+    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
 
--- Themes
-Plug 'joshdick/onedark.vim'
+-- Compile packer when plugins.lua is updated
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
 
--- Dashboard
-Plug 'glepnir/dashboard-nvim'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+vim.cmd [[packadd packer.nvim]]
 
--- Visual
-Plug 'ap/vim-css-color'
-Plug 'xiyaowong/nvim-transparent'
+return require('packer').startup(function()
+    -- Packer
+    use 'wbtomason/packer.nvim'
 
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-commentary'
+    -- IDE
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        config = get_config('treesitter')
+    }
 
--- Statusline
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+    use 'neovim/nvim-lspconfig'
+    use {
+        'williamboman/nvim-lsp-installer',
+        config = get_config('lsp')
+    }
 
--- Buffer
--- Plug 'akinsho/bufferline.nvim'
+    use 'terryma/vim-multiple-cursors'
 
--- Navigation
-Plug 'scrooloose/nerdtree'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use {
+        'hrsh7th/nvim-cmp',
+        config = get_config('completions')
+    }
 
--- Telescope
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+    -- Themes
+    use 'joshdick/onedark.vim'
 
--- Git
-Plug 'nvim-lua/plenary.nvim'
-Plug 'lewis6991/gitsigns.nvim'
+    -- Dashboard
+    use 'glepnir/dashboard-nvim'
+    use 'junegunn/fzf'
+    use 'junegunn/fzf.vim'
 
--- PHP
--- Plug 'stanangeloff/php.vim'
+    -- Visual
+    use 'ap/vim-css-color'
+    use {
+        'xiyaowong/nvim-transparent',
+        config = get_config('transparent')
+    }
 
--- Javascript
-Plug 'posva/vim-vue'
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-surround'
+    use 'tpope/vim-rhubarb'
+    use 'tpope/vim-commentary'
 
-vim.call('plug#end')
+    -- Statusline
+    use 'kyazdani41/nvim-web-devicons'
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = get_config('lualine')
+    }
+
+    -- Buffer
+    -- use 'akinsho/bufferline.nvim'
+
+    -- Navigation
+    use {
+        'scrooloose/nerdtree',
+        config = get_config('nerdtree')
+    }
+
+    -- Telescope
+    use 'nvim-lua/plenary.nvim'
+    use {
+        'nvim-telescope/telescope.nvim',
+        config = get_config('telescope')
+    }
+
+    -- Git
+    use 'nvim-lua/plenary.nvim'
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = get_config('gitsigns')
+    }
+
+    -- PHP
+    -- use 'stanangeloff/php.vim'
+
+    -- Javascript
+    use 'posva/vim-vue'
+
+    if packer_bootstrap then
+        require('packer').sync()
+    end
+end)
