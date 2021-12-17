@@ -1,8 +1,3 @@
--- Get config helper
-local function get_config(name)
-    return string.format("require(\"bizhub.configs.%s\")", name)
-end
-
 -- Automatic packer bootstraping
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -19,33 +14,39 @@ vim.cmd([[
   augroup end
 ]])
 
-vim.cmd [[packadd packer.nvim]]
+-- vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
     -- Packer
     use 'wbtomason/packer.nvim'
 
-    -- IDE
+    -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
-        config = get_config('treesitter')
+        config = [[require('bizhub.configs.treesitter')]]
     }
 
-    use 'neovim/nvim-lspconfig'
+    -- Language server
     use {
         'williamboman/nvim-lsp-installer',
-        config = get_config('lsp')
+        require = {
+            'neovim/nvim-lspconfig'
+        },
+        config = [[require('bizhub.configs.lsp')]]
     }
 
     use 'terryma/vim-multiple-cursors'
 
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
+    -- Completions
     use {
         'hrsh7th/nvim-cmp',
-        config = get_config('completions')
+        require = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline'
+        },
+        config = [[require('bizhub.configs.completions')]]
     }
 
     -- Themes
@@ -60,7 +61,7 @@ return require('packer').startup(function()
     use 'ap/vim-css-color'
     use {
         'xiyaowong/nvim-transparent',
-        config = get_config('transparent')
+        config = [[require('bizhub.configs.transparent')]]
     }
 
     use 'tpope/vim-fugitive'
@@ -68,11 +69,13 @@ return require('packer').startup(function()
     use 'tpope/vim-rhubarb'
     use 'tpope/vim-commentary'
 
-    -- Statusline
-    use 'kyazdani41/nvim-web-devicons'
+    -- Lualine
     use {
         'nvim-lualine/lualine.nvim',
-        config = get_config('lualine')
+        requires = {
+            'kyazdani41/nvim-web-devicons'
+        },
+        config = [[require('bizhub.configs.lualine')]]
     }
 
     -- Buffer
@@ -81,21 +84,24 @@ return require('packer').startup(function()
     -- Navigation
     use {
         'scrooloose/nerdtree',
-        config = get_config('nerdtree')
+        config = [[require('bizhub.configs.nerdtree')]]
     }
 
     -- Telescope
-    use 'nvim-lua/plenary.nvim'
+    -- use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim',
-        config = get_config('telescope')
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = [[require('bizhub.configs.telescope')]]
     }
 
     -- Git
     use 'nvim-lua/plenary.nvim'
     use {
         'lewis6991/gitsigns.nvim',
-        config = get_config('gitsigns')
+        config = [[require('bizhub.configs.gitsigns')]]
     }
 
     -- PHP
