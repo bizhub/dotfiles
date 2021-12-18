@@ -8,17 +8,17 @@ end
 
 -- Compile packer when plugins.lua is updated
 vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
 ]])
 
 -- vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
     -- Packer
-    use 'wbtomason/packer.nvim'
+    use 'wbthomason/packer.nvim'
 
     -- Treesitter
     use {
@@ -29,7 +29,7 @@ return require('packer').startup(function()
     -- Language server
     use {
         'williamboman/nvim-lsp-installer',
-        require = {
+        requires = {
             'neovim/nvim-lspconfig'
         },
         config = [[require('bizhub.configs.lsp')]]
@@ -40,7 +40,7 @@ return require('packer').startup(function()
     -- Completions
     use {
         'hrsh7th/nvim-cmp',
-        require = {
+        requires = {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
@@ -64,16 +64,14 @@ return require('packer').startup(function()
         config = [[require('bizhub.configs.transparent')]]
     }
 
-    use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
-    use 'tpope/vim-rhubarb'
     use 'tpope/vim-commentary'
 
     -- Lualine
     use {
         'nvim-lualine/lualine.nvim',
         requires = {
-            'kyazdani41/nvim-web-devicons'
+            'kyazdani42/nvim-web-devicons'
         },
         config = [[require('bizhub.configs.lualine')]]
     }
@@ -81,14 +79,13 @@ return require('packer').startup(function()
     -- Buffer
     -- use 'akinsho/bufferline.nvim'
 
-    -- Navigation
+    -- Nerdtree
     use {
         'scrooloose/nerdtree',
         config = [[require('bizhub.configs.nerdtree')]]
     }
 
     -- Telescope
-    -- use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim',
         requires = {
@@ -98,9 +95,13 @@ return require('packer').startup(function()
     }
 
     -- Git
-    use 'nvim-lua/plenary.nvim'
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-rhubarb'
     use {
         'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
         config = [[require('bizhub.configs.gitsigns')]]
     }
 
@@ -108,7 +109,7 @@ return require('packer').startup(function()
     -- use 'stanangeloff/php.vim'
 
     -- Javascript
-    use 'posva/vim-vue'
+    -- use 'posva/vim-vue'
 
     if packer_bootstrap then
         require('packer').sync()
