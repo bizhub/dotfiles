@@ -28,7 +28,6 @@ usage() {
     echo -e "   ${GREEN}unstow${NC}          Unstow dotfiles."
     echo
     echo -e "   ${GREEN}arch:setup${NC}      Install packages on Arch."
-    echo -e "   ${GREEN}vp:install${NC}      Install vim plug."
     echo
     echo -e "${YELLOW}Options:"
     echo -e "   ${GREEN}--help${NC}          Display this help message."
@@ -340,11 +339,6 @@ setup_arch() {
     echo -e "${GREEN}Done! Please reboot."
 }
 
-vimplug_install() {
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-}
-
 if [ $# -gt 0 ]; then
     # Show dotfiles usage
     if [ "$1" == "--help" ]; then
@@ -370,11 +364,6 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "unstow" ]; then
         shift 1
         unstow_dotfiles
-
-    # Install vimplug
-    elif [ "$1" == "vp:install" ]; then
-        shift 1
-        vimplug_install
 
     # Arch setup
     elif [ "$1" == "arch:setup" ]; then
