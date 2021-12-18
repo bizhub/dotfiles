@@ -49,6 +49,9 @@ return require('packer').startup(function()
         config = [[require('bizhub.configs.completions')]]
     }
 
+    -- Github copilot
+    use 'github/copilot.vim'
+
     -- Themes
     use 'joshdick/onedark.vim'
 
