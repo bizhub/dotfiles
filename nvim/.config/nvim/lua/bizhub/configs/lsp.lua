@@ -1,3 +1,5 @@
+local utils = require 'bizhub.utils'
+local nmap = utils.nmap
 local lsp_installer = require("nvim-lsp-installer")
 
 lsp_installer.on_server_ready(function(server)
@@ -21,14 +23,14 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 -- Mappings
-vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<cr>zz<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'gw', ':lua vim.lsp.buf.document_symbol()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'gw', ':lua vim.lsp.buf.workspace_symbol()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'gt', ':lua vim.lsp.buf.type_definition()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>af', ':lua vim.lsp.buf.code_action()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>rn', ':lua vim.lsp.buf.rename()<cr>', { noremap = true })
+nmap('gd', ':lua vim.lsp.buf.definition()<CR>zz<CR>')
+nmap('gD', ':lua vim.lsp.buf.declaration()<CR>')
+nmap('gi', ':lua vim.lsp.buf.implementation()<CR>')
+nmap('gw', ':lua vim.lsp.buf.document_symbol()<CR>')
+nmap('gw', ':lua vim.lsp.buf.workspace_symbol()<CR>')
+nmap('gr', ':lua vim.lsp.buf.references()<CR>')
+nmap('gt', ':lua vim.lsp.buf.type_definition()<CR>')
+nmap('K', ':lua vim.lsp.buf.hover()<CR>')
+nmap('<C-k>', ':lua vim.lsp.buf.signature_help()<CR>')
+nmap('<leader>af', ':lua vim.lsp.buf.code_action()<CR>')
+nmap('<leader>rn', ':lua vim.lsp.buf.rename()<CR>')

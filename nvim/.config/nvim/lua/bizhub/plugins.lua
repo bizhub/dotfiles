@@ -80,7 +80,13 @@ return require('packer').startup(function()
     }
 
     -- Buffer
-    -- use 'akinsho/bufferline.nvim'
+    use {
+        'akinsho/bufferline.nvim',
+        requires = {
+            'kyazdani42/nvim-web-devicons'
+        },
+        config = [[require('bizhub.configs.bufferline')]]
+    }
 
     -- Nerdtree
     use {
@@ -100,12 +106,24 @@ return require('packer').startup(function()
     -- Git
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
+
     use {
         'lewis6991/gitsigns.nvim',
         requires = {
             'nvim-lua/plenary.nvim'
         },
         config = [[require('bizhub.configs.gitsigns')]]
+    }
+
+    use {
+        'pwntester/octo.nvim',
+        config = [[require('bizhub.configs.octo')]]
+    }
+
+    -- Testing
+    use {
+        'vim-test/vim-test',
+        config = [[require('bizhub.configs.testing')]]
     }
 
     -- PHP

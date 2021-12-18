@@ -1,1 +1,4 @@
-vim.api.nvim_set_keymap('n', '<c-b>', ':NERDTreeToggle<cr>', { noremap = true, silent = true })
+local utils = require 'bizhub.utils'
+local nmap = utils.nmap
+
+nmap('<C-b>', ':NERDTreeToggle<CR>')
