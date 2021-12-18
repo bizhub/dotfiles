@@ -73,19 +73,15 @@ return require('packer').startup(function()
     -- Lualine
     use {
         'nvim-lualine/lualine.nvim',
-        requires = {
-            'kyazdani42/nvim-web-devicons'
-        },
+        requires = 'kyazdani42/nvim-web-devicons',
         config = [[require('bizhub.configs.lualine')]]
     }
 
     -- Buffer
     use {
-        'akinsho/bufferline.nvim',
-        requires = {
-            'kyazdani42/nvim-web-devicons'
-        },
-        config = [[require('bizhub.configs.bufferline')]]
+        'romgrk/barbar.nvim',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = [[require('bizhub.configs.barbar')]]
     }
 
     -- Nerdtree
@@ -97,9 +93,7 @@ return require('packer').startup(function()
     -- Telescope
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim'
-        },
+        requires = 'nvim-lua/plenary.nvim',
         config = [[require('bizhub.configs.telescope')]]
     }
 
@@ -109,9 +103,7 @@ return require('packer').startup(function()
 
     use {
         'lewis6991/gitsigns.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim'
-        },
+        requires = 'nvim-lua/plenary.nvim',
         config = [[require('bizhub.configs.gitsigns')]]
     }
 
