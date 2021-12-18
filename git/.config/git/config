@@ -1,18 +1,19 @@
 [credential]
-	helper = libsecret
+    helper = libsecret
 [user]
     name = Lex van der Woude
-	email = lex@bizhub.co.nz
+    email = lex@bizhub.co.nz
     signingkey = lex@bizhub.co.nz
 [commit]
     gpgsign = true
 [tag]
     gpgsign = true
 [core]
-	safecrlf = false
-	autocrlf = input
+    safecrlf = false
+    autocrlf = input
+    editor = nvim
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
