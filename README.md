@@ -1,13 +1,7 @@
 # Dotfiles
-Personal backup of dotfiles and setup notes for Manjaro Linux.
+Personal backup of dotfiles and setup notes for Arch Linux.
 
-## Table of contents
- - [Installing](#installing)
- - [Preview](#preview)
- - [Packages](#packages)
- - [Keybinds](#keybinds)
- - [Visual Studio Code](#visual-studio-code)
- - [Docker](#docker)
+![](https://raw.githubusercontent.com/bizhub/dotfiles/master/preview.png)
 
 ## Installing
 
@@ -16,29 +10,14 @@ Personal backup of dotfiles and setup notes for Manjaro Linux.
 git clone https://github.com/bizhub/dotfiles ~/dotfiles
 ```
 
-2. Install GNU Stow
+2. Stow script
 ```shell
-sudo pacman -S stow
+~/dotfiles/scripts/.local/bin/dotfiles stow
 ```
-
-3. Install required dotfiles
-```shell
-cd ~/dotfiles
-stow --no-folding alacritty bash bspwm dunst git neofetch picom polybar ranger rofi scripts starship sxhkd vim xorg
-```
-
-## Preview
-
-![](https://raw.githubusercontent.com/bizhub/dotfiles/master/preview.png)
 
 ## Packages
 
-```shell
-# Starship prompt
-curl -fsSL https://starship.rs/install.sh | bash
-```
-
-#### Graphical environment
+#### Environment
 * <kbd>bspwm</kbd>: Window manager
 * <kbd>sxhkd</kbd>: Hotkey daemon
 * <kbd>polybar</kbd>: Bar (aur)
@@ -47,6 +26,7 @@ curl -fsSL https://starship.rs/install.sh | bash
 * <kbd>picom</kbd>: Compositor
 * <kbd>lightdm</kbd>: Display manager
 * <kbd>nitrogen</kbd>: Wallpaper manager
+* <kbd>zsh</kbd>: Shell
 * <kbd>polkit-gnome</kbd>
 
 #### Fonts
@@ -57,9 +37,9 @@ curl -fsSL https://starship.rs/install.sh | bash
 #### Development
 * <kbd>alacritty</kbd>: Terminal emulator
 * <kbd>visual-studio-code-bin</kbd>: Code editor (aur)
+* <kbd>neovim</kbd>: Code editor
 * <kbd>docker</kbd>
 * <kbd>docker-compose</kbd>
-* <kbd>dry-bin</kbd>: Terminal docker manager (aur)
 * <kbd>tableplus</kbd>: Database gui (aur)
 * <kbd>github-cli</kbd>
 
@@ -75,17 +55,14 @@ Keybind                | Description
 <kbd>super+b</kbd>     | Brave
 <kbd>super+space</kbd> | Rofi (run)
 <kbd>super+r</kbd>     | Ranger
+<kbd>super+e</kbd>     | PCManFM
 <kbd>super+h</kbd>     | Htop
 <kbd>super+d</kbd>     | Discord
+<kbd>super+m</kbd>     | Thunderbird
 
-## Visual Studio Code
-Theme: [Alpenglow Monokai](https://marketplace.visualstudio.com/items?itemName=kaicataldo.alpenglow-monokai)
+#### Aliases
 
-## Docker
-```shell
-systemctl enable --now docker
+#### Neovim
 
-sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
-```
+#### TODO
+
