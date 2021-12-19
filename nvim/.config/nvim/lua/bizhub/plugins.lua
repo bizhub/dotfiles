@@ -1,9 +1,18 @@
--- Automatic packer bootstraping
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  PACKER_BOOTSTRAP = fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
 end
 
 -- Compile packer when plugins.lua is updated
@@ -14,15 +23,28 @@ vim.cmd([[
     augroup end
 ]])
 
--- vim.cmd [[packadd packer.nvim]]
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
 
-return require('packer').startup(function()
+-- Packer configuration
+packer.init {
+    display = {
+        open_fn = function()
+            return require("packer.util").float { border = "rounded" }
+        end,
+    },
+}
+
+return packer.startup(function(use)
     -- Packer
     use 'wbthomason/packer.nvim'
 
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
         config = [[require('bizhub.configs.treesitter')]]
     }
 
@@ -39,6 +61,12 @@ return require('packer').startup(function()
 
     use 'terryma/vim-multiple-cursors'
 
+    -- Snippet engine
+    use {
+        'L3MON4D3/LuaSnip',
+        config = [[require('bizhub.configs.snippets')]]
+    }
+
     -- Completions
     use {
         'hrsh7th/nvim-cmp',
@@ -52,7 +80,10 @@ return require('packer').startup(function()
     }
 
     -- Github copilot
-    use 'github/copilot.vim'
+    use {
+        'github/copilot.vim',
+        config = [[require('bizhub.configs.copilot')]]
+    }
 
     -- Themes
     use 'joshdick/onedark.vim'
@@ -126,13 +157,13 @@ return require('packer').startup(function()
         config = [[require('bizhub.configs.colorizer')]]
     }
 
-    -- PHP
-    -- use 'stanangeloff/php.vim'
+    -- Keybind helper
+    use {
+        'folke/which-key.nvim',
+        config = [[require('bizhub.configs.which-key')]]
+    }
 
-    -- Javascript
-    -- use 'posva/vim-vue'
-
-    if packer_bootstrap then
+    if PACKER_BOOTSTRAP then
         require('packer').sync()
     end
 end)
