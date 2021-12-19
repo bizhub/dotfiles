@@ -8,5 +8,6 @@ vim.g.bufferline = {
     closable = false
 }
 
+nmap('<leader>w', ':BufferClose<CR>')
 nmap('<C-[>', ':BufferPrevious<CR>')
 nmap('<C-]>', ':BufferNext<CR>')

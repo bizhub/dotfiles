@@ -163,6 +163,12 @@ return packer.startup(function(use)
         config = [[require('bizhub.configs.which-key')]]
     }
 
+    -- Motion
+    use {
+        'easymotion/vim-easymotion',
+        config = [[require('bizhub.configs.easymotion')]]
+    }
+
     if PACKER_BOOTSTRAP then
         require('packer').sync()
     end
