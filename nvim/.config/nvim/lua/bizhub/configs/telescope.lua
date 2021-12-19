@@ -16,3 +16,4 @@ require('telescope').setup{
 
 -- Mappings
 nmap('<C-p>', ':Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>')
+nmap('<leader>gs', ':Telescope git_status<CR>')

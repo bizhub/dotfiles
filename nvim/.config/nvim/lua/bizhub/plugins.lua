@@ -56,7 +56,7 @@ return packer.startup(function(use)
         requires = {
             'neovim/nvim-lspconfig'
         },
-        config = [[require('bizhub.configs.lsp')]]
+        config = [[require('bizhub.lsp')]]
     }
 
     use 'terryma/vim-multiple-cursors'

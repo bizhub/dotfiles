@@ -1,28 +1,8 @@
 local utils = require 'bizhub.utils'
 local nmap = utils.nmap
-local lsp_installer = require("nvim-lsp-installer")
 
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  if server.name == "sumneko_lua" then
-    opts = {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim', 'use' }
-          },
-          workspace = {
-             -- Make the server aware of Neovim runtime files
-            library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
-          }
-        }
-      }
-    }
-  end
-  server:setup(opts)
-end)
+require('bizhub.lsp.lsp-installer')
 
--- Mappings
 nmap('gd', ':lua vim.lsp.buf.definition()<CR>zz<CR>')
 nmap('gD', ':lua vim.lsp.buf.declaration()<CR>')
 nmap('gi', ':lua vim.lsp.buf.implementation()<CR>')
