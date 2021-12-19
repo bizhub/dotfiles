@@ -21,3 +21,5 @@ nmap('<C-Right>', ':tabnext<CR>')
 
 -- Change inside
 nmap('<leader>\'', 'ci\'')
+
+nmap('<f10>', ':TSHighlightCapturesUnderCursor<CR>')

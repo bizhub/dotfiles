@@ -26,6 +26,8 @@ return require('packer').startup(function()
         config = [[require('bizhub.configs.treesitter')]]
     }
 
+    use 'nvim-treesitter/playground'
+
     -- Language server
     use {
         'williamboman/nvim-lsp-installer',
@@ -116,6 +118,12 @@ return require('packer').startup(function()
     use {
         'vim-test/vim-test',
         config = [[require('bizhub.configs.testing')]]
+    }
+
+    -- Highlight colors
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = [[require('bizhub.configs.colorizer')]]
     }
 
     -- PHP
