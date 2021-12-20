@@ -8,7 +8,8 @@ local servers = {
     'html',
     'sumneko_lua',
     'intelephense',
-    'volar'
+    'volar',
+    'pyright',
 }
 
 for _, name in pairs(servers) do
