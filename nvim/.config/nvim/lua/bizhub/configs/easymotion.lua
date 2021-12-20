@@ -1,3 +1,5 @@
+-- https://github.com/easymotion/vim-easymotion
+
 local utils = require 'bizhub.utils'
 local nmap = utils.nmap
 

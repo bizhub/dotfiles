@@ -12,7 +12,11 @@ try:
 
     con.select(readonly=True)
     status, messages = con.search(None, 'UnSeen')
-    count = len(messages[0].decode('utf-8').split(' '))
+
+    if messages[0]:
+        count = len(messages[0].decode('utf-8').split(' ')) 
+    else:
+        count = 0
 except:
     count = 0
 

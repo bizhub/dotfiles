@@ -2,6 +2,7 @@ local utils = require 'bizhub.utils'
 local nmap = utils.nmap
 local imap = utils.imap
 local vmap = utils.vmap
+local xmap = utils.xmap
 
 -- Keep search matches in the middle of the window
 nmap('n', 'nzzzv')
@@ -11,7 +12,7 @@ nmap('N', 'Nzzzv')
 vmap('<', '<gv')
 vmap('>', '>gv')
 
--- Window
+-- Window movment
 nmap('<C-h>', '<C-w>h')
 nmap('<C-l>', '<C-w>l')
 nmap('<C-j>', '<C-w>j')
@@ -30,6 +31,11 @@ nmap('<A-j>', ':m +1<CR>')
 nmap('<A-k>', ':m -2<CR>')
 imap('<A-j>', '<ESC>:m +1<CR>i')
 imap('<A-k>', '<ESC>:m -2<CR>i')
+xmap('<A-j>', ':move \'>+1<CR>gv-gv')
+xmap('<A-k>', ':move \'<-2<CR>gv-gv')
+
+-- Keep copied text
+vmap('p', '"_dP')
 
 -- Quick saving
 imap('<C-s>', '<ESC>:w<CR>i')
