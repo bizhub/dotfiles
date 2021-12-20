@@ -28,6 +28,10 @@ opt.showmode = false
 -- Enable mouse
 opt.mouse = 'a'
 
+-- Window spliting
+opt.splitbelow = true
+opt.splitright = true
+
 -- Set color scheme
 opt.termguicolors = true
 vim.cmd('colorscheme onedark')
