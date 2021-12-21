@@ -8,15 +8,20 @@ local xmap = utils.xmap
 nmap('n', 'nzzzv')
 nmap('N', 'Nzzzv')
 
--- Maintain selection when shift in visual mode
+-- Maintain selection when shifting in visual mode
 vmap('<', '<gv')
 vmap('>', '>gv')
 
--- Window movment
+-- Window movement
 nmap('<C-h>', '<C-w>h')
 nmap('<C-l>', '<C-w>l')
 nmap('<C-j>', '<C-w>j')
 nmap('<C-k>', '<C-w>k')
+
+-- Buffers
+nmap('<S-q>', ':BufferClose<CR>')
+nmap('<tab>', ':BufferNext<CR>')
+nmap('<S-tab>', ':BufferPrevious<CR>')
 
 -- Change inside
 nmap('<leader>\'', 'ci\'')
@@ -34,14 +39,15 @@ imap('<A-k>', '<ESC>:m -2<CR>i')
 xmap('<A-j>', ':move \'>+1<CR>gv-gv')
 xmap('<A-k>', ':move \'<-2<CR>gv-gv')
 
+-- Clear highlights
+nmap('<CR>', ':noh<CR>')
+
 -- Keep copied text
 vmap('p', '"_dP')
 
 -- Quick saving
+nmap('<C-s>', ':w<CR>')
 imap('<C-s>', '<ESC>:w<CR>i')
-
--- Treesitter playground
-nmap('<f10>', ':TSHighlightCapturesUnderCursor<CR>')
 
 -- Abbreviations
 vim.cmd([[

@@ -19,7 +19,7 @@ end
 vim.cmd([[
     augroup packer_user_config
         autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+        autocmd BufWritePost plugins.lua source <afile> | PackerSync
     augroup end
 ]])
 
@@ -41,6 +41,9 @@ return packer.startup(function(use)
     -- Packer
     use 'wbthomason/packer.nvim'
 
+    -- Dependencies
+    use 'nvim-lua/plenary.nvim'
+
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -59,8 +62,6 @@ return packer.startup(function(use)
         config = [[require('bizhub.lsp')]]
     }
 
-    use 'terryma/vim-multiple-cursors'
-
     -- Snippet engine
     use {
         'L3MON4D3/LuaSnip',
@@ -71,6 +72,8 @@ return packer.startup(function(use)
     use {
         'hrsh7th/nvim-cmp',
         requires = {
+            'saadparwaiz1/cmp_luasnip',
+            'David-Kunz/cmp-npm',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
@@ -79,31 +82,25 @@ return packer.startup(function(use)
         config = [[require('bizhub.configs.completions')]]
     }
 
-    -- Github copilot
-    use {
-        'github/copilot.vim',
-        config = [[require('bizhub.configs.copilot')]]
-    }
+    -- General
+    use 'terryma/vim-multiple-cursors'
+    use 'tpope/vim-surround'
+    use 'tpope/vim-commentary'
+    use 'jiangmiao/auto-pairs'
+    -- use 'junegunn/fzf'
+    -- use 'junegunn/fzf.vim'
 
     -- Themes
     use 'joshdick/onedark.vim'
 
     -- Dashboard
     use 'glepnir/dashboard-nvim'
-    use 'junegunn/fzf'
-    use 'junegunn/fzf.vim'
 
-    -- Visual
-    use 'ap/vim-css-color'
+    -- Transparent background
     use {
         'xiyaowong/nvim-transparent',
         config = [[require('bizhub.configs.transparent')]]
     }
-
-    -- Misc
-    use 'tpope/vim-surround'
-    use 'tpope/vim-commentary'
-    use 'jiangmiao/auto-pairs'
 
     -- Lualine
     use {
@@ -112,7 +109,7 @@ return packer.startup(function(use)
         config = [[require('bizhub.configs.lualine')]]
     }
 
-    -- Buffer
+    -- Buffer tabs
     use {
         'romgrk/barbar.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
@@ -128,7 +125,6 @@ return packer.startup(function(use)
     -- Telescope
     use {
         'nvim-telescope/telescope.nvim',
-        requires = 'nvim-lua/plenary.nvim',
         config = [[require('bizhub.configs.telescope')]]
     }
 
@@ -138,13 +134,18 @@ return packer.startup(function(use)
 
     use {
         'lewis6991/gitsigns.nvim',
-        requires = 'nvim-lua/plenary.nvim',
         config = [[require('bizhub.configs.gitsigns')]]
     }
 
     use {
         'pwntester/octo.nvim',
         config = [[require('bizhub.configs.octo')]]
+    }
+
+    -- Github copilot
+    use {
+        'github/copilot.vim',
+        config = [[require('bizhub.configs.copilot')]]
     }
 
     -- Testing
@@ -170,6 +171,9 @@ return packer.startup(function(use)
         'easymotion/vim-easymotion',
         config = [[require('bizhub.configs.easymotion')]]
     }
+
+    -- Vuejs
+    use 'leafOfTree/vim-vue-plugin'
 
     if PACKER_BOOTSTRAP then
         require('packer').sync()

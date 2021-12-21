@@ -1,3 +1,6 @@
+local utils = require 'bizhub.utils'
+local nmap = utils.nmap
+
 local configs = require'nvim-treesitter.configs'
 configs.setup {
     ensure_installed = 'maintained', -- Only use parsers that are maintained
@@ -8,3 +11,6 @@ configs.setup {
         enable = false -- default is disabled anyways
     }
 }
+
+-- Treesitter playground
+nmap('<f10>', ':TSHighlightCapturesUnderCursor<CR>')
