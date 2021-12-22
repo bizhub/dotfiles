@@ -38,6 +38,8 @@ packer.init {
 }
 
 return packer.startup(function(use)
+    use 'lewis6991/impatient.nvim'
+
     -- Packer
     use 'wbthomason/packer.nvim'
 
@@ -86,16 +88,20 @@ return packer.startup(function(use)
     -- General
     use 'terryma/vim-multiple-cursors'
     use 'tpope/vim-surround'
-    use 'tpope/vim-commentary'
+    use {
+        'numToStr/Comment.nvim',
+        config = [[require('bizhub.configs.comment')]]
+    }
     use 'jiangmiao/auto-pairs'
-    -- use 'junegunn/fzf'
-    -- use 'junegunn/fzf.vim'
 
     -- Themes
     use 'joshdick/onedark.vim'
 
     -- Dashboard
-    use 'glepnir/dashboard-nvim'
+    use {
+        'glepnir/dashboard-nvim',
+        config = [[require('bizhub.configs.dashboard')]]
+    }
 
     -- Transparent background
     use {
