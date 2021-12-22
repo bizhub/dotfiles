@@ -1,14 +1,23 @@
 local utils = require 'bizhub.utils'
 local nmap = utils.nmap
 
-local configs = require'nvim-treesitter.configs'
+local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
+if not status_ok then
+    return
+end
+
 configs.setup {
-    ensure_installed = 'maintained', -- Only use parsers that are maintained
-    highlight = { -- enable highlighting
-        enable = true
+    ensure_installed = 'maintained',
+    highlight = {
+        enable = true,
+        disable = { '' },
+        additional_vim_regex_highlighting = true,
     },
     indent = {
-        enable = false -- default is disabled anyways
+        enable = true,
+        disable = {
+            'yaml',
+        }
     }
 }
 

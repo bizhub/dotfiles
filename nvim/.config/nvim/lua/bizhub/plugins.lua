@@ -38,7 +38,10 @@ packer.init {
 }
 
 return packer.startup(function(use)
-    use 'lewis6991/impatient.nvim'
+    use {
+        'lewis6991/impatient.nvim',
+        config = [[require('bizhub.configs.impatient')]],
+    }
 
     -- Packer
     use 'wbthomason/packer.nvim'
