@@ -1,14 +1,16 @@
--- Setup nvim-cmp.
-local cmp = require'cmp'
+local status_ok, cmp = pcall(require, 'cmp')
+if not status_ok then
+    return
+end
+
+require('luasnip/loaders/from_vscode').lazy_load()
+
+require('cmp-npm').setup({})
 
 cmp.setup({
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
         require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
     mapping = {
@@ -26,12 +28,25 @@ cmp.setup({
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
+      { name = 'nvim_lua' },
       { name = 'luasnip' },
       { name = 'path' },
-      { name = 'npm' }
-    }, {
+      { name = 'npm', keyword_length = 4 },
       { name = 'buffer' },
-    })
+    }),
+    formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(entry, vim_item)
+            vim_item.menu = ({
+                nvim_lsp = '[LSP]',
+                nvim_lua = '[LUA]',
+                luasnip = '[Snippet]',
+                buffer = '[Buffer]',
+                path = '[Path]',
+            })[entry.source.name]
+            return vim_item
+        end
+    },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -49,10 +64,3 @@ cmp.setup.cmdline(':', {
       { name = 'cmdline' }
     })
 })
-
--- Setup lspconfig.
--- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
--- require('lspconfig')['sumneko_lua'].setup {
---     capabilities = capabilities
--- }

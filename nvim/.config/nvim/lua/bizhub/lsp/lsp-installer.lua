@@ -1,4 +1,7 @@
-local lsp_installer = require "nvim-lsp-installer"
+local status_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+if not status_ok then
+    return
+end
 
 -- Default servers
 local servers = {
@@ -23,10 +26,14 @@ for _, name in pairs(servers) do
 end
 
 lsp_installer.on_server_ready(function(server)
-    local opts = {}
+    local opts = {
+        on_attach = require('bizhub.lsp.handlers').on_attach,
+        capabilities = require('bizhub.lsp.handlers').capabilities,
+    }
 
     if server.name == "sumneko_lua" then
-        opts = require('bizhub.lsp.servers.sumneko_lua')
+        local sumneko_opts = require('bizhub.lsp.servers.sumneko_lua')
+        opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
     end
 
     server:setup(opts)

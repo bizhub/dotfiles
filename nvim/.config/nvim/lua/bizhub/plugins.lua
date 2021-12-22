@@ -72,6 +72,7 @@ return packer.startup(function(use)
     use {
         'hrsh7th/nvim-cmp',
         requires = {
+            'hrsh7th/cmp-nvim-lua',
             'saadparwaiz1/cmp_luasnip',
             'David-Kunz/cmp-npm',
             'hrsh7th/cmp-nvim-lsp',
