@@ -58,15 +58,6 @@ return packer.startup(function(use)
 
     use 'nvim-treesitter/playground'
 
-    -- Language server
-    use {
-        'williamboman/nvim-lsp-installer',
-        requires = {
-            'neovim/nvim-lspconfig'
-        },
-        config = [[require('bizhub.lsp')]]
-    }
-
     -- Snippet engine
     use {
         'L3MON4D3/LuaSnip',
@@ -88,6 +79,13 @@ return packer.startup(function(use)
         config = [[require('bizhub.configs.completions')]]
     }
 
+    -- Language server
+    use 'neovim/nvim-lspconfig'
+    use {
+        'williamboman/nvim-lsp-installer',
+        config = [[require('bizhub.lsp')]]
+    }
+
     -- General
     use 'terryma/vim-multiple-cursors'
     use 'tpope/vim-surround'
@@ -98,7 +96,10 @@ return packer.startup(function(use)
     use 'jiangmiao/auto-pairs'
 
     -- Themes
-    use 'joshdick/onedark.vim'
+    use {
+        'navarasu/onedark.nvim',
+        config = [[require('bizhub.configs.colorscheme')]]
+    }
 
     -- Dashboard
     use {

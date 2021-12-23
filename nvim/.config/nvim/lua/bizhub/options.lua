@@ -32,8 +32,6 @@ opt.mouse = 'a'
 opt.splitbelow = true
 opt.splitright = true
 
--- Set color scheme
+-- Terminal colors
 opt.termguicolors = true
-vim.cmd('colorscheme onedark')
-
 vim.cmd [[filetype plugin indent on]]
