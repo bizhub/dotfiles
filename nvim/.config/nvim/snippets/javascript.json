@@ -1,0 +1,36 @@
+{
+	"Console log": {
+		"prefix": "log",
+		"body": [
+			"console.log($1)$0"
+		],
+		"description": "Console log"
+	},
+	"Console log with variable name": {
+		"prefix": "clog",
+		"body": [
+			"console.log('$1', $1)$0"
+		],
+		"description": "Console log with variable name"
+	},
+	"axios.get": {
+		"prefix": "axget",
+		"body": [
+			"axios",
+			"    .get('/api/$1')",
+			"    .then(response => {",
+			"        $2",
+			"    })$0"
+		]
+	},
+	"axios.post": {
+		"prefix": "axpost",
+		"body": [
+			"axios",
+			"    .post('/api/$1', $2)",
+			"    .then(response => {",
+			"        $3",
+			"    })$0"
+		]
+	}
+}

@@ -48,6 +48,7 @@ return packer.startup(function(use)
 
     -- Dependencies
     use 'nvim-lua/plenary.nvim'
+    use 'kyazdani42/nvim-web-devicons'
 
     -- Treesitter
     use {
@@ -116,14 +117,12 @@ return packer.startup(function(use)
     -- Lualine
     use {
         'nvim-lualine/lualine.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
         config = [[require('bizhub.configs.lualine')]]
     }
 
     -- Buffer tabs
     use {
         'romgrk/barbar.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
         config = [[require('bizhub.configs.barbar')]]
     }
 

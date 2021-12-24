@@ -1,0 +1,314 @@
+{
+	"Public method": {
+		"prefix": "met",
+		"body": [
+			"public function $1()",
+			"{",
+			"\t$2",
+			"}"
+		],
+		"description": "New public method"
+	},
+	"Protected method": {
+		"prefix": "pmet",
+		"body": [
+			"protected function $1()",
+			"{",
+			"\t$2",
+			"}"
+		],
+		"description": "New protected method"
+	},
+	"Test method": {
+		"prefix": "tmet",
+		"body": [
+			"/** @test */",
+			"public function $1()",
+			"{",
+			"\t$2",
+			"}"
+		],
+		"description": "New test method"
+	},
+	"Test can be instantiated": {
+		"prefix": "testi",
+		"body": [
+			"/** @test */",
+			"public function it_can_be_instantiated()",
+			"{",
+			"    \\$this->assertInstanceOf($1::class, new $1);",
+			"}"
+		],
+		"description": "Test if class can instantiated"
+	},
+	"Test has many relationship": {
+		"prefix": "testhasmany",
+		"body": [
+			"/** @test */",
+			"public function a_$1_has_many_$2s()",
+			"{",
+			"    // Given there is a $1",
+			"    $$1 = factory('App\\Models\\\\$3')->create();",
+			"",
+			"    // And there are $2s",
+			"    $$2s = factory('App\\Models\\\\$4', 3)->create();",
+			"",
+			"    // When I associate the $2s with the $1",
+			"    $$1->$2s()->saveMany($$2s);",
+			"",
+			"    // Then I see the $1 has 3 $2s",
+			"    \\$this->assertEquals(3, $$1->$2s()->count());",
+			"    \\$this->assertInstanceOf(\\Illuminate\\Database\\Eloquent\\Collection::class, $$1->$2s);",
+			"",
+			"    // And I see the $2s now belong to the $1",
+			"    $$2s->each(function($4 $$2) use($$1){",
+			"        \\$this->assertEquals($$1->id, $$2->$1->id);",
+			"    });",
+			"}"
+		],
+		"description": "test has many relationship"
+	},
+	"Test belongs to many relationship": {
+		"prefix": "testbelongstomany",
+		"body": [
+			"/** @test */",
+			"public function a_$1_belongs_to_many_$2s()",
+			"{",
+			"    // Given there is a $1",
+			"    $$1 = factory('App\\Models\\\\$3')->create();",
+			"",
+			"    // And there are $2s",
+			"    $$2s = factory('App\\Models\\\\$4', 3)->create();",
+			"",
+			"    // When I associate the $2s with the $1",
+			"    $$1->$2s()->saveMany($$2s);",
+			"",
+			"    // Then I see the $1 has 3 $2s",
+			"    \\$this->assertEquals(3, $$1->$2s()->count());",
+			"    \\$this->assertInstanceOf(\\Illuminate\\Database\\Eloquent\\Collection::class, $$1->$2s);",
+			"",
+			"    // And I see pivot records exist",
+			"    foreach ($$1->$2s as $$2) {",
+			"        \\$this->assertEquals($$1->id, $$2->pivot->$1_id);",
+			"        \\$this->assertEquals($$2->id, $$2->pivot->$2_id);",
+			"    }",
+			"}"
+		],
+		"description": "Test belongs to many relationship"
+	},
+	"Test belongs to relationship": {
+		"prefix": "testbelongsto",
+		"body": [
+			"/** @test */",
+			"public function a_$1_belongs_to_a_$2()",
+			"{",
+			"    $$1 = factory('App\\Models\\\\$3')->create();",
+			"",
+			"    $$2 = factory('App\\Models\\\\$4')->create();",
+			"",
+			"    $$1->$2()->associate($$2)->save();",
+			"",
+			"    \\$this->assertEquals($$1->$2_id, $$1->$2->id);",
+			"    \\$this->assertInstanceOf('App\\Models\\\\$4', $$1->$2);",
+			"}"
+		],
+		"description": "Test belongs to relationship"
+	},
+	"Belongs to relationship": {
+		"prefix": "belongsto",
+		"body": [
+			"/**",
+			" * Belongs to a $1",
+			" *",
+			" * @return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo",
+			" */",
+			"public function $1()",
+			"{",
+			"    return \\$this->belongsTo($2::class);",
+			"}"
+		],
+		"description": "Eloquent belongsTo relationship"
+	},
+	"Has many relationship": {
+		"prefix": "hasmany",
+		"body": [
+			"/**",
+			" * Has many $1",
+			" *",
+			" * @return Illuminate\\Database\\Eloquent\\Relations\\HasMany",
+			" */",
+			"public function $1()",
+			"{",
+			"    return \\$this->hasMany($2::class);",
+			"}"
+		],
+		"description": "Eloquent hasMany relationship"
+	},
+	"Belongs to many relationship": {
+		"prefix": "belongstomany",
+		"body": [
+			"/**",
+			" * Belongs to many $1",
+			" *",
+			" * @return Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany",
+			" */",
+			"public function $1()",
+			"{",
+			"    return \\$this->belongsToMany($2::class);",
+			"}"
+		],
+		"description": "Eloquent belongsToMany relationship"
+	},
+	"$fillable eloquent property": {
+		"prefix": "elofillable",
+		"body": [
+			"/**",
+			" * The attributes that are mass assignable.",
+			" *",
+			" * @var array",
+			" */",
+			"protected \\$fillable = ['$1'];"
+		],
+		"description": "Eloquent $fillable property"
+	},
+	"$dates eloquent property": {
+		"prefix": "elodates",
+		"body": [
+			"/**",
+			" * The attributes that should be mutated to dates.",
+			" *",
+			" * @var array",
+			" */",
+			"protected \\$dates = [",
+			"    'created_at',",
+			"    'updated_at',",
+			"    '$1',",
+			"];"
+		],
+		"description": "Eloquent $with property"
+	},
+	"$with eloquent property": {
+		"prefix": "elowith",
+		"body": [
+			"/**",
+			" * The relations to eager load on every query.",
+			" *",
+			" * @var array",
+			" */",
+			"protected \\$with = ['$1'];"
+		],
+		"description": "Eloquent $with property"
+	},
+	"$appends eloquent property": {
+		"prefix": "eloappends",
+		"body": [
+			"/**",
+			" * The accessors to append to the model's array form.",
+			" *",
+			" * @var array",
+			" */",
+			"protected \\$appends = ['$1'];"
+		],
+		"description": "Eloquent $appends property"
+	},
+	"$casts eloquent property": {
+		"prefix": "elocasts",
+		"body": [
+			"/**",
+			" * The attributes that should be cast.",
+			" *",
+			" * @var array",
+			" */",
+			"protected \\$casts = [",
+			"    '$1' => '$2'",
+			"];"
+		],
+		"description": "Eloquent $appends property"
+	},
+	"Scope method for eloquent model": {
+		"prefix": "eloscope",
+		"body": [
+			"/**",
+			" * $1",
+			" *",
+			" * @param \\Illuminate\\Database\\Eloquent\\Builder \\$query",
+			" * @return \\Illuminate\\Database\\Eloquent\\Builder",
+			" */",
+			"public function scope$2(\\$query)",
+			"{",
+			"    $3",
+			"}"
+		],
+		"description": "Scope method for eloquent model"
+	},
+	"MorphTo relationship": {
+		"prefix": "morphto",
+		"body": [
+			"/**",
+			" * Get all of the owning $1 models.",
+			" * ",
+			" * @return Illuminate\\Database\\Eloquent\\Relations\\MorphTo",
+			" */",
+			"public function $1()",
+			"{",
+			"    return \\$this->morphTo();",
+			"}"
+		],
+		"description": "Get all polymorphic models"
+	},
+	"HasOne relationship": {
+		"prefix": "hasone",
+		"body": [
+			"/**",
+			" * Has one $1",
+			" *",
+			" * @return Illuminate\\Database\\Eloquent\\Relations\\HasOne",
+			" */",
+			"public function $1()",
+			"{",
+			"    return \\$this->hasOne($2::class$3);",
+			"}"
+		],
+		"description": "HasOne eloquent relationship"
+	},
+	"MorphOne relationship": {
+		"prefix": "morphone",
+		"body": [
+			"/**",
+			" * Morph One to a $1",
+			" *",
+			" * @return Illuminate\\Database\\Eloquent\\Relations\\MorphOne",
+			" */",
+			"public function $1()",
+			"{",
+			"    return \\$this->morphOne($2::class, '$3');",
+			"}"
+		],
+		"description": "MorphOne eloquent relationship"
+	},
+	"MorphMany relationship": {
+		"prefix": "morphmany",
+		"body": [
+			"/**",
+			" * Morph Many to a $1",
+			" *",
+			" * @return Illuminate\\Database\\Eloquent\\Relations\\MorphMany",
+			" */",
+			"public function $1()",
+			"{",
+			"    return \\$this->morphMany($2::class, '$3');",
+			"}"
+		],
+		"description": "MorphMany eloquent relationship"
+	},
+	"Test setUp": {
+		"prefix": "testsetup",
+		"body": [
+			"public function setUp(): void",
+			"{",
+			"    parent::setUp();",
+			"}"
+		],
+		"description": "setUp method for tests"
+	}
+}

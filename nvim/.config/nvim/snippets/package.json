@@ -1,0 +1,14 @@
+{
+    "contributes": {
+        "snippets": [
+            {
+                "language": "php",
+                "path": "./php.json"
+            },
+            {
+                "language": "javascript",
+                "path": "./javascript.json"
+            }
+        ]
+    }
+}

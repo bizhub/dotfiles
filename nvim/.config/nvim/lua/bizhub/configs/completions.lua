@@ -3,8 +3,6 @@ if not status_ok then
     return
 end
 
-require('luasnip/loaders/from_vscode').lazy_load()
-
 require('cmp-npm').setup({})
 
 cmp.setup({
@@ -23,6 +21,25 @@ cmp.setup({
         c = cmp.mapping.close(),
       }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ["<Tab>"] = function(fallback)
+         if vim.fn.pumvisible() == 1 then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "n")
+         elseif require("luasnip").expand_or_jumpable() then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+         else
+            fallback()
+         end
+      end,
+
+      ["<S-Tab>"] = function(fallback)
+         if vim.fn.pumvisible() == 1 then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n")
+         elseif require("luasnip").jumpable(-1) then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+         else
+            fallback()
+         end
+      end,
     },
     sources = {
       { name = 'nvim_lsp' },
