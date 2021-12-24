@@ -88,7 +88,7 @@ return packer.startup(function(use)
     }
 
     -- General
-    use 'terryma/vim-multiple-cursors'
+    use 'mg979/vim-visual-multi'
     use 'tpope/vim-surround'
     use {
         'numToStr/Comment.nvim',
