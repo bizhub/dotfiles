@@ -40,7 +40,7 @@ packer.init {
 return packer.startup(function(use)
     use {
         'lewis6991/impatient.nvim',
-        config = [[require('bizhub.configs.impatient')]],
+        config = [[require('bizhub.plugins.impatient')]],
     }
 
     -- Packer
@@ -54,7 +54,7 @@ return packer.startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = [[require('bizhub.configs.treesitter')]]
+        config = [[require('bizhub.plugins.treesitter')]]
     }
 
     use 'nvim-treesitter/playground'
@@ -62,7 +62,7 @@ return packer.startup(function(use)
     -- Snippet engine
     use {
         'L3MON4D3/LuaSnip',
-        config = [[require('bizhub.configs.snippets')]]
+        config = [[require('bizhub.plugins.snippets')]]
     }
 
     -- Completions
@@ -77,7 +77,7 @@ return packer.startup(function(use)
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline'
         },
-        config = [[require('bizhub.configs.completions')]]
+        config = [[require('bizhub.plugins.completions')]]
     }
 
     -- Language server
@@ -92,50 +92,50 @@ return packer.startup(function(use)
     use 'tpope/vim-surround'
     use {
         'numToStr/Comment.nvim',
-        config = [[require('bizhub.configs.comment')]]
+        config = [[require('bizhub.plugins.comment')]]
     }
     use 'jiangmiao/auto-pairs'
 
     -- Themes
     use {
         'navarasu/onedark.nvim',
-        config = [[require('bizhub.configs.colorscheme')]]
+        config = [[require('bizhub.plugins.colorscheme')]]
     }
 
     -- Dashboard
     use {
         'glepnir/dashboard-nvim',
-        config = [[require('bizhub.configs.dashboard')]]
+        config = [[require('bizhub.plugins.dashboard')]]
     }
 
     -- Transparent background
     use {
         'xiyaowong/nvim-transparent',
-        config = [[require('bizhub.configs.transparent')]]
+        config = [[require('bizhub.plugins.transparent')]]
     }
 
     -- Lualine
     use {
         'nvim-lualine/lualine.nvim',
-        config = [[require('bizhub.configs.lualine')]]
+        config = [[require('bizhub.plugins.lualine')]]
     }
 
     -- Buffer tabs
     use {
         'romgrk/barbar.nvim',
-        config = [[require('bizhub.configs.barbar')]]
+        config = [[require('bizhub.plugins.barbar')]]
     }
 
     -- Nerdtree
     use {
         'scrooloose/nerdtree',
-        config = [[require('bizhub.configs.nerdtree')]]
+        config = [[require('bizhub.plugins.nerdtree')]]
     }
 
     -- Telescope
     use {
         'nvim-telescope/telescope.nvim',
-        config = [[require('bizhub.configs.telescope')]]
+        config = [[require('bizhub.plugins.telescope')]]
     }
 
     -- Git
@@ -144,42 +144,42 @@ return packer.startup(function(use)
 
     use {
         'lewis6991/gitsigns.nvim',
-        config = [[require('bizhub.configs.gitsigns')]]
+        config = [[require('bizhub.plugins.gitsigns')]]
     }
 
     use {
         'pwntester/octo.nvim',
-        config = [[require('bizhub.configs.octo')]]
+        config = [[require('bizhub.plugins.octo')]]
     }
 
     -- Github copilot
     use {
         'github/copilot.vim',
-        config = [[require('bizhub.configs.copilot')]]
+        config = [[require('bizhub.plugins.copilot')]]
     }
 
     -- Testing
     use {
         'vim-test/vim-test',
-        config = [[require('bizhub.configs.testing')]]
+        config = [[require('bizhub.plugins.testing')]]
     }
 
     -- Highlight colors
     use {
         'norcalli/nvim-colorizer.lua',
-        config = [[require('bizhub.configs.colorizer')]]
+        config = [[require('bizhub.plugins.colorizer')]]
     }
 
     -- Keybind helper
     use {
         'folke/which-key.nvim',
-        config = [[require('bizhub.configs.which-key')]]
+        config = [[require('bizhub.plugins.which-key')]]
     }
 
     -- Motion
     use {
         'easymotion/vim-easymotion',
-        config = [[require('bizhub.configs.easymotion')]]
+        config = [[require('bizhub.plugins.easymotion')]]
     }
 
     -- Vuejs

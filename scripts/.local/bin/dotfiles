@@ -153,8 +153,8 @@ setup_arch() {
         'zsh-history-substring-search'
 
         # Display manager
-        'lightdm'
-        'lightdm-gtk-greeter'
+        # 'lightdm'
+        # 'lightdm-gtk-greeter'
 
         # Fonts
         'ttf-font-awesome'      # icons
@@ -206,7 +206,7 @@ setup_arch() {
         'fzf'               # fuzzy finder
         'ripgrep'           # search tool
         'flameshot'         # screenshots
-        'lxappearance'      # GTK appearance editor
+        # 'lxappearance'      # GTK appearance editor
         'xclip'             # clipboard
         'bat'               # replacement for cat
         'exa'               # replacement for ls
@@ -316,7 +316,7 @@ setup_arch() {
     sudo systemctl enable NetworkManager
     sudo systemctl enable reflector.timer
     sudo systemctl enable fstrim.timer
-    sudo systemctl enable lightdm
+    # sudo systemctl enable lightdm
     sudo systemctl enable --user redshift.service
     sudo systemctl enable cups.service
     sudo systemctl enable docker

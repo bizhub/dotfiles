@@ -18,7 +18,7 @@ local filetype = {
 
 require('lualine').setup({
     options = {
-        theme = 'onedark'
+        theme = 'wombat'
     },
     sections = {
         lualine_x = { filetype },

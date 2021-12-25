@@ -23,3 +23,4 @@ configs.setup {
 
 -- Treesitter playground
 nmap('<f10>', ':TSHighlightCapturesUnderCursor<CR>')
+nmap('<f11>', ':TSPlaygroundToggle<CR>')

@@ -858,7 +858,11 @@ local highlight_groups = {
 	TSStringEscape = 'Character',
 	TSStringRegex  = 'SpecialChar',
 	TSURI = 'Tag',
-	TSVariableBuiltin = 'Identifier',
+	-- TSVariableBuiltin = 'Identifier',
+    -- TSVariable = 'Comment',
+    phpIdentifier = 'Function',
+    phpVarSelector = 'Comment',
+    -- TSKeyword = 'Comment',
 
 	--[[ 4.4.9. barbar.nvim ]]
 	BufferCurrent       = 'TabLineSel',
