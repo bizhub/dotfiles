@@ -215,7 +215,7 @@ setup_arch() {
 
     AUR_PKGS=(
         'megasync-bin'
-        'polybar'
+        'polybar-git'
         'tableplus'
         'visual-studio-code-bin'
         'ttf-ms-fonts'

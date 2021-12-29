@@ -1,3 +1,5 @@
+-- https://github.com/glepnir/dashboard-nvim
+
 local g = vim.g
 
 g.dashboard_disable_at_vimenter = 0
