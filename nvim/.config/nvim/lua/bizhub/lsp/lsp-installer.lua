@@ -14,6 +14,7 @@ local servers = {
     'intelephense',
     'volar',
     'pyright',
+    'jsonls',
 }
 
 for _, name in pairs(servers) do
@@ -40,6 +41,11 @@ lsp_installer.on_server_ready(function(server)
     if server.name == 'eslint' then
         local eslint_opts = require('bizhub.lsp.servers.eslint')
         opts = vim.tbl_deep_extend('force', eslint_opts, opts)
+    end
+
+    if server.name == 'jsonls' then
+        local jsonls_opts = require('bizhub.lsp.servers.jsonls')
+        opts = vim.tbl_deep_extend('force', jsonls_opts, opts)
     end
 
     server:setup(opts)
