@@ -12,16 +12,30 @@ nmap('N', 'Nzzzv')
 vmap('<', '<gv')
 vmap('>', '>gv')
 
--- Window movement
+-- Windows
 nmap('<C-h>', '<C-w>h')
 nmap('<C-l>', '<C-w>l')
 nmap('<C-j>', '<C-w>j')
 nmap('<C-k>', '<C-w>k')
+nmap('<leader>wo', ':only<CR>')         -- Close others
+nmap('<leader>ww', ':wincmd w<CR>')     -- Switch
+nmap('<leader>wq', ':wincmd q<CR>')     -- Close
+nmap('<leader>ws', ':wincmd v<CR>')     -- Split
 
 -- Buffers
-nmap('<S-q>', ':BufferClose<CR>')
-nmap('<tab>', ':BufferNext<CR>')
-nmap('<S-tab>', ':BufferPrevious<CR>')
+nmap('<tab>', ':BufferNext<CR>zz')
+nmap('<S-tab>', ':BufferPrevious<CR>zz')
+
+nmap('<leader>bq', ':BufferClose<CR>')
+nmap('<leader>1', ':BufferGoto 1<CR>zz')
+nmap('<leader>2', ':BufferGoto 2<CR>zz')
+nmap('<leader>3', ':BufferGoto 3<CR>zz')
+nmap('<leader>4', ':BufferGoto 4<CR>zz')
+nmap('<leader>5', ':BufferGoto 5<CR>zz')
+nmap('<leader>6', ':BufferGoto 6<CR>zz')
+nmap('<leader>7', ':BufferGoto 7<CR>zz')
+nmap('<leader>8', ':BufferGoto 8<CR>zz')
+nmap('<leader>9', ':BufferGoto 9<CR>zz')
 
 -- Change inside
 nmap('<leader>\'', 'ci\'')
@@ -48,6 +62,9 @@ vmap('p', '"_dP')
 -- Quick saving
 nmap('<C-s>', ':w<CR>')
 imap('<C-s>', '<ESC>:w<CR>i')
+
+-- Quick string substitute
+nmap('<leader>ss', ':%s/\v')
 
 -- Abbreviations
 vim.cmd([[
