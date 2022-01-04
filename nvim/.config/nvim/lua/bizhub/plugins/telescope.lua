@@ -4,7 +4,7 @@ local nmap = utils.nmap
 require('telescope').setup({
     defaults = {
         file_ignore_patterns = {
-            ".git"
+            ".git/"
         },
     },
     pickers = {
@@ -22,6 +22,6 @@ require('telescope').setup({
 })
 
 -- Mappings
-nmap('<C-p>', ':Telescope find_files<CR>')
-nmap('<leader>fg', ':Telescope live_grep<CR>')
-nmap('<leader>gs', ':Telescope git_status<CR>')
+nmap('<c-p>', ':Telescope find_files<cr>')
+nmap('<leader>fg', ':Telescope live_grep<cr>')
+nmap('<leader>gs', ':Telescope git_status<cr>')

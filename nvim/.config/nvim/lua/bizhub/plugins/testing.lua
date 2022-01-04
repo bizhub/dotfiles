@@ -3,8 +3,8 @@
 local utils = require 'bizhub.utils'
 local nmap = utils.nmap
 
-nmap('<leader>t', ':TestNearest<CR>')
-nmap('<leader>T', ':TestFile<CR>')
-nmap('<leader>a', ':TestSuite<CR>')
-nmap('<leader>l', ':TestLast<CR>')
-nmap('<leader>g', ':TestVisit<CR>')
+nmap('<leader>t', ':TestNearest<cr>')
+nmap('<leader>T', ':TestFile<cr>')
+nmap('<leader>a', ':TestSuite<cr>')
+nmap('<leader>l', ':TestLast<cr>')
+-- nmap('<leader>g', ':TestVisit<cr>')

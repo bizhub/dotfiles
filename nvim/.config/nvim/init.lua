@@ -1,3 +1,3 @@
-require('bizhub.options')
-require('bizhub.plugins')
-require('bizhub.maps')
+require 'bizhub.options'
+require 'bizhub.plugins'
+require 'bizhub.maps'
