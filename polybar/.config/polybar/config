@@ -39,7 +39,7 @@ font-4 = FontAwesome5Brands:style=Regular:size=10;2
 ;xwindow
 modules-left = bspwm
 modules-center =
-modules-right = xkeyboard docker package-updates imap cpu eth pulseaudio date
+modules-right = xkeyboard docker package-updates cpu eth pulseaudio date
 
 tray-position = right
 tray-padding = 2

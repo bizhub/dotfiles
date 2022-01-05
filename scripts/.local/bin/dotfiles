@@ -205,7 +205,6 @@ setup_arch() {
         'pacman-contrib'    # pacman utils
         'fzf'               # fuzzy finder
         'ripgrep'           # search tool
-        'flameshot'         # screenshots
         # 'lxappearance'      # GTK appearance editor
         'xclip'             # clipboard
         'bat'               # replacement for cat
@@ -217,7 +216,6 @@ setup_arch() {
         'megasync-bin'
         'polybar-git'
         'tableplus'
-        'visual-studio-code-bin'
         'ttf-ms-fonts'
         'brave-bin'
     )
@@ -271,7 +269,7 @@ setup_arch() {
 
     case $choice in 
     [1])
-        AUR_PKGS+='timeshift'
+        AUR_PKGS+='timeshift-bin'
         ;;
     [2])
         PKGS+='snapper'
@@ -279,7 +277,7 @@ setup_arch() {
     [3])
         ;;
     [*])
-        AUR_PKGS+='timeshift'
+        AUR_PKGS+='timeshift-bin'
         ;;
     esac
 
