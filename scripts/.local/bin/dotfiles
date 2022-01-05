@@ -186,8 +186,7 @@ setup_arch() {
         'pipewire-pulse'        # pipewire pulse replacement
         'wireplumber'           # pipewire gui
         'pavucontrol'           # gui volume control
-#       'playerctl'             # player controls
-#       'amixer'                # alsa cli mixer
+        'playerctl'             # player controls
 
         # Printer
         'cups'
@@ -224,17 +223,14 @@ setup_arch() {
     echo "1) amd-ucode 2) intel-ucode 3) Skip"
     read -r -p "Processor (default = 1): " choice
 
-    case $choice in 
+    case ${choice:-1} in 
     [1])
-        PKGS+='amd-ucode'
+        PKGS+=('amd-ucode')
         ;;
     [2])
-        PKGS+='intel-ucode'
+        PKGS+=('intel-ucode')
         ;;
     [3])
-        ;;
-    [*])
-        PKGS+='amd-ucode'
         ;;
     esac
 
@@ -242,12 +238,12 @@ setup_arch() {
     echo "1) xf86-video-amdgpu 2) xf86-video-intel 3) nvidia 4) Skip"
     read -r -p "GPU driver (default = 1): " choice
 
-    case $choice in 
+    case ${choice:-1} in 
     [1])
-        PKGS+='xf86-video-amdgpu'
+        PKGS+=('xf86-video-amdgpu')
         ;;
     [2])
-        PKGS+='xf86-video-intel'
+        PKGS+=('xf86-video-intel')
         ;;
     [3])
         PKGS+=(
@@ -258,26 +254,20 @@ setup_arch() {
         ;;
     [4])
         ;;
-    [*])
-        PKGS+='xf86-video-amdgpu'
-        ;;
     esac
 
     echo
     echo "1) timeshift 2) snapper 3) Skip"
     read -r -p "Backup package (default = 1): " choice
 
-    case $choice in 
+    case ${choice:-1} in 
     [1])
-        AUR_PKGS+='timeshift-bin'
+        AUR_PKGS+=('timeshift')
         ;;
     [2])
-        PKGS+='snapper'
+        PKGS+=('snapper')
         ;;
     [3])
-        ;;
-    [*])
-        AUR_PKGS+='timeshift-bin'
         ;;
     esac
 
