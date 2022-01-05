@@ -87,6 +87,12 @@ return packer.startup(function(use)
         config = [[require('bizhub.lsp')]]
     }
 
+    -- Null-ls
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        config = [[require('bizhub.lsp.null-ls')]]
+    }
+
     -- General
     use 'mg979/vim-visual-multi'
     use 'tpope/vim-surround'

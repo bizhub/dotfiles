@@ -4,6 +4,9 @@ local imap = utils.imap
 local vmap = utils.vmap
 local xmap = utils.xmap
 
+-- Formatting
+nmap('<leader>lf', ':Format<cr>')
+
 -- Keep search matches in the middle of the window
 nmap('n', 'nzzzv')
 nmap('N', 'Nzzzv')
