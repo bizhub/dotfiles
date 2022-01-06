@@ -209,6 +209,7 @@ setup_arch() {
         'bat'               # replacement for cat
         'exa'               # replacement for ls
         'tldr'              # simplify man pages
+        'udiskie'           # automount usb
     )
 
     AUR_PKGS=(
