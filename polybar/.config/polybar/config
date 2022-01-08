@@ -208,7 +208,8 @@ label = %date% %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
+; format-volume = <label-volume> <bar-volume>
 
 format-volume-prefix = " "
 format-volume-prefix-foreground = ${colors.foreground-alt}
