@@ -1,3 +1,5 @@
+-- https://github.com/nvim-telescope/telescope.nvim
+
 local utils = require 'bizhub.utils'
 local nmap = utils.nmap
 
