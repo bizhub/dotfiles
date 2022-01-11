@@ -84,6 +84,13 @@ alias vf='fzf --reverse | xargs -ro nvim'
 # Vscode
 alias codef='fzf --reverse | xargs -ro code'
 
+# Tmux
+alias t='tmux'
+alias tl='tmux ls'
+alias tn='tmux new -s'
+alias ta='tmux a -t'
+alias tk='tmux kill-session -t'
+
 #################################
 # Laravel Sail
 #################################

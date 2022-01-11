@@ -86,6 +86,7 @@ stow_dotfiles() {
         shell \
         starship \
         sxhkd \
+        tmux \
         xorg
 }
 
@@ -109,6 +110,7 @@ unstow_dotfiles() {
         shell \
         starship \
         sxhkd \
+        tmux \
         xorg
 }
 
