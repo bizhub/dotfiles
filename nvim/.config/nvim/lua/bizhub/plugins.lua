@@ -101,6 +101,10 @@ return packer.startup(function(use)
         config = [[require('bizhub.plugins.comment')]]
     }
     use 'jiangmiao/auto-pairs'
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = [[require('bizhub.plugins.indent-blankline')]]
+    }
 
     -- Themes
     use {
