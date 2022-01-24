@@ -26,19 +26,19 @@ nmap('<leader>wq', ':wincmd q<cr>')     -- Close
 nmap('<leader>ws', ':wincmd v<cr>')     -- Split
 
 -- Buffers
-nmap('<tab>', ':BufferNext<cr>zz')
-nmap('<s-tab>', ':BufferPrevious<cr>zz')
+nmap('<tab>', ':BufferNext<cr>')
+nmap('<s-tab>', ':BufferPrevious<cr>')
 
 nmap('<leader>bq', ':BufferClose<cr>')
-nmap('<leader>1', ':BufferGoto 1<cr>zz')
-nmap('<leader>2', ':BufferGoto 2<cr>zz')
-nmap('<leader>3', ':BufferGoto 3<cr>zz')
-nmap('<leader>4', ':BufferGoto 4<cr>zz')
-nmap('<leader>5', ':BufferGoto 5<cr>zz')
-nmap('<leader>6', ':BufferGoto 6<cr>zz')
-nmap('<leader>7', ':BufferGoto 7<cr>zz')
-nmap('<leader>8', ':BufferGoto 8<cr>zz')
-nmap('<leader>9', ':BufferGoto 9<cr>zz')
+nmap('<leader>1', ':BufferGoto 1<cr>')
+nmap('<leader>2', ':BufferGoto 2<cr>')
+nmap('<leader>3', ':BufferGoto 3<cr>')
+nmap('<leader>4', ':BufferGoto 4<cr>')
+nmap('<leader>5', ':BufferGoto 5<cr>')
+nmap('<leader>6', ':BufferGoto 6<cr>')
+nmap('<leader>7', ':BufferGoto 7<cr>')
+nmap('<leader>8', ':BufferGoto 8<cr>')
+nmap('<leader>9', ':BufferGoto 9<cr>')
 
 -- Change inside
 nmap('<leader>\'', 'ci\'')
@@ -57,7 +57,7 @@ xmap('<a-j>', ':move \'>+1<cr>gv-gv')
 xmap('<a-k>', ':move \'<-2<cr>gv-gv')
 
 -- Clear highlights
-nmap('<cr>', ':noh<cr><cr>zz')
+nmap('<cr>', ':noh<cr><cr>')
 
 -- Keep copied text
 vmap('p', '"_dP')
