@@ -161,6 +161,7 @@ setup_arch() {
         # Fonts
         'ttf-font-awesome'      # icons
         'ttf-cascadia-code'     # theme font
+        'noto-fonts-emoji'      # emoji font
 
         # Misc
         'neovim'                # default terminal editor
