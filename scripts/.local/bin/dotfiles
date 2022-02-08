@@ -168,20 +168,24 @@ setup_arch() {
         'discord'               # chat
         'redshift'              # screen color temperature
         'thunderbird'           # email client
-        'keepassxc'             # password manager
         'vlc'                   # video player
         # 'libqalcuate'           # terminal calculator
         'gimp'                  # image editor
-        'pass'                  # password manager
         'qbittorrent'
-        'libsecret'
-        'polkit-gnome'
         'htop'
         'xdg-utils'
         'xdg-user-dirs'
 
+        # Passwords
+        'keepassxc'             # gui password manager
+        'pass'                  # cli password manager
+        'libsecret'             # password storage
+        'polkit-gnome'          # authentication agent
+        'gnome-keyring'         # default keyring
+        'seahorse'              # PGP and keyring manager
+
         # Drivers
-        # 'openrgb'               # logitech g815 editor
+        'openrgb'               # logitech g815 editor
 
         # Audio
         'pipewire'              # sound server
