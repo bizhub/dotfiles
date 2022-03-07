@@ -30,7 +30,7 @@ fi
 
 # Run display script generated from arandr
 if [ -f $HOME/.config/X11/display.sh ]; then
-    $HOME/.config/x11/display.sh &
+    $HOME/.config/X11/display.sh &
 fi
 
 xsetroot -cursor_name left_ptr &
