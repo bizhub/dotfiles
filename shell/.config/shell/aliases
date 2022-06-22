@@ -105,8 +105,8 @@ alias a='sail artisan'
 alias fresh='sail artisan migrate:refresh --seed'
 alias migrate="sail artisan migrate"
 alias seed='sail artisan db:seed'
-alias test='sail artisan test'
-alias testf='sail artisan test --filter='
+alias test='cls && sail artisan test'
+alias testf='cls && sail artisan test --filter='
 alias serve='sail artisan serve'
 
 # Npm
