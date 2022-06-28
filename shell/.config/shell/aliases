@@ -9,7 +9,8 @@ alias llt='ll --tree'
 alias llc='clear && ll'
 alias repo='cd $(ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
 
-alias r='ranger'
+alias ranger='. ranger'
+alias r='. ranger'
 alias o='xdg-open 2>/dev/null'
 alias of='fzf --reverse | xargs -ro xdg-open 2>/dev/null'
 
