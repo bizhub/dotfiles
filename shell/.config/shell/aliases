@@ -98,8 +98,8 @@ alias tk='tmux kill-session -t'
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias up='sail up -d'
+alias upb='sail up -d --build'
 alias down='sail down'
-alias build='sail up -d --build'
 
 # Artisan
 alias a='sail artisan'
@@ -111,12 +111,8 @@ alias testf='cls && sail artisan test --filter='
 alias serve='sail artisan serve'
 
 # Npm
-alias watch='sail npm run watch'
 alias dev='sail npm run dev'
-alias prod='sail npm run production'
-alias hot='sail npm run hot'
-
-alias cuw='code . && up && watch'
+alias build='sail npm run build'
 
 #################################
 # Functions
