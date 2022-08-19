@@ -1,22 +1,27 @@
 #!/bin/sh
 
-killall -q sxhkd
-killall -q polybar
-killall -q dunst
-killall -q picom
-
-while pgrep -u $UID -x sxhkd >/dev/null; do sleep 1; done
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-while pgrep -u $UID -x dunst >/dev/null; do sleep 1; done
-
+pkill sxhkd
 sxhkd &
+
+pkill polybar
 polybar top &
+
+pkill dunst
 dunst -conf ~/.config/dunst/dunstrc &
-nitrogen --restore &
+
+pkill udiskie
 udiskie &
+
+pkill picom
 picom -b
+
+pkill redshift
 redshift -l -37.683334:176.166672 &
+
+pkill polkit-gnome-authentication-agent-1
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+nitrogen --restore &
 
 pgrep bspswallow || "$HOME"/.config/bspwm/scripts/bspswallow &
 
