@@ -56,13 +56,12 @@ bspc config presel_feedback_color "#535b6b"
 bspc config focus_follows_pointer true
 
 # Specific windows
-bspc rule -a TablePlus desktop='^4' follow=on
-bspc rule -a Thunderbird desktop='^5' follow=on
-bspc rule -a Gimp desktop='^6' follow=on
+bspc rule -a Mysql-workbench-bin desktop='^4' follow=on
+bspc rule -a thunderbird desktop='^5' follow=on
 
 # Floating windows
 bspc rule -a Pavucontrol state=floating center=true
-bspc rule -a Thunderbird:Msgcompose state=floating
+bspc rule -a thunderbird:Msgcompose state=floating
 bspc rule -a net-runelite-launcher-Launcher state=floating
 bspc rule -a net-runelite-client-RuneLite state=floating
 bspc rule -a Gpick state=floating focus=on
