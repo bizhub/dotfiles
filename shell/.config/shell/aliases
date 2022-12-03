@@ -83,6 +83,7 @@ alias v='nvim'
 alias vf='fzf --reverse | xargs -ro nvim'
 
 # Vscode
+alias c='code .'
 alias codef='fzf --reverse | xargs -ro code'
 
 # Tmux
@@ -93,7 +94,7 @@ alias ta='tmux a -t'
 alias tk='tmux kill-session -t'
 
 #################################
-# Laravel Sail
+# Laravel
 #################################
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
@@ -103,12 +104,13 @@ alias down='sail down'
 
 # Artisan
 alias a='sail artisan'
-alias fresh='sail artisan migrate:refresh --seed'
+alias fresh='sail artisan migrate:fresh --seed'
 alias migrate="sail artisan migrate"
 alias seed='sail artisan db:seed'
 alias test='cls && sail artisan test'
 alias testf='cls && sail artisan test --filter='
 alias serve='sail artisan serve'
+alias tt='php artisan typescript:transform'
 
 # Npm
 alias dev='sail npm run dev'

@@ -225,6 +225,7 @@ setup_arch() {
         'tableplus'
         'ttf-ms-fonts'
         'brave-bin'
+        'qimgv'
     )
 
     echo
