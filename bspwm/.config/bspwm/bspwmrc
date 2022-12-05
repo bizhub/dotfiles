@@ -13,10 +13,13 @@ pkill udiskie
 udiskie &
 
 pkill picom
-picom -b
+picom -bf --fade-delta=2
 
-pkill polkit-gnome-authentication-agent-1
+pgrep -fo polkit-gnome-authentication-agent-1 | xargs kill
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+pgrep -fo /usr/lib/geoclue-2.0/demos/agent | xargs kill
+/usr/lib/geoclue-2.0/demos/agent &
 
 nitrogen --restore &
 
