@@ -26,12 +26,15 @@ super + e
 super + m
 	thunderbird
 
+super + n
+	[ "$(ps -x | grep -c 'spotify')" -eq "1" ] && spotify || for wid in $(xdotool search --name spotify); do bspc node --focus $wid && break; done
+
 # ranger file manager
 super + r
 	alacritty -e ranger
 
 # open dotfiles in vscode
-super + {comma}
+super + comma
 	code ~/dotfiles
 
 # open htop
@@ -73,6 +76,10 @@ super + {_,shift + }w
 # alternate between the tiled and monocle layout
 super + shift + m
 	bspc desktop -l next
+
+# Rotate desktop
+super + j
+	bspc node @focused:/ -R 90
 
 # send the newest marked node to the newest preselected node
 super + y

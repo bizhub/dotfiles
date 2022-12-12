@@ -3,11 +3,24 @@
 local utils = require 'bizhub.utils'
 local nmap = utils.nmap
 
+vim.cmd([[
+  highlight link TelescopePromptTitle PMenuSel
+  highlight link TelescopePreviewTitle PMenuSel
+  highlight link TelescopePromptNormal NormalFloat
+  highlight link TelescopePromptBorder FloatBorder
+  highlight link TelescopeNormal CursorLine
+  highlight link TelescopeBorder CursorLineBg
+]])
+
 require('telescope').setup({
     defaults = {
         file_ignore_patterns = {
             ".git/"
         },
+        layout_config = {
+            prompt_position = 'top',
+        },
+        sorting_strategy = 'ascending',
     },
     pickers = {
         find_files = {

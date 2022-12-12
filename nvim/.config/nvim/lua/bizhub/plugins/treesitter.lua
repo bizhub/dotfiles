@@ -1,26 +1,31 @@
 local utils = require 'bizhub.utils'
 local nmap = utils.nmap
 
-local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
-if not status_ok then
-    return
-end
-
-configs.setup {
-    ensure_installed = 'maintained',
+require('nvim-treesitter.configs').setup({
     highlight = {
-        enable = true,
-        disable = { '' },
-        additional_vim_regex_highlighting = true,
+      enable = true,
+      disable = { 'NvimTree' },
+      additional_vim_regex_highlighting = true,
     },
-    indent = {
+    textobjects = {
+      select = {
         enable = true,
-        disable = {
-            'yaml',
-        }
-    }
-}
+        lookahead = true,
+        keymaps = {
+          ["if"] = "@function.inner",
+          ["af"] = "@function.outer",
+          ["ic"] = "@class.inner",
+          ["ac"] = "@class.outer",
+          ['ia'] = '@parameter.inner',
+          ['aa'] = '@parameter.outer',
+        },
+      },
+    },
+    context_commentstring = {
+      enable = true,
+    },
+})
 
 -- Treesitter playground
-nmap('<f10>', ':TSHighlightCapturesUnderCursor<CR>')
-nmap('<f11>', ':TSPlaygroundToggle<CR>')
+-- nmap('<f10>', ':TSHighlightCapturesUnderCursor<CR>')
+-- nmap('<f11>', ':TSPlaygroundToggle<CR>')

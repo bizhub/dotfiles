@@ -30,7 +30,7 @@ alias clip='xclip -sel clip'
 alias cat='bat'
 
 # Package managers
-alias pacc='sudo pacman -Rns $(pacman -Qdtq)'
+alias pc='sudo pacman -Rns $(pacman -Qdtq)'
 alias yayf="yay -Slq | fzf --multi --height 100% --preview 'yay -Si {1}' | xargs -ro yay -S"
 alias yayr="yay -Qq | fzf --multi --height 100% --preview 'yay -Qi {1}' | xargs -ro yay -Rns"
 
@@ -51,7 +51,7 @@ alias gs='git status -s'
 alias ga='git add'
 alias gaf='git ls-files -m -o --exclude-standard | fzf --reverse -m --print0 | xargs -0 git add'
 alias gr='git restore --staged'
-alias gb='git branch'
+alias gb='git --no-pager branch'
 alias go='git checkout'
 alias gt='git --no-pager tag'
 alias gm='git merge'
@@ -83,7 +83,7 @@ alias v='nvim'
 alias vf='fzf --reverse | xargs -ro nvim'
 
 # Vscode
-alias c='code .'
+alias c='code ${1:-.}'
 alias codef='fzf --reverse | xargs -ro code'
 
 # Tmux
@@ -109,12 +109,12 @@ alias migrate="sail artisan migrate"
 alias seed='sail artisan db:seed'
 alias test='cls && sail artisan test'
 alias testf='cls && sail artisan test --filter='
-alias serve='sail artisan serve'
 alias tt='php artisan typescript:transform'
 
 # Npm
 alias dev='sail npm run dev'
 alias build='sail npm run build'
+alias vitest='sail npm run test'
 
 #################################
 # Functions

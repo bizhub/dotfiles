@@ -1,197 +1,229 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path,
-  }
-  print 'Installing packer close and reopen Neovim...'
-  vim.cmd [[packadd packer.nvim]]
+-- Install packer
+local ensure_packer = function ()
+    local fn = vim.fn
+    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
 end
 
--- Compile packer when plugins.lua is updated
+local packer_bootstrap = ensure_packer()
+
+-- Initialize packer
+require('packer').init({
+  compile_path = vim.fn.stdpath('data')..'/site/plugin/packer_compiled.lua',
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'solid' })
+    end,
+  },
+})
+
+-- Install plugins
+local use = require('packer').use
+
+-- Packer
+use 'wbthomason/packer.nvim'
+
+-- Dependencies
+use 'nvim-lua/plenary.nvim'
+use 'kyazdani42/nvim-web-devicons'
+
+-- Treesitter
+use({
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+        'nvim-treesitter/playground',
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    config = function()
+        require('bizhub.plugins.treesitter')
+    end,
+})
+
+-- Snippet engine
+-- use {
+--     'L3MON4D3/LuaSnip',
+--     config = [[require('bizhub.plugins.snippets')]]
+-- }
+
+-- Completions
+use({
+    'hrsh7th/nvim-cmp',
+    requires = {
+        'L3MON4D3/LuaSnip',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-cmdline',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-nvim-lsp-signature-help',
+        'hrsh7th/cmp-nvim-lua',
+        'jessarcher/cmp-path',
+        'onsails/lspkind-nvim',
+        'saadparwaiz1/cmp_luasnip',
+    },
+    config = function()
+        require('bizhub.plugins.cmp')
+    end,
+})
+
+-- Language server
+use({
+    'neovim/nvim-lspconfig',
+    requires = {
+        'b0o/schemastore.nvim',
+        'folke/lsp-colors.nvim',
+    },
+    config = function()
+        require('bizhub.plugins.lspconfig')
+    end,
+})
+use({
+    'williamboman/mason.nvim',
+    config = function()
+        require('bizhub.plugins.mason')
+    end,
+})
+
+-- Null-ls
+-- use {
+--     'jose-elias-alvarez/null-ls.nvim',
+--     config = [[require('bizhub.lsp.null-ls')]]
+-- }
+
+-- General
+use 'mg979/vim-visual-multi'
+use 'tpope/vim-surround'
+use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('bizhub.plugins.comment')
+    end,
+}
+use 'jiangmiao/auto-pairs'
+
+-- Themes
+use {
+    'navarasu/onedark.nvim',
+    config = function()
+        require('bizhub.plugins.colorscheme')
+    end,
+}
+
+-- Dashboard
+use {
+    'glepnir/dashboard-nvim',
+    config = function()
+        require('bizhub.plugins.dashboard')
+    end,
+}
+
+-- Transparent background
+-- use {
+--     'xiyaowong/nvim-transparent',
+--     config = [[require('bizhub.plugins.transparent')]]
+-- }
+
+-- Lualine
+use {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+        require('bizhub.plugins.lualine')
+    end,
+}
+
+-- Buffer tabs
+use {
+    'romgrk/barbar.nvim',
+    config = function()
+        require('bizhub.plugins.barbar')
+    end,
+}
+
+-- Nerdtree
+use {
+    'scrooloose/nerdtree',
+    config = function()
+        require('bizhub.plugins.nerdtree')
+    end,
+}
+
+-- Telescope
+use {
+    'nvim-telescope/telescope.nvim',
+    config = function()
+        require('bizhub.plugins.telescope')
+    end,
+}
+
+-- Git
+-- use 'tpope/vim-fugitive'
+-- use 'tpope/vim-rhubarb'
+
+use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+        require('bizhub.plugins.gitsigns')
+    end,
+}
+
+-- use {
+--     'pwntester/octo.nvim',
+--     config = [[require('bizhub.plugins.octo')]]
+-- }
+
+-- Github copilot
+-- use {
+--     'github/copilot.vim',
+--     config = [[require('bizhub.plugins.copilot')]]
+-- }
+
+-- Testing
+use {
+    'vim-test/vim-test',
+    config = function()
+        require('bizhub.plugins.testing')
+    end,
+}
+
+-- Highlight colors
+-- use {
+--     'norcalli/nvim-colorizer.lua',
+--     config = [[require('bizhub.plugins.colorizer')]]
+-- }
+
+-- Keybind helper
+use {
+    'folke/which-key.nvim',
+    config = function()
+        require('bizhub.plugins.which-key')
+    end,
+}
+
+-- Motion
+use {
+    'easymotion/vim-easymotion',
+    config = function()
+        require('bizhub.plugins.easymotion')
+    end,
+}
+
+-- Vuejs
+-- use 'leafOfTree/vim-vue-plugin'
+
+-- Automatically install plugins on first run
+if packer_bootstrap then
+    require('packer').sync()
+end
+
+-- Automatically regenerate compiled loader file on save
 vim.cmd([[
     augroup packer_user_config
         autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerSync
+        autocmd BufWritePost plugins.lua source <afile>
     augroup end
 ]])
-
-local status_ok, packer = pcall(require, 'packer')
-if not status_ok then
-    return
-end
-
--- Packer configuration
-packer.init {
-    display = {
-        open_fn = function()
-            return require('packer.util').float { border = 'rounded' }
-        end,
-    },
-}
-
-return packer.startup(function(use)
-    use {
-        'lewis6991/impatient.nvim',
-        config = [[require('bizhub.plugins.impatient')]],
-    }
-
-    -- Packer
-    use 'wbthomason/packer.nvim'
-
-    -- Dependencies
-    use 'nvim-lua/plenary.nvim'
-    use 'kyazdani42/nvim-web-devicons'
-
-    -- Treesitter
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        config = [[require('bizhub.plugins.treesitter')]]
-    }
-
-    use 'nvim-treesitter/playground'
-
-    -- Snippet engine
-    use {
-        'L3MON4D3/LuaSnip',
-        config = [[require('bizhub.plugins.snippets')]]
-    }
-
-    -- Completions
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = {
-            'hrsh7th/cmp-nvim-lua',
-            'saadparwaiz1/cmp_luasnip',
-            'David-Kunz/cmp-npm',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline'
-        },
-        config = [[require('bizhub.plugins.completions')]]
-    }
-
-    -- Language server
-    use 'neovim/nvim-lspconfig'
-    use {
-        'williamboman/nvim-lsp-installer',
-        config = [[require('bizhub.lsp')]]
-    }
-
-    -- Null-ls
-    use {
-        'jose-elias-alvarez/null-ls.nvim',
-        config = [[require('bizhub.lsp.null-ls')]]
-    }
-
-    -- General
-    use 'mg979/vim-visual-multi'
-    use 'tpope/vim-surround'
-    use {
-        'numToStr/Comment.nvim',
-        config = [[require('bizhub.plugins.comment')]]
-    }
-    use 'jiangmiao/auto-pairs'
-
-    -- Themes
-    use {
-        'navarasu/onedark.nvim',
-        config = [[require('bizhub.plugins.colorscheme')]]
-    }
-
-    -- Dashboard
-    use {
-        'glepnir/dashboard-nvim',
-        config = [[require('bizhub.plugins.dashboard')]]
-    }
-
-    -- Transparent background
-    use {
-        'xiyaowong/nvim-transparent',
-        config = [[require('bizhub.plugins.transparent')]]
-    }
-
-    -- Lualine
-    use {
-        'nvim-lualine/lualine.nvim',
-        config = [[require('bizhub.plugins.lualine')]]
-    }
-
-    -- Buffer tabs
-    use {
-        'romgrk/barbar.nvim',
-        config = [[require('bizhub.plugins.barbar')]]
-    }
-
-    -- Nerdtree
-    use {
-        'scrooloose/nerdtree',
-        config = [[require('bizhub.plugins.nerdtree')]]
-    }
-
-    -- Telescope
-    use {
-        'nvim-telescope/telescope.nvim',
-        config = [[require('bizhub.plugins.telescope')]]
-    }
-
-    -- Git
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-rhubarb'
-
-    use {
-        'lewis6991/gitsigns.nvim',
-        config = [[require('bizhub.plugins.gitsigns')]]
-    }
-
-    use {
-        'pwntester/octo.nvim',
-        config = [[require('bizhub.plugins.octo')]]
-    }
-
-    -- Github copilot
-    use {
-        'github/copilot.vim',
-        config = [[require('bizhub.plugins.copilot')]]
-    }
-
-    -- Testing
-    use {
-        'vim-test/vim-test',
-        config = [[require('bizhub.plugins.testing')]]
-    }
-
-    -- Highlight colors
-    use {
-        'norcalli/nvim-colorizer.lua',
-        config = [[require('bizhub.plugins.colorizer')]]
-    }
-
-    -- Keybind helper
-    use {
-        'folke/which-key.nvim',
-        config = [[require('bizhub.plugins.which-key')]]
-    }
-
-    -- Motion
-    use {
-        'easymotion/vim-easymotion',
-        config = [[require('bizhub.plugins.easymotion')]]
-    }
-
-    -- Vuejs
-    use 'leafOfTree/vim-vue-plugin'
-
-    if PACKER_BOOTSTRAP then
-        require('packer').sync()
-    end
-end)
