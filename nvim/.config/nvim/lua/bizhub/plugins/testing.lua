@@ -8,3 +8,7 @@ nmap('<leader>T', ':TestFile<cr>')
 nmap('<leader>a', ':TestSuite<cr>')
 nmap('<leader>l', ':TestLast<cr>')
 -- nmap('<leader>g', ':TestVisit<cr>')
+
+vim.cmd([[
+    let test#php#pest#executable = './vendor/bin/sail artisan test'
+]])
