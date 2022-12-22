@@ -84,6 +84,9 @@ use({
 })
 use({
     'williamboman/mason.nvim',
+    requires = {
+        'williamboman/mason-lspconfig.nvim',
+    },
     config = function()
         require('bizhub.plugins.mason')
     end,
