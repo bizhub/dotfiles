@@ -47,10 +47,10 @@ use({
 })
 
 -- Snippet engine
--- use {
---     'L3MON4D3/LuaSnip',
---     config = [[require('bizhub.plugins.snippets')]]
--- }
+use {
+    'L3MON4D3/LuaSnip',
+    config = [[require('bizhub.plugins.snippets')]]
+}
 
 -- Completions
 use({
@@ -125,12 +125,6 @@ use {
     end,
 }
 
--- Transparent background
--- use {
---     'xiyaowong/nvim-transparent',
---     config = [[require('bizhub.plugins.transparent')]]
--- }
-
 -- Lualine
 use {
     'nvim-lualine/lualine.nvim',
@@ -164,8 +158,8 @@ use {
 }
 
 -- Git
--- use 'tpope/vim-fugitive'
--- use 'tpope/vim-rhubarb'
+use 'tpope/vim-fugitive'
+use 'tpope/vim-rhubarb'
 
 use {
     'lewis6991/gitsigns.nvim',
@@ -174,16 +168,10 @@ use {
     end,
 }
 
--- use {
---     'pwntester/octo.nvim',
---     config = [[require('bizhub.plugins.octo')]]
--- }
-
--- Github copilot
--- use {
---     'github/copilot.vim',
---     config = [[require('bizhub.plugins.copilot')]]
--- }
+use {
+    'pwntester/octo.nvim',
+    config = [[require('bizhub.plugins.octo')]]
+}
 
 -- Testing
 use {
@@ -194,10 +182,10 @@ use {
 }
 
 -- Highlight colors
--- use {
---     'norcalli/nvim-colorizer.lua',
---     config = [[require('bizhub.plugins.colorizer')]]
--- }
+use {
+    'norcalli/nvim-colorizer.lua',
+    config = [[require('bizhub.plugins.colorizer')]]
+}
 
 -- Keybind helper
 use {
@@ -214,9 +202,6 @@ use {
         require('bizhub.plugins.easymotion')
     end,
 }
-
--- Vuejs
--- use 'leafOfTree/vim-vue-plugin'
 
 -- Automatically install plugins on first run
 if packer_bootstrap then

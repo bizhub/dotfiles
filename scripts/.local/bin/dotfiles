@@ -217,6 +217,8 @@ setup_arch() {
         'exa'               # replacement for ls
         'tldr'              # simplify man pages
         'udiskie'           # automount usb
+        'zip',
+        'unzip',
     )
 
     AUR_PKGS=(
