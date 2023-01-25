@@ -36,5 +36,6 @@ fi
 xsetroot -cursor_name left_ptr &
 
 numlockx on &
+xinput --set-prop 'Logitech G502 HERO Gaming Mouse' 'libinput Accel Speed' -0.15
 
 exec bspwm
