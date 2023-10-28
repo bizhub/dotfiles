@@ -159,20 +159,22 @@ setup_arch() {
         # 'lightdm-gtk-greeter'
 
         # Fonts
-        'ttf-font-awesome'      # icons
-        'ttf-cascadia-code'     # theme font
-        'noto-fonts-emoji'      # emoji font
+        'ttf-font-awesome'
+        'ttf-cascadia-code'
+        'ttf-unifont'
+        'noto-fonts-emoji'
 
         # Misc
         'neovim'                # default terminal editor
-        'discord'               # chat
+        # 'discord'               # chat
         'redshift'              # screen color temperature
-        'thunderbird'           # email client
-        'vlc'                   # video player
+        # 'thunderbird'           # email client
+        # 'vlc'                   # video player
         # 'libqalcuate'           # terminal calculator
-        'gimp'                  # image editor
-        'qbittorrent'
+        # 'gimp'                  # image editor
+        # 'qbittorrent'
         'htop'
+        'eog'                   # image viewer
         'xdg-utils'
         'xdg-user-dirs'
 
@@ -191,6 +193,7 @@ setup_arch() {
         'pipewire'              # sound server
         'pipewire-alsa'         # pipewire alsa replacement
         'pipewire-pulse'        # pipewire pulse replacement
+        'pipewire-jack'
         'wireplumber'           # pipewire gui
         'pavucontrol'           # gui volume control
         'playerctl'             # player controls
@@ -205,29 +208,32 @@ setup_arch() {
         'docker-compose'
         'php'
         'npm'
+        'composer'
+        'bind'                  # dns lookup
 
         # Utils
-        'filelight'         # diskspace
-        'pacman-contrib'    # pacman utils
-        'fzf'               # fuzzy finder
-        'ripgrep'           # search tool
-        # 'lxappearance'      # GTK appearance editor
-        'xclip'             # clipboard
-        'bat'               # replacement for cat
-        'exa'               # replacement for ls
-        'tldr'              # simplify man pages
-        'udiskie'           # automount usb
-        'zip',
-        'unzip',
+        'flameshot'
+        'filelight'             # diskspace
+        'pacman-contrib'        # pacman utils
+        'fzf'                   # fuzzy finder
+        'ripgrep'               # search tool
+        # 'lxappearance'          # GTK appearance editor
+        'xclip'                 # clipboard
+        'bat'                   # replacement for cat
+        'eza'                   # replacement for ls
+        'tldr'                  # simplify man pages
+        'udiskie'               # automount usb
+        'zip'
+        'unzip'
     )
 
     AUR_PKGS=(
         'megasync-bin'
         'polybar-git'
-        'tableplus'
+        # 'tableplus'
         'ttf-ms-fonts'
         'brave-bin'
-        'qimgv'
+        # 'qimgv'
     )
 
     echo

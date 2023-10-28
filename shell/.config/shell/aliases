@@ -3,11 +3,11 @@ alias cls='clear'
 alias ..='cd ../'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ls='exa --ignore-glob=".git"'
+alias ls='eza --ignore-glob=".git"'
 alias ll='ls -alF --group-directories-first'
 alias llt='ll --tree'
 alias llc='clear && ll'
-alias repo='cd $(ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
+alias repo='cd $(\ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
 
 alias ranger='. ranger'
 alias r='. ranger'
@@ -83,7 +83,7 @@ alias v='nvim'
 alias vf='fzf --reverse | xargs -ro nvim'
 
 # Vscode
-alias c='code $(ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
+alias c='code $(\ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
 
 # Tmux
 alias t='tmux'
@@ -109,6 +109,7 @@ alias seed='sail artisan db:seed'
 alias test='cls && sail artisan test'
 alias testf='cls && sail artisan test --filter='
 alias testp='cls && sail artisan test --parallel'
+alias testu='cls && sail artisan test --testsuite Unit'
 alias tt='php artisan typescript:transform'
 
 # Npm
