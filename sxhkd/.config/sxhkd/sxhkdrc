@@ -42,8 +42,8 @@ super + h
 	alacritty -e htop
 
 # open calculator
-super + l
-	slock
+super + c
+	gnome-calculator
 
 # take screenshot
 Print

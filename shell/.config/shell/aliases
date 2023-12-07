@@ -56,8 +56,15 @@ alias go='git checkout'
 alias gt='git --no-pager tag'
 alias gm='git merge'
 alias gd='git diff'
-alias nah='git reset --hard HEAD'
 alias gclear='git config --unset credential.helper'
+
+nah () {
+    git reset --hard
+    git clean -df
+    if [ -d ".git/rebase-apply" ] || [ -d ".git/rebase-merge" ]; then
+        git rebase --abort
+    fi
+}
 
 # Docker
 alias dps='docker ps -a'
