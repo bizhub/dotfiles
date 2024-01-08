@@ -1,0 +1,33 @@
+import = ["/home/lex/.config/alacritty/onedark.toml"]
+live_config_reload = true
+
+[cursor]
+style = "Beam"
+thickness = 0.2
+unfocused_hollow = false
+
+[font]
+size = 11.0
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "Cascadia Code PL"
+style = "Medium"
+
+[font.offset]
+x = 0
+y = 0
+
+[shell]
+program = "/usr/bin/zsh"
+
+[window]
+dynamic_padding = true
+opacity = 0.98
+
+[window.padding]
+x = 10
+y = 10
