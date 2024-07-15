@@ -45,6 +45,9 @@ super + h
 super + c
 	gnome-calculator
 
+super + p
+	colorpicker --short --one-shot | xsel -b
+
 # take screenshot
 Print
 	flameshot gui
