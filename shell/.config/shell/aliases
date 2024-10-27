@@ -90,7 +90,7 @@ alias v='nvim'
 alias vf='fzf --reverse | xargs -ro nvim'
 
 # Vscode
-alias c='code $(\ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
+alias c='code $(\ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s") && exit'
 
 # Tmux
 alias t='tmux'
