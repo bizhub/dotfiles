@@ -52,6 +52,9 @@ super + p
 Print
 	flameshot gui
 
+super + a
+	ferdium
+
 #
 # wm independent hotkeys
 #
