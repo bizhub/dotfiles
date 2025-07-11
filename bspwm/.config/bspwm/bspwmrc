@@ -15,6 +15,11 @@ udiskie &
 pkill picom
 picom -bf --fade-delta=2
 
+pkill megasync
+megasync &
+
+openrgb --profile ~/.config/OpenRGB/Main.orp
+
 pgrep -fo polkit-gnome-authentication-agent-1 | xargs kill
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
