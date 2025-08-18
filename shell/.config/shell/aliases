@@ -124,6 +124,9 @@ alias dev='sail npm run dev'
 alias build='sail npm run build'
 alias vitest='sail npm run test'
 
+# Combos
+alias upd='up & dev'
+
 #################################
 # Functions
 #################################
