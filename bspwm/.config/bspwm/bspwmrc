@@ -62,12 +62,12 @@ bspc config focus_follows_pointer true
 
 # Specific windows
 bspc rule -a Mysql-workbench-bin desktop='^4' follow=on
-bspc rule -a thunderbird desktop='^5' follow=on
+bspc rule -a org.mozilla.Thunderbird desktop='^5' follow=on
 bspc rule -a ferdium desktop='^6' follow=on
 
 # Window rules
 bspc rule -a Pavucontrol state=floating center=true
-bspc rule -a thunderbird:Msgcompose state=floating
+bspc rule -a org.mozilla.Thunderbird:Msgcompose state=floating
 bspc rule -a net-runelite-launcher-Launcher state=floating
 bspc rule -a net-runelite-client-RuneLite state=floating
 bspc rule -a gnome-calculator state=floating focus=on
@@ -76,3 +76,6 @@ bspc rule -a MEGAsync state=floating follow=on border=off layer=above
 bspc rule -a Nitrogen state=floating rectangle=800x500+0+0 center=on
 bspc rule -a Psensor state=floating rectangle=800x500+0+0 center=on
 bspc rule -a awakened-poe-trade state=floating border=off focus=off layer=above
+
+bspc rule -a evelauncher state=floating border=off
+bspc rule -a exefile state=floating border=off

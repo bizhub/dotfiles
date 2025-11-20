@@ -23,7 +23,7 @@ xdg-mime default qimgv.desktop image/jpeg image/png image/gif
 xdg-mime default pcmanfm.desktop inode/directory
 
 xinput list
-xinput --set-prop 14 'libinput Accel Speed' -0.1
+xinput --set-prop 14 'libinput Accel Speed' -0.7
 ```
 
 ## Todo
