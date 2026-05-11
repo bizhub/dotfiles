@@ -30,6 +30,8 @@ nitrogen --restore &
 
 pgrep bspswallow || "$HOME"/.config/bspwm/scripts/bspswallow &
 
+xinput --set-prop 'Logitech G502 HERO Gaming Mouse' 'libinput Accel Speed' -0.7 &
+
 bspc monitor DP-2 -s DP-1
 bspc monitor DP-2 -d 1 2 3 4 5 6 7 8 9
 

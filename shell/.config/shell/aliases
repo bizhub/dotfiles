@@ -8,9 +8,9 @@ alias ll='ls -alF --group-directories-first'
 alias llt='ll --tree'
 alias llc='clear && ll'
 alias repo='cd $(\ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
+alias r='cd $(\ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {1} status -s")'
 
 alias ranger='. ranger'
-alias r='. ranger'
 alias o='xdg-open 2>/dev/null'
 alias of='fzf --reverse | xargs -ro xdg-open 2>/dev/null'
 
@@ -31,7 +31,7 @@ alias cat='bat'
 
 # Package managers
 alias pc='sudo pacman -Rns $(pacman -Qdtq)'
-alias yayf="yay -Slq | fzf --multi --height 100% --preview 'yay -Si {1}' | xargs -ro yay -S"
+alias yayf="yay -Ssq | fzf --multi --height 100% --preview 'yay -Si {} || yay -Si aur/{}' | xargs -ro yay -S"
 alias yayr="yay -Qq | fzf --multi --height 100% --preview 'yay -Qi {1}' | xargs -ro yay -Rns"
 
 # Systemd
@@ -124,8 +124,14 @@ alias dev='sail npm run dev'
 alias build='sail npm run build'
 alias vitest='sail npm run test'
 
-# Combos
-alias upd='up & dev'
+# Functions
+s() {
+    local selected
+    selected=$(ls -d "${PROJECT_HOME:=$HOME/repos}"/* | fzf --height 40% --reverse --preview "git -C {} status -s") || return
+    cd "$selected" || return
+    sail up -d
+    sail npm run dev
+}
 
 #################################
 # Functions

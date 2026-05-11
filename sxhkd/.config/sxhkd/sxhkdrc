@@ -50,7 +50,7 @@ super + p
 
 # take screenshot
 Print
-	flameshot gui
+	sleep 0.1 && flameshot gui
 
 super + a
 	ferdium
