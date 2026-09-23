@@ -65,7 +65,6 @@ bspc config focus_follows_pointer true
 # Specific windows
 bspc rule -a Mysql-workbench-bin desktop='^4' follow=on
 bspc rule -a org.mozilla.Thunderbird desktop='^5' follow=on
-bspc rule -a ferdium desktop='^6' follow=on
 
 # Window rules
 bspc rule -a Pavucontrol state=floating center=true
