@@ -25,9 +25,10 @@ source_if_exists /usr/share/fzf/key-bindings.zsh
 source_if_exists /usr/share/fzf/completion.zsh
 
 ## Paths
-pathadd $HOME/.local/bin
-pathadd $HOME/.config/composer/vendor/bin
-pathadd $HOME/.local/share/cargo/bin
+pathadd "$HOME/.local/bin"
+pathadd "$HOME/.local/share/npm/bin"
+pathadd "$HOME/.config/composer/vendor/bin"
+pathadd "$HOME/.local/share/cargo/bin"
 
 ## Options
 setopt nocorrectall
